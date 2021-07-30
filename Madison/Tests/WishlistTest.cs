@@ -72,30 +72,13 @@ namespace Madison.Tests
             Pages.MyWishlistPage.GetRequiredValidationAdvice().Should().Contain("This is a required field");
         }
 
-
-        public void Login()
+        // workaround to encapsulate login into one method
+        private void Login()
         {
-
-            // go to Maddison
-            Driver.webDriver.Navigate().GoToUrl("http://qa2.dev.evozon.com/");
-
-            // click on account
-            Pages.MyWishlistPage.ClickOnAccount();
-
-            // go to login
-            var login = Driver.webDriver.FindElement(By.CssSelector(".links li.last a[title='Log In']"));
-            login.Click();
-
-            var form = Driver.webDriver.FindElement(By.CssSelector("form#login-form"));
-            form.Displayed.Should().BeTrue();
-
-            var email = Driver.webDriver.FindElement(By.Name("login[username]"));
-            email.SendKeys("ana.ana@outlook.com");
-            var password = Driver.webDriver.FindElement(By.Name("login[password]"));
-            password.SendKeys("1234567");
-
-            var loginBtn = Driver.webDriver.FindElement(By.Id("send2"));
-            loginBtn.Submit();
+            Pages.HomePage.ClickOnAccount();
+            Pages.HomePage.ClickLogInButton();
+            Pages.LoginPage.FillCredentials();
+            Pages.LoginPage.LogInSubmit();
         }
     }
 }

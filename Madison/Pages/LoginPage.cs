@@ -18,13 +18,6 @@ namespace Madison.Pages
         #endregion
 
 
-        public bool CheckLogInPageDispayed()
-        {
-
-        }
-
-
-
 
         public void FillEmail()
         {
@@ -47,7 +40,7 @@ namespace Madison.Pages
         {
            Driver.webDriver.FindElement(loginButton).Submit();
         }
-    }
 
+    }
 
 }
