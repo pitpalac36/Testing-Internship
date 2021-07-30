@@ -32,7 +32,7 @@ namespace Madison.Pages
         public void ClickOMyWishlist()
         {
             Driver.webDriver.FindElement(_myWishlistSelector).Click();
-            WaitHelpers.WaitUntilDOcumentReady();
+            WaitHelpers.WaitUntilDocumentReady();
         }
 
         public bool IsRedirectedToWishlist()
@@ -52,13 +52,13 @@ namespace Madison.Pages
         public void ClickOnUpdateItem()
         {
             Driver.webDriver.FindElement(_updateWishlistFirstButton).Click();
-            WaitHelpers.WaitUntilDOcumentReady();
+            WaitHelpers.WaitUntilDocumentReady();
         }
 
         public void ClickOnUpdateWishlist()
         {
             Driver.webDriver.FindElement(_updateWishlistBigButton).Click();
-            WaitHelpers.WaitUntilDOcumentReady();
+            WaitHelpers.WaitUntilDocumentReady();
         }
 
         public int ItemQuantity()
@@ -69,7 +69,7 @@ namespace Madison.Pages
         public void ClickOnShareWishlist()
         {
             Driver.webDriver.FindElement(_shareWishlistButton).Click();
-            WaitHelpers.WaitUntilDOcumentReady();
+            WaitHelpers.WaitUntilDocumentReady();
         }
 
         public string GetUrl()
@@ -92,7 +92,7 @@ namespace Madison.Pages
         public void ClickOnShareWishlistButton()
         {
             Driver.webDriver.FindElement(_shareWishlistFinalButton).Click();
-            WaitHelpers.WaitUntilDOcumentReady();
+            WaitHelpers.WaitUntilDocumentReady();
         }
 
         public bool IsRequiredValidationAdviceDisplayed()

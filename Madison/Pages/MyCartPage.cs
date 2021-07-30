@@ -29,7 +29,7 @@ namespace Madison.Pages
         {
             string itemLink = ResourceFileHelper.GetValueAssociatedToString("Earbuds");
             Driver.webDriver.Navigate().GoToUrl(itemLink);
-            WaitHelpers.WaitUntilDOcumentReady();
+            WaitHelpers.WaitUntilDocumentReady();
             By addToCartButton = By.CssSelector(".button.btn-cart:nth-child(1)");
             Driver.webDriver.FindElement(addToCartButton).Click();
         }
@@ -47,7 +47,7 @@ namespace Madison.Pages
         public void ClickOnContinueShoppingLinkEmptyCart()
         {
             Driver.webDriver.FindElement(_continueShoppingLinkEmptyCart).Click();
-            WaitHelpers.WaitUntilDOcumentReady();
+            WaitHelpers.WaitUntilDocumentReady();
         }
 
         public bool CheckoutFormVisibility()
@@ -69,7 +69,7 @@ namespace Madison.Pages
         {
             string cartUrl = ResourceFileHelper.GetValueAssociatedToString("CartLink"); 
             Driver.webDriver.Navigate().GoToUrl(cartUrl);
-            WaitHelpers.WaitUntilDOcumentReady();
+            WaitHelpers.WaitUntilDocumentReady();
         }
 
 
