@@ -14,6 +14,9 @@ namespace Madison.Pages
         private readonly By _updateWishlistBigButton = By.CssSelector(".buttons-set.buttons-set2 button+button+button");
         private readonly By _shareWishlistButton = By.CssSelector(".buttons-set.buttons-set2 button");
         private readonly By _shareWishlistForm = By.CssSelector(".col-main");
+        private readonly By _shareWishlistEmailTextArea = By.CssSelector("textarea[Name='emails']");
+        private readonly By _shareWishlistFinalButton = By.CssSelector(".form-buttons button");
+        private readonly By _validationAdviceLabel = By.ClassName("validation-advice");
         #endregion
 
         public void ClickOnAccount()
@@ -74,11 +77,32 @@ namespace Madison.Pages
             return Driver.webDriver.Url;
         }
 
-        public bool IsShareWishlistFromDisplayed()
+        public bool IsShareWishlistFormDisplayed()
         {
             return Driver.webDriver.FindElement(_shareWishlistForm).Displayed;
         }
 
+        public void FillEmail(string email)
+        {
+            var textarea = Driver.webDriver.FindElement(_shareWishlistEmailTextArea);
+            textarea.Clear();
+            textarea.SendKeys(email);
+        }
 
+        public void ClickOnShareWishlistButton()
+        {
+            Driver.webDriver.FindElement(_shareWishlistFinalButton).Click();
+            WaitHelpers.WaitUntilDOcumentReady();
+        }
+
+        public bool IsRequiredValidationAdviceDisplayed()
+        {
+            return Driver.webDriver.FindElement(_validationAdviceLabel).Displayed;
+        }
+
+        public string GetRequiredValidationAdvice()
+        {
+            return Driver.webDriver.FindElement(_validationAdviceLabel).Text;
+        }
     }
 }

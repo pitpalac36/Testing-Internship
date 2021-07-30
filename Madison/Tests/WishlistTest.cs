@@ -56,7 +56,20 @@ namespace Madison.Tests
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ClickOnShareWishlist();
             Pages.MyWishlistPage.GetUrl().Should().Contain("http://qa2.dev.evozon.com/wishlist/index/share/wishlist_id/");
-            Pages.MyWishlistPage.IsShareWishlistFromDisplayed().Should().BeTrue();
+            Pages.MyWishlistPage.IsShareWishlistFormDisplayed().Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void ShareWishlistFormValidatesEmptyEmail()
+        {
+            Login();
+            Pages.MyWishlistPage.ClickOnAccount();
+            Pages.MyWishlistPage.ClickOMyWishlist();
+            Pages.MyWishlistPage.ClickOnShareWishlist();
+            Pages.MyWishlistPage.FillEmail("");
+            Pages.MyWishlistPage.ClickOnShareWishlistButton();
+            Pages.MyWishlistPage.IsRequiredValidationAdviceDisplayed().Should().BeTrue();
+            Pages.MyWishlistPage.GetRequiredValidationAdvice().Should().Contain("This is a required field");
         }
 
 
