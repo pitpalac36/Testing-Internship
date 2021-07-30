@@ -24,7 +24,7 @@ namespace Madison.Tests
             var headerCount = Pages.HomePage.getSectionsList();
             Assert.AreEqual(6, headerCount.Count);
         }
-        
+
         [TestMethod]
         public void verifyIfHomeDecorMainImgIsDisplayed()
         {
@@ -34,10 +34,24 @@ namespace Madison.Tests
         }
 
         [TestMethod]
-        public void checkIfHomeDecorDropdownIsActive()
+        public void checkIfElectronicsPageTitleIsDisplayed()
         {
+            Pages.HomePage.goToHomeDecor();
+            Pages.HomePage.goFromHomePageToElectronics();
+            var checkVisibility = Pages.HomePage.checkIfPageTitleIsVisible();
+            Assert.IsTrue(checkVisibility);
 
         }
+
+        [TestMethod]
+        public void checkIfShowProductsDisplaysACorrectNumberOfProducts()
+        {
+            Pages.HomePage.goToHomeDecor();
+            Pages.HomePage.goFromHomePageToElectronics();
+            var products = Pages.ProductsPage.getFirst12ProductsFromElectronics();
+            Assert.AreEqual(12, products.Count);
+        }
+
         [TestMethod]
         public void verifyThatElectronicsSectionWorks()
         {
@@ -54,15 +68,12 @@ namespace Madison.Tests
 
         }
 
+        
+
         [TestMethod]
-        public void checkIfShowProductsDisplaysACorrectNumberOfProducts()
+        public void checkIfProductIsOpened()
         {
 
-        }
-
-        [TestMethod]
-        public void checkIfProductIsOpened() {
-        
         }
 
     }
