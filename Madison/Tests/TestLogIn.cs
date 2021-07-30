@@ -23,4 +23,22 @@ namespace Madison.Tests
             Pages.LoginPage.LogInSubmit();
         }
 
+        [TestMethod]
+        public void AlreadyRegisteredTxtDisplayed()
+        {
+            Pages.HomePage.ClickOnAccount();
+            Pages.HomePage.ClickLogInButton();
+            //Pages.LoginPage.CheckLogInPageDispayed().Should().Be("Customer Login");
+            Pages.LoginPage.AlreadyRegisteredTextDisplayed().Should().Be("ALREADY REGISTERED?"); //??
+        }
+
+        [TestMethod]
+        public void ExistingAccount()
+        {
+            Pages.HomePage.ClickOnAccount();
+            Pages.HomePage.ClickLogInButton();
+            Pages.LoginPage.CheckExistingAccountMessage().Should().Be("If you have an account with us, please log in.");
+        }
+
     }
+}
