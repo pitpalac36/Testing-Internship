@@ -3,6 +3,8 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +23,7 @@ namespace Madison.Pages
         private readonly By _continueShoppingLinkEmptyCart = By.CssSelector(".cart-empty > p > a");
         #endregion
         
+
         public string GetHeaderMessage()
         {
             return Driver.webDriver.FindElement(_shoppingCartHeader).Text;
@@ -34,6 +37,7 @@ namespace Madison.Pages
         public void ClickOnContinueShoppingLinkEmptyCart()
         {
             Driver.webDriver.FindElement(_continueShoppingLinkEmptyCart).Click();
+            WaitHelpers.WaitUntilDOcumentReady();
         }
 
         public bool CartLabelVisibility()
@@ -43,8 +47,11 @@ namespace Madison.Pages
 
         public void GoToCart()
         {
-            Driver.webDriver.Navigate().GoToUrl("http://qa2.dev.evozon.com/checkout/cart/");
+            string cartUrl = ResourceFileHelper.GetValueAssociatedToString("CartLink"); 
+            Driver.webDriver.Navigate().GoToUrl(cartUrl);
+            WaitHelpers.WaitUntilDOcumentReady();
         }
+
 
     }
 }

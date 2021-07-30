@@ -24,6 +24,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="WebLinks.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WebLinks.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="WebLinks.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WebLinks.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="chromedriver.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

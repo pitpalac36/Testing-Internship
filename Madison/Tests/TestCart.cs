@@ -18,7 +18,6 @@ namespace Madison.Tests
         public void EmptyCartShowsEmptyCartHeader()
         {
             Pages.MyCartPage.GoToCart();
-            WaitHelpers.WaitUntilDOcumentReady();
             string header = Pages.MyCartPage.GetHeaderMessage();
             string expected_message = "SHOPPING CART IS EMPTY";
             header.Should().Be(expected_message);
@@ -28,7 +27,6 @@ namespace Madison.Tests
         public void EmptyCartVisibleContinueShopingLink()
         {
             Pages.MyCartPage.GoToCart();
-            WaitHelpers.WaitUntilDOcumentReady();
             bool displayed = Pages.MyCartPage.ContinueShoppingLinkEmptyIsVisible();
             displayed.Should().BeTrue();
         }
@@ -36,18 +34,19 @@ namespace Madison.Tests
         [TestMethod]
         public void ContinueShoppingLinkRedirectsToHomePage()
         {
+            string homepageUrl = ResourceFileHelper.GetValueAssociatedToString("Homepage");
             Pages.MyCartPage.GoToCart();
-            WaitHelpers.WaitUntilDOcumentReady();
             string cart_url = Driver.webDriver.Url;
             Pages.MyCartPage.ClickOnContinueShoppingLinkEmptyCart();
             string redirected_url = Driver.webDriver.Url;
             redirected_url.Should().NotBe(cart_url);
-            redirected_url.Should().Be("http://qa2.dev.evozon.com/");
+            redirected_url.Should().Be(homepageUrl);
         }
 
         [TestMethod]
         public void CartLabelNotDisplayedWhenCartIsEmpty()
         {
+            Pages.MyCartPage.GoToCart();
             bool visibility = Pages.MyCartPage.CartLabelVisibility();
             visibility.Should().BeFalse();
         }
