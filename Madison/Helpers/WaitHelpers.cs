@@ -9,12 +9,11 @@ using OpenQA.Selenium.Support.Extensions;
 
 namespace Madison.Helpers
 {
-    public class WaitHelpers
+    public static class WaitHelpers
     {
-        public static void WaitUntilDOcumentReady() {
+        public static void WaitUntilDocumentReady() {
             new WebDriverWait(Driver.webDriver, TimeSpan.FromSeconds(30.0))
                 .Until(d => Driver.webDriver.ExecuteJavaScript<string>("return document.readyState").Equals("complete"));
-
         }
     }
 }
