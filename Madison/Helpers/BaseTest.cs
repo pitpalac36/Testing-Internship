@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
 using System;
 
@@ -14,8 +15,8 @@ namespace Madison.Helpers
         {
             Driver.webDriver = new ChromeDriver();
             Driver.webDriver.Navigate().GoToUrl("http://qa2.dev.evozon.com/");
-            /*new WebDriverWait(Driver.webDriver, TimeSpan.FromSeconds(30.0))
-                .Until(d => Driver.webDriver.ExecuteScript("return document.readyState").Equals("complete"));*/
+            new WebDriverWait(Driver.webDriver, TimeSpan.FromSeconds(30.0))
+                .Until(d => Driver.webDriver.ExecuteJavaScript<string>("return document.readyState").Equals("complete"));
         }
 
         [TestCleanup]
