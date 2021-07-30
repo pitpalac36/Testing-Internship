@@ -36,5 +36,15 @@ namespace Madison.Pages
             Driver.webDriver.FindElement(_continueShoppingLinkEmptyCart).Click();
         }
 
+        public bool CartLabelVisibility()
+        {
+            return Driver.webDriver.FindElement(_cartLabel).Displayed;
+        }
+
+        public void GoToCart()
+        {
+            Driver.webDriver.Navigate().GoToUrl("http://qa2.dev.evozon.com/checkout/cart/");
+        }
+
     }
 }
