@@ -120,6 +120,9 @@
   <data name="CartLink" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/checkout/cart/</value>
   </data>
+  <data name="Earbuds" xml:space="preserve">
+    <value>http://qa2.dev.evozon.com/home-decor/electronics/madison-earbuds.html</value>
+  </data>
   <data name="Homepage" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/</value>
   </data>

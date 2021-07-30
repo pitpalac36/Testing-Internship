@@ -24,6 +24,15 @@ namespace Madison.Pages
         #endregion
         
 
+        public void AddItemToCart()
+        {
+            string itemLink = ResourceFileHelper.GetValueAssociatedToString("Earbuds");
+            Driver.webDriver.Navigate().GoToUrl(itemLink);
+            WaitHelpers.WaitUntilDOcumentReady();
+            By addToCartButton = By.CssSelector(".button.btn-cart:nth-child(1)");
+            Driver.webDriver.FindElement(addToCartButton).Click();
+        }
+
         public string GetHeaderMessage()
         {
             return Driver.webDriver.FindElement(_shoppingCartHeader).Text;
@@ -43,6 +52,11 @@ namespace Madison.Pages
         public bool CartLabelVisibility()
         {
             return Driver.webDriver.FindElement(_cartLabel).Displayed;
+        }
+
+        public bool ItemTableVisibility()
+        {
+            return Driver.webDriver.FindElement(_shoppingCartTable).Displayed;
         }
 
         public void GoToCart()

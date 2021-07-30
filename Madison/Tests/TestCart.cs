@@ -30,6 +30,22 @@ namespace Madison.Tests
             bool displayed = Pages.MyCartPage.ContinueShoppingLinkEmptyIsVisible();
             displayed.Should().BeTrue();
         }
+
+        [TestMethod]
+        public void CartTableNotVisibleEmpty()
+        {
+            Pages.MyCartPage.GoToCart();
+            try
+            {
+                bool displayed = Pages.MyCartPage.ItemTableVisibility();
+                displayed.Should().BeFalse();
+            }
+            catch (Exception ex)
+            {
+                ex.Should().BeOfType<OpenQA.Selenium.NoSuchElementException>();
+            }
+            
+        }
         
         [TestMethod]
         public void ContinueShoppingLinkRedirectsToHomePage()
