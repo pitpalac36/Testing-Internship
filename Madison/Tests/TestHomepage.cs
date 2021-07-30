@@ -16,10 +16,10 @@ namespace UnitDemo
         [TestMethod]
         public void CartSummaryIsShownWhenClickingOnCartLogo()
         {
-            IWebElement item = driver.FindElement(By.CssSelector(".skip-link.skip-cart.no-count"));
+            IWebElement item = Driver.webDriver.FindElement(By.CssSelector(".skip-link.skip-cart.no-count"));
             item.Click();
-            new WebDriverWait(driver, TimeSpan.FromSeconds(3)).Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".minicart-wrapper")));
-            IWebElement cart_summary = driver.FindElement(By.CssSelector(".minicart-wrapper"));
+            new WebDriverWait(Driver.webDriver, TimeSpan.FromSeconds(3)).Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".minicart-wrapper")));
+            IWebElement cart_summary = Driver.webDriver.FindElement(By.CssSelector(".minicart-wrapper"));
             //Assert.IsTrue(cart_summary.Displayed);
             cart_summary.Displayed.Should().BeTrue();
 
@@ -29,15 +29,15 @@ namespace UnitDemo
         [TestMethod]
         public void CartSummaryIsNotShownWhenOpeningThePage()
         {
-            IWebElement cart_summary = driver.FindElement(By.CssSelector(".minicart-wrapper"));
+            IWebElement cart_summary = Driver.webDriver.FindElement(By.CssSelector(".minicart-wrapper"));
             //Assert.IsFalse(cart_summary.Displayed);
             cart_summary.Displayed.Should().BeFalse();
         }
         [TestMethod]
         public void HoverOverWomenSectionOpensSubMenu()
         {
-            IWebElement woman_section = driver.FindElement(By.CssSelector(".level0.nav-1.first.parent"));
-            Actions builder = new Actions(driver);
+            IWebElement woman_section = Driver.webDriver.FindElement(By.CssSelector(".level0.nav-1.first.parent"));
+            Actions builder = new Actions(Driver.webDriver);
             builder.MoveToElement(woman_section).Perform();
             IList<IWebElement> menu_options = woman_section.FindElements(By.CssSelector("ul > li"));
             //Assert.IsFalse(menu_options.Count == 0);
@@ -47,10 +47,10 @@ namespace UnitDemo
         [TestMethod]
         public void ClickOnWomenRedirectsToWomenPage()
         {
-            string old_url = driver.Url;
-            IWebElement woman_section = driver.FindElement(By.CssSelector(".level0.nav-1.first.parent"));
+            string old_url = Driver.webDriver.Url;
+            IWebElement woman_section = Driver.webDriver.FindElement(By.CssSelector(".level0.nav-1.first.parent"));
             woman_section.Click();
-            string new_url = driver.Url;
+            string new_url = Driver.webDriver.Url;
             //Assert.AreNotEqual(new_url, old_url);
             new_url.Should().NotBeEquivalentTo(old_url);
         }
