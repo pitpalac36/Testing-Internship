@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Madison.Tests
 {
     [TestClass]
-    class TestCart : BaseTest
+    public class TestCart : BaseTest
     {
         public void GoToCart()
         {
