@@ -1,22 +1,21 @@
 ﻿using FluentAssertions;
 using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using NUnit.Framework;
-using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Madison.Tests
 {
     [TestClass]
     class TestCart : BaseTest
     {
-        
-        public static void GoToCart()
+        public void GoToCart()
         {
             Driver.webDriver.Navigate().GoToUrl("http://qa2.dev.evozon.com/checkout/cart/");
         }
-
 
         [TestMethod]
         public void EmptyCartShowsEmptyCartHeader()
