@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -7,15 +8,8 @@ using System;
 namespace UnitDemo
 {
     [TestClass]
-    public class Test
+    public class Test: BaseTest
     {
-        private static IWebDriver driver;
-
-        [TestInitialize]
-        public void Before()
-        {
-            driver = new ChromeDriver();
-        }
 
         public static void GoToSite(string url)
         {
@@ -340,11 +334,5 @@ namespace UnitDemo
 
         }
 
-        [TestCleanup]
-        public void After()
-        {
-            driver.Close();
-            driver.Quit();
-        }
     }
 }

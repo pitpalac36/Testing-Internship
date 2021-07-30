@@ -1,39 +1,29 @@
 ﻿using FluentAssertions;
+using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 //using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MSTestProject
 {
     [TestClass]
-    public class UnitTest1
-    {
-        static IWebDriver webDriver ;
-        
-        [TestInitialize]
-        public void Before()
-        {
-            webDriver = new ChromeDriver();
-            webDriver.Navigate().GoToUrl("http://qa2.dev.evozon.com/");
-        }
+    public class UnitTest1: BaseTest
+    {        
 
         public string  GetTitle()
         {
-           string title= webDriver.Title;
+           string title= driver.Title;
             return title;
         }
 
 
         public void SelectMyAccountMenu(string accountMenu)
         {
-            IWebElement accountElement = webDriver.FindElement(By.CssSelector(".account-cart-wrapper > a"));
+            IWebElement accountElement = driver.FindElement(By.CssSelector(".account-cart-wrapper > a"));
             accountElement.Click();
-            IList<IWebElement> menuElements = webDriver.FindElements(By.CssSelector("#header-account>.links>ul li"));
+            IList<IWebElement> menuElements = driver.FindElements(By.CssSelector("#header-account>.links>ul li"));
             menuElements.First(item => item.Text == accountMenu).Click();
 
         }
@@ -50,17 +40,17 @@ namespace MSTestProject
         public void TestMethod_AccountMenu()
         {
             SelectMyAccountMenu("My Account");
-            webDriver.Navigate().Back();
+            driver.Navigate().Back();
             SelectMyAccountMenu("My Wishlist");
-            webDriver.Navigate().Back();
+            driver.Navigate().Back();
             SelectMyAccountMenu("My Cart");
-            webDriver.Navigate().Back();
+            driver.Navigate().Back();
             SelectMyAccountMenu("Checkout");
-            webDriver.Navigate().Back();
+            driver.Navigate().Back();
             SelectMyAccountMenu("Register");
-            webDriver.Navigate().Back();
+            driver.Navigate().Back();
             SelectMyAccountMenu("Log In");
-            webDriver.Navigate().Back();
+            driver.Navigate().Back();
             
             /*SelectMyAccountMenu(MyAccountMenu.MyAccount);
             SelectMyAccountMenu(MyAccountMenu.MyWishlist);
@@ -70,10 +60,5 @@ namespace MSTestProject
             SelectMyAccountMenu(MyAccountMenu.Login);*/
         }
 
-        [TestCleanup]
-        public void After()
-        {
-            webDriver.Quit();
-        }
     }
 }
