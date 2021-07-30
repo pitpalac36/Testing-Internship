@@ -8,5 +8,6 @@ namespace Madison.Pages
 {
     public class LoginPage
     {
+
     }
 }
