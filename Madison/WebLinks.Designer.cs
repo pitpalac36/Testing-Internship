@@ -79,6 +79,15 @@ namespace Madison {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SHOPPING CART IS EMPTY.
+        /// </summary>
+        internal static string EmptyCartMessage {
+            get {
+                return ResourceManager.GetString("EmptyCartMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://qa2.dev.evozon.com/.
         /// </summary>
         internal static string Homepage {

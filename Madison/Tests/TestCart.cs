@@ -19,7 +19,7 @@ namespace Madison.Tests
         {
             Pages.MyCartPage.GoToCart();
             string header = Pages.MyCartPage.GetHeaderMessage();
-            string expected_message = "SHOPPING CART IS EMPTY";
+            string expected_message = ResourceFileHelper.GetValueAssociatedToString("EmptyCartMessage");
             header.Should().Be(expected_message);
         }
 
@@ -46,6 +46,21 @@ namespace Madison.Tests
             }
             
         }
+
+        [TestMethod]
+        public void CartCheckoutFormNotVisibleWhenEmpty()
+        {
+            Pages.MyCartPage.GoToCart();
+            try
+            {
+                bool displayed = Pages.MyCartPage.CheckoutFormVisibility();
+                displayed.Should().BeFalse();
+            }
+            catch(Exception ex)
+            {
+                ex.Should().BeOfType<OpenQA.Selenium.NoSuchElementException>();
+            }
+        }
         
         [TestMethod]
         public void ContinueShoppingLinkRedirectsToHomePage()
@@ -65,6 +80,14 @@ namespace Madison.Tests
             Pages.MyCartPage.GoToCart();
             bool visibility = Pages.MyCartPage.CartLabelVisibility();
             visibility.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void CartLabelDisplayedWithItemsInCart()
+        {
+            Pages.MyCartPage.AddItemToCart();
+            bool visibility = Pages.MyCartPage.CartLabelVisibility();
+            visibility.Should().BeTrue();
         }
     }
 }

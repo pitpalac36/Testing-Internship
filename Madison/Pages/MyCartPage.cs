@@ -21,6 +21,7 @@ namespace Madison.Pages
         private readonly By _cartLabel = By.CssSelector(".count");
         private readonly By _errorMessage = By.CssSelector(".error-msg");
         private readonly By _continueShoppingLinkEmptyCart = By.CssSelector(".cart-empty > p > a");
+        private readonly By _checkoutForm = By.CssSelector(".cart-forms");
         #endregion
         
 
@@ -47,6 +48,11 @@ namespace Madison.Pages
         {
             Driver.webDriver.FindElement(_continueShoppingLinkEmptyCart).Click();
             WaitHelpers.WaitUntilDOcumentReady();
+        }
+
+        public bool CheckoutFormVisibility()
+        {
+            return Driver.webDriver.FindElement(_checkoutForm).Displayed;
         }
 
         public bool CartLabelVisibility()
