@@ -18,11 +18,23 @@ namespace Madison.Pages
         private readonly By _shoppingCartTable = By.CssSelector("#shopping-cart-table");
         private readonly By _cartLabel = By.CssSelector(".count");
         private readonly By _errorMessage = By.CssSelector(".error-msg");
+        private readonly By _continueShoppingLinkEmptyCart = By.CssSelector(".cart-empty > p > a");
         #endregion
         
         public string GetHeaderMessage()
         {
             return Driver.webDriver.FindElement(_shoppingCartHeader).Text;
         }
+
+        public bool ContinueShoppingLinkEmptyIsVisible()
+        {
+            return Driver.webDriver.FindElement(_continueShoppingLinkEmptyCart).Displayed;
+        }
+
+        public void ClickOnContinueShoppingLinkEmptyCart()
+        {
+            Driver.webDriver.FindElement(_continueShoppingLinkEmptyCart).Click();
+        }
+
     }
 }
