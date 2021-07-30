@@ -11,6 +11,9 @@ namespace Madison.Pages
         private readonly By _myWishlistHeaderSelector = By.CssSelector(".my-wishlist h1");
         private readonly By _firstItemQuantityCell = By.CssSelector(".first.odd input");
         private readonly By _updateWishlistFirstButton = By.CssSelector(".first.odd button");
+        private readonly By _updateWishlistBigButton = By.CssSelector(".buttons-set.buttons-set2 button+button+button");
+        private readonly By _shareWishlistButton = By.CssSelector(".buttons-set.buttons-set2 button");
+        private readonly By _shareWishlistForm = By.CssSelector(".col-main");
         #endregion
 
         public void ClickOnAccount()
@@ -49,9 +52,33 @@ namespace Madison.Pages
             WaitHelpers.WaitUntilDOcumentReady();
         }
 
+        public void ClickOnUpdateWishlist()
+        {
+            Driver.webDriver.FindElement(_updateWishlistBigButton).Click();
+            WaitHelpers.WaitUntilDOcumentReady();
+        }
+
         public int ItemQuantity()
         {
             return int.Parse(Driver.webDriver.FindElement(_firstItemQuantityCell).GetAttribute("value"));
         }
+
+        public void ClickOnShareWishlist()
+        {
+            Driver.webDriver.FindElement(_shareWishlistButton).Click();
+            WaitHelpers.WaitUntilDOcumentReady();
+        }
+
+        public string GetUrl()
+        {
+            return Driver.webDriver.Url;
+        }
+
+        public bool IsShareWishlistFromDisplayed()
+        {
+            return Driver.webDriver.FindElement(_shareWishlistForm).Displayed;
+        }
+
+
     }
 }

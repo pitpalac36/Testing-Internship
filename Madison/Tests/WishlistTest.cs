@@ -37,7 +37,27 @@ namespace Madison.Tests
             Pages.MyWishlistPage.ItemQuantity().Should().Be(newQuantity);
         }
 
+        [TestMethod]
+        public void WishlistUpdatesCorrectly()
+        {
+            Login();
+            Pages.MyWishlistPage.ClickOnAccount();
+            Pages.MyWishlistPage.ClickOMyWishlist();
+            var newQuantity = Pages.MyWishlistPage.ChangeQuantity();
+            Pages.MyWishlistPage.ClickOnUpdateWishlist();
+            Pages.MyWishlistPage.ItemQuantity().Should().Be(newQuantity);
+        }
 
+        [TestMethod]
+        public void ClickOnShareWishlistButtonRedirects()
+        {
+            Login();
+            Pages.MyWishlistPage.ClickOnAccount();
+            Pages.MyWishlistPage.ClickOMyWishlist();
+            Pages.MyWishlistPage.ClickOnShareWishlist();
+            Pages.MyWishlistPage.GetUrl().Should().Contain("http://qa2.dev.evozon.com/wishlist/index/share/wishlist_id/");
+            Pages.MyWishlistPage.IsShareWishlistFromDisplayed().Should().BeTrue();
+        }
 
 
         public void Login()
