@@ -14,7 +14,7 @@ namespace Madison.Pages
     {
         #region Selectors
         private readonly By _shoppingCartHeader = By.CssSelector("h1");
-        private readonly By _emptyCartButton = By.CssSelector(".button2.btn-update:nth-child(3)");
+        private readonly By _emptyCartButton = By.CssSelector(".btn-update[title="+ "Update Shopping Cart"+ "]:not([style=" +"visibility: hidden;" +"])");
         private readonly By _continueShopping = By.CssSelector(".button2.btn-continue");
         private readonly By _couponCodeInputArea = By.CssSelector("#coupon_code");
         private readonly By _shoppingCartTable = By.CssSelector("#shopping-cart-table");
