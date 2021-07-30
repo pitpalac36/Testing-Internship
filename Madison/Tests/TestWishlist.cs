@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 namespace Madison.Tests
 {
     [TestClass]
-    public class WishlistTest: BaseTest
+    public class TestWishlist: BaseTest
     {
 
 
