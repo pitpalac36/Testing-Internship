@@ -1,12 +1,108 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Madison.Helpers;
+using OpenQA.Selenium;
 
 namespace Madison.Pages
 {
     public class MyWishlistPage
     {
+        #region Selectors
+        private readonly By _accountSelector = By.CssSelector(".account-cart-wrapper span+span");
+        private readonly By _myWishlistSelector = By.CssSelector("a[title^='My Wishlist']");
+        private readonly By _myWishlistHeaderSelector = By.CssSelector(".my-wishlist h1");
+        private readonly By _firstItemQuantityCell = By.CssSelector(".first.odd input");
+        private readonly By _updateWishlistFirstButton = By.CssSelector(".first.odd button");
+        private readonly By _updateWishlistBigButton = By.CssSelector(".buttons-set.buttons-set2 button+button+button");
+        private readonly By _shareWishlistButton = By.CssSelector(".buttons-set.buttons-set2 button");
+        private readonly By _shareWishlistForm = By.CssSelector(".col-main");
+        private readonly By _shareWishlistEmailTextArea = By.CssSelector("textarea[Name='emails']");
+        private readonly By _shareWishlistFinalButton = By.CssSelector(".form-buttons button");
+        private readonly By _validationAdviceLabel = By.ClassName("validation-advice");
+        #endregion
+
+        public void ClickOnAccount()
+        {
+            Driver.webDriver.FindElement(_accountSelector).Click();
+        }
+
+        public bool IsWishlistButtonDisplayed()
+        {
+            return Driver.webDriver.FindElement(_myWishlistSelector).Displayed;
+        }
+
+        public void ClickOMyWishlist()
+        {
+            Driver.webDriver.FindElement(_myWishlistSelector).Click();
+            WaitHelpers.WaitUntilDocumentReady();
+        }
+
+        public bool IsRedirectedToWishlist()
+        {
+            return Driver.webDriver.FindElement(_myWishlistHeaderSelector).Displayed;
+        }
+
+        public int ChangeQuantity()
+        {
+            var quantityInput = Driver.webDriver.FindElement(_firstItemQuantityCell);
+            var newQuantity = int.Parse(quantityInput.GetAttribute("value")) * 2;
+            quantityInput.Clear();
+            quantityInput.SendKeys(newQuantity.ToString());
+            return newQuantity;
+        }
+
+        public void ClickOnUpdateItem()
+        {
+            Driver.webDriver.FindElement(_updateWishlistFirstButton).Click();
+            WaitHelpers.WaitUntilDocumentReady();
+        }
+
+        public void ClickOnUpdateWishlist()
+        {
+            Driver.webDriver.FindElement(_updateWishlistBigButton).Click();
+            WaitHelpers.WaitUntilDocumentReady();
+        }
+
+        public int ItemQuantity()
+        {
+            return int.Parse(Driver.webDriver.FindElement(_firstItemQuantityCell).GetAttribute("value"));
+        }
+
+        public void ClickOnShareWishlist()
+        {
+            Driver.webDriver.FindElement(_shareWishlistButton).Click();
+            WaitHelpers.WaitUntilDocumentReady();
+        }
+
+        public string GetUrl()
+        {
+            return Driver.webDriver.Url;
+        }
+
+        public bool IsShareWishlistFormDisplayed()
+        {
+            return Driver.webDriver.FindElement(_shareWishlistForm).Displayed;
+        }
+
+        public void FillEmail(string email)
+        {
+            var textarea = Driver.webDriver.FindElement(_shareWishlistEmailTextArea);
+            textarea.Clear();
+            textarea.SendKeys(email);
+        }
+
+        public void ClickOnShareWishlistButton()
+        {
+            Driver.webDriver.FindElement(_shareWishlistFinalButton).Click();
+            WaitHelpers.WaitUntilDocumentReady();
+        }
+
+        public bool IsRequiredValidationAdviceDisplayed()
+        {
+            return Driver.webDriver.FindElement(_validationAdviceLabel).Displayed;
+        }
+
+        public string GetRequiredValidationAdvice()
+        {
+            return Driver.webDriver.FindElement(_validationAdviceLabel).Text;
+        }
     }
 }

@@ -10,7 +10,6 @@ namespace Madison.Pages
 {
     public class LoginPage
     {
-
         #region Selectors
           private readonly By email = By.Id("email");
           private readonly By password = By.Id("pass");
@@ -63,7 +62,7 @@ namespace Madison.Pages
         {
            Driver.webDriver.FindElement(loginButton).Submit();
         }
-    }
 
+    }
 
 }
