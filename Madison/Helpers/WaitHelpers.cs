@@ -14,6 +14,7 @@ namespace Madison.Helpers
         public static void WaitUntilDOcumentReady() {
             new WebDriverWait(Driver.webDriver, TimeSpan.FromSeconds(30.0))
                 .Until(d => Driver.webDriver.ExecuteJavaScript<string>("return document.readyState").Equals("complete"));
+
         }
     }
 }
