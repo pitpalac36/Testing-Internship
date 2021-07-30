@@ -79,5 +79,27 @@ namespace Madison.Pages
             return elem;
         }
         
+
+        #region Selectors
+
+         private readonly By accountElement = By.CssSelector(".account-cart-wrapper > a");
+         private readonly By menuElements = By.CssSelector("#header-account>.links>ul li");
+        #endregion
+
+        public void ClickOnAccount()
+        {
+            Driver.webDriver.FindElement(accountElement).Click();
+        }
+
+        private void SelectMyAccountMenu(string accountMenu)
+        {
+            Driver.webDriver.FindElements(menuElements).First(item => item.Text == accountMenu).Click();
+        }
+
+        public void ClickLogInButton()
+        {
+            SelectMyAccountMenu("Log In");
+           
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace MSTestProject
         }
 
 
-        public void SelectMyAccountMenu(string accountMenu)
+        public void SelectMyAccountMenuMethod(string accountMenu)
         {
             IWebElement accountElement = Driver.webDriver.FindElement(By.CssSelector(".account-cart-wrapper > a"));
             accountElement.Click();
@@ -39,17 +39,17 @@ namespace MSTestProject
         [TestMethod]
         public void TestMethod_AccountMenu()
         {
-            SelectMyAccountMenu("My Account");
+            SelectMyAccountMenuMethod("My Account");
             Driver.webDriver.Navigate().Back();
-            SelectMyAccountMenu("My Wishlist");
+            SelectMyAccountMenuMethod("My Wishlist");
             Driver.webDriver.Navigate().Back();
-            SelectMyAccountMenu("My Cart");
+            SelectMyAccountMenuMethod("My Cart");
             Driver.webDriver.Navigate().Back();
-            SelectMyAccountMenu("Checkout");
+            SelectMyAccountMenuMethod("Checkout");
             Driver.webDriver.Navigate().Back();
-            SelectMyAccountMenu("Register");
+            SelectMyAccountMenuMethod("Register");
             Driver.webDriver.Navigate().Back();
-            SelectMyAccountMenu("Log In");
+            SelectMyAccountMenuMethod("Log In");
             Driver.webDriver.Navigate().Back();
             
             /*SelectMyAccountMenu(MyAccountMenu.MyAccount);
