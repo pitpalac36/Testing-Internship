@@ -19,7 +19,7 @@ namespace Madison.Pages
         private readonly By homeDecorButtonSelector = By.CssSelector(".level0.nav-4.parent .level0.has-children");
         private readonly By electronicsHomePageSelector = By.CssSelector(".catblocks li:nth-child(3) a img");
         private readonly By electronicsPageTitleSelector = By.CssSelector(".page-title.category-title h1");
-       
+
         #endregion
 
         /// <summary>
