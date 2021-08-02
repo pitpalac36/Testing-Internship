@@ -36,15 +36,9 @@ namespace Madison.Tests
         public void CartTableNotVisibleEmpty()
         {
             Pages.MyCartPage.GoToCart();
-            try
-            {
-                bool displayed = Pages.MyCartPage.ItemTableVisibility();
-                displayed.Should().BeFalse();
-            }
-            catch (Exception ex)
-            {
-                ex.Should().BeOfType<OpenQA.Selenium.NoSuchElementException>();
-            }
+            bool displayed = Pages.MyCartPage.ItemTableVisibility();
+            displayed.Should().BeFalse();
+
             
         }
 
@@ -52,15 +46,9 @@ namespace Madison.Tests
         public void CartCheckoutFormNotVisibleWhenEmpty()
         {
             Pages.MyCartPage.GoToCart();
-            try
-            {
-                bool displayed = Pages.MyCartPage.CheckoutFormVisibility();
-                displayed.Should().BeFalse();
-            }
-            catch(Exception ex)
-            {
-                ex.Should().BeOfType<OpenQA.Selenium.NoSuchElementException>();
-            }
+            bool displayed = Pages.MyCartPage.CheckoutFormVisibility();
+            displayed.Should().BeFalse();
+            
         }
         
         [TestMethod]
