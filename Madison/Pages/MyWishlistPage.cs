@@ -28,12 +28,12 @@ namespace Madison.Pages
 
         public bool IsWishlistButtonDisplayed()
         {
-           return _myWishlistHeaderSelector.IsElementPresent();
+           return _myWishlistSelector.IsElementPresent();
         }
 
         public void ClickOMyWishlist()
         {
-            _myWishlistHeaderSelector.ActionClick();
+            _myWishlistSelector.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
@@ -44,7 +44,7 @@ namespace Madison.Pages
 
         public int ChangeQuantity()
         {
-            var quantityInput = _firstItemQuantityCell.GetText();
+            var quantityInput = _firstItemQuantityCell.GetAttribute("value");
             //var quantityInput = Driver.webDriver.FindElement(_firstItemQuantityCell);
             var newQuantity = int.Parse(quantityInput) * 2;
             _firstItemQuantityCell.ClearField();

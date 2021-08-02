@@ -15,29 +15,26 @@ namespace Madison.Tests
     {
 
         [TestMethod]
-        public void AccountMenuAccessLogInButton()
+        public void TryLogin()
         {
-            Pages.HomePage.ClickOnAccount();
-            Pages.HomePage.ClickLogInButton();
-            Pages.LoginPage.FillCredentials();
-            Pages.LoginPage.LogInSubmit();
+            Pages.HomePage.SelectMyAccountMenu("Log In");
+            Pages.LoginPage.Login();
         }
 
         [TestMethod]
         public void AlreadyRegisteredTxtDisplayed()
         {
-            Pages.HomePage.ClickOnAccount();
-            Pages.HomePage.ClickLogInButton();
+           
+            Pages.HomePage.SelectMyAccountMenu("Log In");
             //Pages.LoginPage.CheckLogInPageDispayed().Should().Be("Customer Login");
-            //Pages.LoginPage.AlreadyRegisteredTextDisplayed().Should().Be("ALREADY REGISTERED?"); //??
+            Pages.LoginPage.AlreadyRegisteredTextDisplayed().Should().Be("ALREADY REGISTERED?"); 
         }
 
         [TestMethod]
         public void ExistingAccount()
         {
-            Pages.HomePage.ClickOnAccount();
-            Pages.HomePage.ClickLogInButton();
-            //Pages.LoginPage.CheckExistingAccountMessage().Should().Be("If you have an account with us, please log in.");
+            Pages.HomePage.SelectMyAccountMenu("Log In");
+            Pages.LoginPage.CheckExistingAccountMessage().Should().Be("If you have an account with us, please log in.");
         }
 
     }

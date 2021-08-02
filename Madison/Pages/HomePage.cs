@@ -22,6 +22,8 @@ namespace Madison.Pages
         private readonly By homeDecorButtonSelector = By.CssSelector(".level0.nav-4.parent .level0.has-children");
         private readonly By electronicsHomePageSelector = By.CssSelector(".catblocks li:nth-child(3) a img");
         private readonly By electronicsPageTitleSelector = By.CssSelector(".page-title.category-title h1");
+        private readonly By accountElement = By.CssSelector(".account-cart-wrapper > a");
+        private readonly By menuElements = By.CssSelector("#header-account>.links>ul li");
 
         #endregion
 
@@ -82,28 +84,16 @@ namespace Madison.Pages
                         WaitHelpers.WaitForDocumentReadyState();
             return elem;
         }
-        
-
-        #region Selectors
-
-         private readonly By accountElement = By.CssSelector(".account-cart-wrapper > a");
-         private readonly By menuElements = By.CssSelector("#header-account>.links>ul li");
-        #endregion
 
         public void ClickOnAccount()
         {
             accountElement.ActionClick();
         }
 
-        private void SelectMyAccountMenu(string accountMenu)
+        public void SelectMyAccountMenu(string accountMenu)
         {
+            ClickOnAccount();
             menuElements.GetElements().First(item => item.Text == accountMenu).Click();
-        }
-
-        public void ClickLogInButton()
-        {
-            SelectMyAccountMenu("Log In");
-           
         }
     }
 }
