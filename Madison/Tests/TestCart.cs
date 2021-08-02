@@ -99,5 +99,18 @@ namespace Madison.Tests
             subtotal.Should().Be(subtotalSum);
         }
 
+        [TestMethod]
+        public void UpdateQuantityButtonTest()
+        {
+            Pages.MyCartPage.AddItemToCart();
+            Pages.MyCartPage.GoToCart();
+            List<string> quantity = Pages.MyCartPage.GetValueFromQuantityField();
+            Pages.MyCartPage.EmptyQuantityLabel();
+            int quantity_int = int.Parse(quantity.First());
+            Pages.MyCartPage.InputValueIntoQuantityField((quantity_int * 2).ToString());
+            string new_quantity = Pages.MyCartPage.GetValueFromQuantityField().First();
+            new_quantity.Should().Be((quantity_int * 2).ToString());
+        }
+
     }
 }

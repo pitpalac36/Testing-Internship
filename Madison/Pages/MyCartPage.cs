@@ -17,7 +17,8 @@ namespace Madison.Pages
     {
         #region Selectors
         private readonly By _shoppingCartHeader = By.CssSelector("h1");
-        private readonly By _updateShoppingCart = By.CssSelector(".btn-update[title="+ "Update Shopping Cart"+ "]:not([style=" +"visibility: hidden;" +"])");
+        //private readonly By _updateShoppingCart = By.CssSelector(".btn-update[title="+ "Update Shopping Cart"+ "]:not([style=" +"visibility: hidden;" +"])");
+        private readonly By _updateShoppingCart = By.CssSelector(".button2.btn-update:nth-child(3)");
         private readonly By _continueShopping = By.CssSelector(".button2.btn-continue");
         private readonly By _emptyShoppingCartButton = By.CssSelector("#empty_cart_button");
         private readonly By _couponCodeInputArea = By.CssSelector("#coupon_code");
@@ -28,6 +29,7 @@ namespace Madison.Pages
         private readonly By _checkoutForm = By.CssSelector(".cart-forms");
         private readonly By _productPriceList = By.CssSelector(".product-cart-total");
         private readonly By _subtotalPriceLabel = By.CssSelector("td.a-right>span.price ");
+        private readonly By _quantityField = By.CssSelector(".product-cart-actions > .input-text.qty");
         #endregion
         
 
@@ -54,6 +56,17 @@ namespace Madison.Pages
         {
             _continueShoppingLinkEmptyCart.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
+        }
+
+        public void InputValueIntoQuantityField(string quantity)
+        {
+            _quantityField.GetElements().First().SendKeys(quantity);
+            _updateShoppingCart.ActionClick();
+        }
+
+        public List<string> GetValueFromQuantityField()
+        {
+            return _quantityField.GetElements().Select(el => el.GetAttribute("value").ToString()).ToList();
         }
 
         public bool CheckoutFormVisibility()
@@ -89,6 +102,11 @@ namespace Madison.Pages
         public float GetSubtotalLabelPrice()
         {
             return float.Parse(_subtotalPriceLabel.GetText().Trim('$'), CultureInfo.InvariantCulture);
+        }
+
+        public void EmptyQuantityLabel()
+        {
+            _quantityField.GetElements().First().Clear();
         }
 
 
