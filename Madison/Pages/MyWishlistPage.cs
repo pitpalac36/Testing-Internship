@@ -42,13 +42,10 @@ namespace Madison.Pages
             return _myWishlistHeaderSelector.IsElementPresent();
         }
 
-        public int ChangeQuantity()
+        public void ChangeQuantity(int newQuantity)
         {
-            var quantityInput = _firstItemQuantityCell.GetAttribute("value");
-            var newQuantity = int.Parse(quantityInput) * 2;
             _firstItemQuantityCell.ClearField();
             _firstItemQuantityCell.ActionSendKeys(newQuantity.ToString());
-            return newQuantity;
         }
 
         public void ClickOnUpdateItem()

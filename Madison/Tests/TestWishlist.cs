@@ -2,6 +2,7 @@
 using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using System;
 
 namespace Madison.Tests
 {
@@ -32,7 +33,8 @@ namespace Madison.Tests
             Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            var newQuantity = Pages.MyWishlistPage.ChangeQuantity();
+            var newQuantity = new Random().Next(100);
+            Pages.MyWishlistPage.ChangeQuantity(newQuantity);
             Pages.MyWishlistPage.ClickOnUpdateItem();
             Pages.MyWishlistPage.ItemQuantity().Should().Be(newQuantity);
         }
@@ -43,7 +45,8 @@ namespace Madison.Tests
             Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            var newQuantity = Pages.MyWishlistPage.ChangeQuantity();
+            var newQuantity = new Random().Next(100);
+            Pages.MyWishlistPage.ChangeQuantity(newQuantity);
             Pages.MyWishlistPage.ClickOnUpdateWishlist();
             Pages.MyWishlistPage.ItemQuantity().Should().Be(newQuantity);
         }
