@@ -36,15 +36,9 @@ namespace Madison.Tests
         public void CartTableNotVisibleEmpty()
         {
             Pages.MyCartPage.GoToCart();
-            try
-            {
-                bool displayed = Pages.MyCartPage.ItemTableVisibility();
-                displayed.Should().BeFalse();
-            }
-            catch (Exception ex)
-            {
-                ex.Should().BeOfType<OpenQA.Selenium.NoSuchElementException>();
-            }
+            bool displayed = Pages.MyCartPage.ItemTableVisibility();
+            displayed.Should().BeFalse();
+
             
         }
 
@@ -52,15 +46,9 @@ namespace Madison.Tests
         public void CartCheckoutFormNotVisibleWhenEmpty()
         {
             Pages.MyCartPage.GoToCart();
-            try
-            {
-                bool displayed = Pages.MyCartPage.CheckoutFormVisibility();
-                displayed.Should().BeFalse();
-            }
-            catch(Exception ex)
-            {
-                ex.Should().BeOfType<OpenQA.Selenium.NoSuchElementException>();
-            }
+            bool displayed = Pages.MyCartPage.CheckoutFormVisibility();
+            displayed.Should().BeFalse();
+            
         }
         
         [TestMethod]
@@ -90,5 +78,39 @@ namespace Madison.Tests
             bool visibility = Pages.MyCartPage.CartLabelVisibility();
             visibility.Should().BeTrue();
         }
+
+        [TestMethod]
+        public void EmptyCartButtonDeletesCartElements()
+        {
+            Pages.MyCartPage.AddItemToCart();
+            Pages.MyCartPage.ClickOnEmptyCartButton();
+            string header = Pages.MyCartPage.GetHeaderMessage();
+            string expected_message = ResourceFileHelper.GetValueAssociatedToString("EmptyCartMessage");
+            header.Should().Be(expected_message);
+        }
+
+        [TestMethod]
+        public void CheckMatchingSubtotals()
+        {
+            Pages.MyCartPage.AddItemToCart();
+            Pages.MyCartPage.GoToCart();
+            float subtotalSum = Pages.MyCartPage.GetSubtotalItemsPrice();
+            float subtotal = Pages.MyCartPage.GetSubtotalLabelPrice();
+            subtotal.Should().Be(subtotalSum);
+        }
+
+        [TestMethod]
+        public void UpdateQuantityButtonTest()
+        {
+            Pages.MyCartPage.AddItemToCart();
+            Pages.MyCartPage.GoToCart();
+            List<string> quantity = Pages.MyCartPage.GetValueFromQuantityField();
+            Pages.MyCartPage.EmptyQuantityLabel();
+            int quantity_int = int.Parse(quantity.First());
+            Pages.MyCartPage.InputValueIntoQuantityField((quantity_int * 2).ToString());
+            string new_quantity = Pages.MyCartPage.GetValueFromQuantityField().First();
+            new_quantity.Should().Be((quantity_int * 2).ToString());
+        }
+
     }
 }

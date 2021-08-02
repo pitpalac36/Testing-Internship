@@ -21,7 +21,8 @@ namespace Madison.Tests
         [TestMethod]
         public void ClickOnMyWishlistButtonRedirects()
         {
-            Login();
+            Pages.HomePage.SelectMyAccountMenu("Log In");
+            Pages.LoginPage.Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.IsRedirectedToWishlist().Should().BeTrue();
@@ -30,7 +31,8 @@ namespace Madison.Tests
         [TestMethod]
         public void WishlistItemQuantityUpdatesCorrectly()
         {
-            Login();
+            Pages.HomePage.SelectMyAccountMenu("Log In");
+            Pages.LoginPage.Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             var newQuantity = new Random().Next(100);
@@ -42,7 +44,8 @@ namespace Madison.Tests
         [TestMethod]
         public void WishlistUpdatesCorrectly()
         {
-            Login();
+            Pages.HomePage.SelectMyAccountMenu("Log In");
+            Pages.LoginPage.Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             var newQuantity = new Random().Next(100);
@@ -54,7 +57,8 @@ namespace Madison.Tests
         [TestMethod]
         public void ClickOnShareWishlistButtonRedirects()
         {
-            Login();
+            Pages.HomePage.SelectMyAccountMenu("Log In");
+            Pages.LoginPage.Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ShareWishlist();
@@ -65,7 +69,8 @@ namespace Madison.Tests
         [TestMethod]
         public void ShareWishlistFormValidatesEmptyEmail()
         {
-            Login();
+            Pages.HomePage.SelectMyAccountMenu("Log In");
+            Pages.LoginPage.Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ShareWishlist();
@@ -75,13 +80,5 @@ namespace Madison.Tests
             Pages.MyWishlistPage.GetRequiredValidationAdvice().Should().Contain("This is a required field");
         }
 
-        // workaround to encapsulate login into one method
-        private void Login()
-        {
-            Pages.HomePage.ClickOnAccount();
-            Pages.HomePage.ClickLogInButton();
-            Pages.LoginPage.FillCredentials();
-            Pages.LoginPage.LogInSubmit();
-        }
     }
 }
