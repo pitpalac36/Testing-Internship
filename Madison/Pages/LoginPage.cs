@@ -1,4 +1,5 @@
 ﻿using Madison.Helpers;
+using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -20,13 +21,13 @@ namespace Madison.Pages
 
         public void FillEmail()
         {
-            Driver.webDriver.FindElement(email).SendKeys("ana.ana@outlook.com");
+            email.ActionSendKeys("ana.ana@outlook.com");
         }
 
 
         public void FillPassword()
         {
-            Driver.webDriver.FindElement(password).SendKeys("1234567");
+            password.ActionSendKeys("1234567");
         }
 
          public void FillCredentials()
@@ -37,7 +38,8 @@ namespace Madison.Pages
 
         public void LogInSubmit()
         {
-           Driver.webDriver.FindElement(loginButton).Submit();
+            loginButton.ActionClick();
+           //Driver.webDriver.FindElement(loginButton).Submit();
         }
 
     }
