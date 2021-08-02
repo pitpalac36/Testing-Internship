@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
 
-[assembly: Parallelize(Workers =4,Scope =ExecutionScope.MethodLevel)]
+//[assembly: Parallelize(Workers =4,Scope =ExecutionScope.MethodLevel)]
 
 namespace Madison.Tests
 {
