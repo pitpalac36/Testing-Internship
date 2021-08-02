@@ -1,10 +1,13 @@
 ﻿using Madison.Helpers;
+using NsTestFrameworkUI.Helpers;
+using NsTestFrameworkUI;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NsTestFrameworkUI.Pages;
 
 namespace Madison.Pages
 {
@@ -27,29 +30,30 @@ namespace Madison.Pages
         /// </summary>
         public void goToHomeDecor()
         {
-            Driver.webDriver.FindElement(homeDecorButtonSelector).Click();
-            WaitHelpers.WaitUntilDocumentReady();
+            homeDecorButtonSelector.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
         }
 
         public void goFromHomePageToElectronics()
         {
-            Driver.webDriver.FindElement(electronicsHomePageSelector).Click();
-            WaitHelpers.WaitUntilDocumentReady();
+            electronicsHomePageSelector.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
+
         }
         /// <summary>
         /// Methods which extract Lists
         /// </summary>
         /// <returns></returns>
         public IReadOnlyCollection<IWebElement> getHomeDecorList() {
-            var elems = Driver.webDriver.FindElements(homeDecorListSelector);
-            WaitHelpers.WaitUntilDocumentReady();
+            var elems = homeDecorListSelector.GetElements();
+            WaitHelpers.WaitForDocumentReadyState();
             return elems;
         }
 
         public IReadOnlyCollection<IWebElement> getSectionsList()
         {
-           var elems = Driver.webDriver.FindElements(SectionsListSelector);
-            WaitHelpers.WaitUntilDocumentReady();
+            var elems = SectionsListSelector.GetElements();
+            WaitHelpers.WaitForDocumentReadyState();
             return elems;
         }
 
@@ -58,24 +62,24 @@ namespace Madison.Pages
         /// </summary>
         /// <returns></returns>
         public bool checkIfProductSectionsIsVisible() {
-            var elems = Driver.webDriver.FindElement(SectionsSelector).Displayed;
-            WaitHelpers.WaitUntilDocumentReady();
+            var elems = SectionsSelector.IsElementPresent();
+            WaitHelpers.WaitForDocumentReadyState();
             return elems;
         }
 
         public bool checkIfHomeDecorDropdownIsVisible() {
-            var elems = Driver.webDriver.FindElement(homeDecorListSelector).Displayed;
-            WaitHelpers.WaitUntilDocumentReady();
+            var elems = homeDecorListSelector.IsElementPresent();
+            WaitHelpers.WaitForDocumentReadyState();
             return elems;
         }
         public bool checkIfHomeMainImageIsVisible() {
-            var elem =  Driver.webDriver.FindElement(MainImageHomeDecorSelector).Displayed;
-            WaitHelpers.WaitUntilDocumentReady();
+            var elem =  MainImageHomeDecorSelector.IsElementPresent();
+            WaitHelpers.WaitForDocumentReadyState();
             return elem;
         }
         public bool checkIfPageTitleIsVisible() {
-            var elem = Driver.webDriver.FindElement(electronicsPageTitleSelector).Displayed;
-            WaitHelpers.WaitUntilDocumentReady();
+            var elem = electronicsPageTitleSelector.IsElementPresent();
+                        WaitHelpers.WaitForDocumentReadyState();
             return elem;
         }
         
@@ -88,12 +92,12 @@ namespace Madison.Pages
 
         public void ClickOnAccount()
         {
-            Driver.webDriver.FindElement(accountElement).Click();
+            accountElement.ActionClick();
         }
 
         private void SelectMyAccountMenu(string accountMenu)
         {
-            Driver.webDriver.FindElements(menuElements).First(item => item.Text == accountMenu).Click();
+            menuElements.GetElements().First(item => item.Text == accountMenu).Click();
         }
 
         public void ClickLogInButton()

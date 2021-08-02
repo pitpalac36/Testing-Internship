@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NsTestFrameworkUI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,9 +68,9 @@ namespace Madison.Tests
         {
             string homepageUrl = ResourceFileHelper.GetValueAssociatedToString("Homepage");
             Pages.MyCartPage.GoToCart();
-            string cart_url = Driver.webDriver.Url;
+            string cart_url = Browser.WebDriver.Url;
             Pages.MyCartPage.ClickOnContinueShoppingLinkEmptyCart();
-            string redirected_url = Driver.webDriver.Url;
+            string redirected_url = Browser.WebDriver.Url;
             redirected_url.Should().NotBe(cart_url);
             redirected_url.Should().Be(homepageUrl);
         }
