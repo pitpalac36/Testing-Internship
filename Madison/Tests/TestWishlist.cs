@@ -35,7 +35,7 @@ namespace Madison.Tests
             Pages.MyWishlistPage.ClickOMyWishlist();
             var newQuantity = new Random().Next(100);
             Pages.MyWishlistPage.ChangeQuantity(newQuantity);
-            Pages.MyWishlistPage.ClickOnUpdateItem();
+            Pages.MyWishlistPage.UpdateItem();
             Pages.MyWishlistPage.ItemQuantity().Should().Be(newQuantity);
         }
 
@@ -47,7 +47,7 @@ namespace Madison.Tests
             Pages.MyWishlistPage.ClickOMyWishlist();
             var newQuantity = new Random().Next(100);
             Pages.MyWishlistPage.ChangeQuantity(newQuantity);
-            Pages.MyWishlistPage.ClickOnUpdateWishlist();
+            Pages.MyWishlistPage.UpdateWishlist();
             Pages.MyWishlistPage.ItemQuantity().Should().Be(newQuantity);
         }
 
@@ -57,7 +57,7 @@ namespace Madison.Tests
             Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            Pages.MyWishlistPage.ClickOnShareWishlist();
+            Pages.MyWishlistPage.ShareWishlist();
             Pages.MyWishlistPage.GetUrl().Should().Contain("http://qa2.dev.evozon.com/wishlist/index/share/wishlist_id/");
             Pages.MyWishlistPage.IsShareWishlistFormDisplayed().Should().BeTrue();
         }
@@ -68,9 +68,9 @@ namespace Madison.Tests
             Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            Pages.MyWishlistPage.ClickOnShareWishlist();
+            Pages.MyWishlistPage.ShareWishlist();
             Pages.MyWishlistPage.FillEmail("");
-            Pages.MyWishlistPage.ClickOnShareWishlistButton();
+            Pages.MyWishlistPage.ShareWishlistFinal();
             Pages.MyWishlistPage.IsRequiredValidationAdviceDisplayed().Should().BeTrue();
             Pages.MyWishlistPage.GetRequiredValidationAdvice().Should().Contain("This is a required field");
         }

@@ -48,13 +48,13 @@ namespace Madison.Pages
             _firstItemQuantityCell.ActionSendKeys(newQuantity.ToString());
         }
 
-        public void ClickOnUpdateItem()
+        public void UpdateItem()
         {
             _updateWishlistFirstButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void ClickOnUpdateWishlist()
+        public void UpdateWishlist()
         {
             _updateWishlistBigButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
@@ -65,7 +65,7 @@ namespace Madison.Pages
             return int.Parse(_firstItemQuantityCell.GetAttribute("value"));
         }
 
-        public void ClickOnShareWishlist()
+        public void ShareWishlist()
         {
             _shareWishlistButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
@@ -88,7 +88,7 @@ namespace Madison.Pages
             _shareWishlistEmailTextArea.ActionSendKeys(email);
         }
 
-        public void ClickOnShareWishlistButton()
+        public void ShareWishlistFinal()
         {
             _shareWishlistFinalButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
