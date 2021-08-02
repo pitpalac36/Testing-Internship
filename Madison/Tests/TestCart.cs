@@ -90,5 +90,26 @@ namespace Madison.Tests
             bool visibility = Pages.MyCartPage.CartLabelVisibility();
             visibility.Should().BeTrue();
         }
+
+        [TestMethod]
+        public void EmptyCartButtonDeletesCartElements()
+        {
+            Pages.MyCartPage.AddItemToCart();
+            Pages.MyCartPage.ClickOnEmptyCartButton();
+            string header = Pages.MyCartPage.GetHeaderMessage();
+            string expected_message = ResourceFileHelper.GetValueAssociatedToString("EmptyCartMessage");
+            header.Should().Be(expected_message);
+        }
+
+        [TestMethod]
+        public void CheckMatchingSubtotals()
+        {
+            Pages.MyCartPage.AddItemToCart();
+            Pages.MyCartPage.GoToCart();
+            float subtotalSum = Pages.MyCartPage.GetSubtotalItemsPrice();
+            float subtotal = Pages.MyCartPage.GetSubtotalLabelPrice();
+            subtotal.Should().Be(subtotalSum);
+        }
+
     }
 }

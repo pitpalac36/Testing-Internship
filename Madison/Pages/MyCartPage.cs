@@ -4,6 +4,7 @@ using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
@@ -16,14 +17,17 @@ namespace Madison.Pages
     {
         #region Selectors
         private readonly By _shoppingCartHeader = By.CssSelector("h1");
-        private readonly By _emptyCartButton = By.CssSelector(".btn-update[title="+ "Update Shopping Cart"+ "]:not([style=" +"visibility: hidden;" +"])");
+        private readonly By _updateShoppingCart = By.CssSelector(".btn-update[title="+ "Update Shopping Cart"+ "]:not([style=" +"visibility: hidden;" +"])");
         private readonly By _continueShopping = By.CssSelector(".button2.btn-continue");
+        private readonly By _emptyShoppingCartButton = By.CssSelector("#empty_cart_button");
         private readonly By _couponCodeInputArea = By.CssSelector("#coupon_code");
         private readonly By _shoppingCartTable = By.CssSelector("#shopping-cart-table");
         private readonly By _cartLabel = By.CssSelector(".count");
         private readonly By _errorMessage = By.CssSelector(".error-msg");
         private readonly By _continueShoppingLinkEmptyCart = By.CssSelector(".cart-empty > p > a");
         private readonly By _checkoutForm = By.CssSelector(".cart-forms");
+        private readonly By _productPriceList = By.CssSelector(".product-cart-total");
+        private readonly By _subtotalPriceLabel = By.CssSelector("td.a-right>span.price ");
         #endregion
         
 
@@ -71,6 +75,26 @@ namespace Madison.Pages
         {
             string cartUrl = ResourceFileHelper.GetValueAssociatedToString("CartLink");
             Browser.GoTo(cartUrl);
+            WaitHelpers.WaitForDocumentReadyState();
+        }
+
+
+        public float GetSubtotalItemsPrice()
+        {
+            var priceList = _productPriceList.GetElements();
+            var new_list = priceList.Select(pr => pr.Text.Trim('$')).ToList(); 
+            return priceList.Select(pr => float.Parse(pr.Text.Trim('$'), CultureInfo.InvariantCulture)).Sum();
+        }
+
+        public float GetSubtotalLabelPrice()
+        {
+            return float.Parse(_subtotalPriceLabel.GetText().Trim('$'), CultureInfo.InvariantCulture);
+        }
+
+
+        public void ClickOnEmptyCartButton()
+        {
+            _emptyShoppingCartButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
