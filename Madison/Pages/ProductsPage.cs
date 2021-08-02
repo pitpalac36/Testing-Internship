@@ -1,4 +1,6 @@
 ﻿using Madison.Helpers;
+using NsTestFrameworkUI.Helpers;
+using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -17,8 +19,8 @@ namespace Madison.Pages
         #endregion
         public IReadOnlyCollection<IWebElement> getFirst12ProductsFromElectronics()
         {
-            var elems = Driver.webDriver.FindElements(electronicsProductsSelector);
-            WaitHelpers.WaitUntilDocumentReady();
+            var elems = electronicsProductsSelector.GetElements();
+            WaitHelpers.WaitForDocumentReadyState();
             return elems;
         }
     }
