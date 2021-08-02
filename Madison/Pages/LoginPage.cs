@@ -12,34 +12,36 @@ namespace Madison.Pages
     public class LoginPage
     {
         #region Selectors
-        private readonly By email = By.Id("email");
-        private readonly By password = By.Id("pass");
-        private readonly By loginButton = By.Id("send2");
+        //There is no need to specify the element type in the method name. is enough if you specify it in the name of the selector
+        private readonly By _emailTextField = By.Id("email");
+        private readonly By _passwordTextField = By.Id("pass");
+        private readonly By _loginButton = By.Id("send2");
+        private readonly By _alreadyRegisteredText = By.CssSelector(".col2-set > div:nth-child(2) >div >h2");
+        private readonly By _existingAccountMessage = By.CssSelector(".col2-set > div:nth-child(2) >div p:nth-child(2)");
         #endregion
-
-
-
-        public void FillEmail()
-        {
-            email.ActionSendKeys("ana.ana@outlook.com");
-        }
-
-
-        public void FillPassword()
-        {
-            password.ActionSendKeys("1234567");
-        }
 
         public void FillCredentials()
         {
-            FillEmail();
-            FillPassword();
+            _emailTextField.ActionSendKeys("ana.ana@outlook.com");
+            _passwordTextField.ActionSendKeys("1234567");
+        }
+        public void Login()
+        {
+            FillCredentials();
+            _loginButton.ActionClick();
         }
 
-        public void LogInSubmit()
+        public string AlreadyRegisteredTextDisplayed()
         {
-            loginButton.ActionClick();
+            return _alreadyRegisteredText.GetText();
         }
+
+        public string CheckExistingAccountMessage()
+        {
+            return _existingAccountMessage.GetText();
+        }
+
+       
 
     }
 
