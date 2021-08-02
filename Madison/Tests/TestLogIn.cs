@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
 
+//[assembly: Parallelize(Workers =4,Scope =ExecutionScope.MethodLevel)]
 
 namespace Madison.Tests
 {
@@ -15,6 +16,7 @@ namespace Madison.Tests
     {
 
         [TestMethod]
+        [TestCategory ("Login")]
         public void TryLogin()
         {
             Pages.HomePage.SelectMyAccountMenu("Log In");
@@ -29,7 +31,7 @@ namespace Madison.Tests
             //Pages.LoginPage.CheckLogInPageDispayed().Should().Be("Customer Login");
             Pages.LoginPage.AlreadyRegisteredTextDisplayed().Should().Be("ALREADY REGISTERED?"); 
         }
-
+        [DoNotParallelize]
         [TestMethod]
         public void ExistingAccount()
         {
