@@ -14,10 +14,33 @@ namespace Madison.Pages
           private readonly By email = By.Id("email");
           private readonly By password = By.Id("pass");
           private readonly By loginButton = By.Id("send2");
+          private readonly By pageName = By.CssSelector("head > title");
+          private readonly By alreadyRegisteresText = By.CssSelector(".col2-set > div:nth-child(2) >div >h2");
+        private readonly By formInstructions = By.CssSelector(".col2-set > div:nth-child(2) >div >h2+p");
+        
         #endregion
 
 
+        /* public string CheckLogInPageDispayed()
+         {
+             return Driver.webDriver.FindElement(pageName).Text;
 
+         }*/
+
+        public string AlreadyRegisteredTextDisplayed()
+        {
+           return Driver.webDriver.FindElement(alreadyRegisteresText).Text;
+        }
+
+        public string CheckExistingAccountMessage()
+        {
+            return Driver.webDriver.FindElement(formInstructions).Text;
+        }
+
+        public void CreateAnAccountButton()
+        {
+            
+        }
         public void FillEmail()
         {
             Driver.webDriver.FindElement(email).SendKeys("ana.ana@outlook.com");
