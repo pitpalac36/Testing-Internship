@@ -7,6 +7,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using DriverOptions = NsTestFrameworkUI.Helpers.DriverOptions;
 
+//[assembly: Parallelize(Workers = 8, Scope = ExecutionScope.ClassLevel)]
 namespace Madison.Helpers
 {
     public class BaseTest
@@ -17,10 +18,9 @@ namespace Madison.Helpers
         {
             Browser.InitializeDriver(new DriverOptions
             {
-                IsHeadless = false
+                IsHeadless = true
             });
             Browser.GoTo("http://qa2.dev.evozon.com/");
-
         }
 
         [TestCleanup]

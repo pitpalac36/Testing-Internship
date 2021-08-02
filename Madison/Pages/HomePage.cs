@@ -27,6 +27,7 @@ namespace Madison.Pages
 
         #endregion
 
+
         /// <summary>
         /// Methods which click on elements
         /// </summary>
@@ -48,14 +49,12 @@ namespace Madison.Pages
         /// <returns></returns>
         public IReadOnlyCollection<IWebElement> getHomeDecorList() {
             var elems = homeDecorListSelector.GetElements();
-            WaitHelpers.WaitForDocumentReadyState();
             return elems;
         }
 
         public IReadOnlyCollection<IWebElement> getSectionsList()
         {
             var elems = SectionsListSelector.GetElements();
-            WaitHelpers.WaitForDocumentReadyState();
             return elems;
         }
 
@@ -65,26 +64,23 @@ namespace Madison.Pages
         /// <returns></returns>
         public bool checkIfProductSectionsIsVisible() {
             var elems = SectionsSelector.IsElementPresent();
-            WaitHelpers.WaitForDocumentReadyState();
             return elems;
         }
 
         public bool checkIfHomeDecorDropdownIsVisible() {
             var elems = homeDecorListSelector.IsElementPresent();
-            WaitHelpers.WaitForDocumentReadyState();
             return elems;
         }
         public bool checkIfHomeMainImageIsVisible() {
             var elem =  MainImageHomeDecorSelector.IsElementPresent();
-            WaitHelpers.WaitForDocumentReadyState();
             return elem;
         }
         public bool checkIfPageTitleIsVisible() {
             var elem = electronicsPageTitleSelector.IsElementPresent();
-                        WaitHelpers.WaitForDocumentReadyState();
             return elem;
         }
 
+        //
         public void ClickOnAccount()
         {
             accountElement.ActionClick();
