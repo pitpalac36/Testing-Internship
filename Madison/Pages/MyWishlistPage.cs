@@ -45,7 +45,6 @@ namespace Madison.Pages
         public int ChangeQuantity()
         {
             var quantityInput = _firstItemQuantityCell.GetAttribute("value");
-            //var quantityInput = Driver.webDriver.FindElement(_firstItemQuantityCell);
             var newQuantity = int.Parse(quantityInput) * 2;
             _firstItemQuantityCell.ClearField();
             _firstItemQuantityCell.ActionSendKeys(newQuantity.ToString());
