@@ -1,4 +1,6 @@
 ﻿using Madison.Helpers;
+using NsTestFrameworkUI.Helpers;
+using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -28,48 +30,48 @@ namespace Madison.Pages
         public void AddItemToCart()
         {
             string itemLink = ResourceFileHelper.GetValueAssociatedToString("Earbuds");
-            Driver.webDriver.Navigate().GoToUrl(itemLink);
-            WaitHelpers.WaitUntilDocumentReady();
+            Browser.GoTo(itemLink);
+            WaitHelpers.WaitForDocumentReadyState();
             By addToCartButton = By.CssSelector(".button.btn-cart:nth-child(1)");
-            Driver.webDriver.FindElement(addToCartButton).Click();
+            addToCartButton.ActionClick();
         }
 
         public string GetHeaderMessage()
         {
-            return Driver.webDriver.FindElement(_shoppingCartHeader).Text;
+            return _shoppingCartHeader.GetText();
         }
 
         public bool ContinueShoppingLinkEmptyIsVisible()
         {
-            return Driver.webDriver.FindElement(_continueShoppingLinkEmptyCart).Displayed;
+            return _continueShoppingLinkEmptyCart.IsElementPresent();
         }
 
         public void ClickOnContinueShoppingLinkEmptyCart()
         {
-            Driver.webDriver.FindElement(_continueShoppingLinkEmptyCart).Click();
-            WaitHelpers.WaitUntilDocumentReady();
+            _continueShoppingLinkEmptyCart.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
         }
 
         public bool CheckoutFormVisibility()
         {
-            return Driver.webDriver.FindElement(_checkoutForm).Displayed;
+            return _checkoutForm.IsElementPresent();
         }
 
         public bool CartLabelVisibility()
         {
-            return Driver.webDriver.FindElement(_cartLabel).Displayed;
+            return _cartLabel.IsElementPresent();
         }
 
         public bool ItemTableVisibility()
         {
-            return Driver.webDriver.FindElement(_shoppingCartTable).Displayed;
+            return _shoppingCartTable.IsElementPresent();
         }
 
         public void GoToCart()
         {
-            string cartUrl = ResourceFileHelper.GetValueAssociatedToString("CartLink"); 
-            Driver.webDriver.Navigate().GoToUrl(cartUrl);
-            WaitHelpers.WaitUntilDocumentReady();
+            string cartUrl = ResourceFileHelper.GetValueAssociatedToString("CartLink");
+            Browser.GoTo(cartUrl);
+            WaitHelpers.WaitForDocumentReadyState();
         }
 
 

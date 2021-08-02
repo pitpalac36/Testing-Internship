@@ -29,7 +29,7 @@ namespace Madison.Tests
             Pages.HomePage.ClickOnAccount();
             Pages.HomePage.ClickLogInButton();
             //Pages.LoginPage.CheckLogInPageDispayed().Should().Be("Customer Login");
-            Pages.LoginPage.AlreadyRegisteredTextDisplayed().Should().Be("ALREADY REGISTERED?"); //??
+            //Pages.LoginPage.AlreadyRegisteredTextDisplayed().Should().Be("ALREADY REGISTERED?"); //??
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace Madison.Tests
         {
             Pages.HomePage.ClickOnAccount();
             Pages.HomePage.ClickLogInButton();
-            Pages.LoginPage.CheckExistingAccountMessage().Should().Be("If you have an account with us, please log in.");
+            //Pages.LoginPage.CheckExistingAccountMessage().Should().Be("If you have an account with us, please log in.");
         }
 
     }

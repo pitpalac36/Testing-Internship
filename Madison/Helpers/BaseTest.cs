@@ -1,9 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NsTestFrameworkUI.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
 using System;
+using DriverOptions = NsTestFrameworkUI.Helpers.DriverOptions;
 
 namespace Madison.Helpers
 {
@@ -13,17 +15,18 @@ namespace Madison.Helpers
         [TestInitialize]
         public void Before()
         {
-            Driver.webDriver = new ChromeDriver();
-            Driver.webDriver.Navigate().GoToUrl("http://qa2.dev.evozon.com/");
-            new WebDriverWait(Driver.webDriver, TimeSpan.FromSeconds(30.0))
-                .Until(d => Driver.webDriver.ExecuteJavaScript<string>("return document.readyState").Equals("complete"));
+            Browser.InitializeDriver(new DriverOptions
+            {
+                IsHeadless = false
+            });
+            Browser.GoTo("http://qa2.dev.evozon.com/");
+
         }
 
         [TestCleanup]
         public void After()
         {
-            Driver.webDriver.Close();
-            Driver.webDriver.Quit();
+            Browser.Cleanup();
         }
     }
 }

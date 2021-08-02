@@ -1,4 +1,6 @@
 ﻿using Madison.Helpers;
+using NsTestFrameworkUI.Helpers;
+using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 
 namespace Madison.Pages
@@ -21,88 +23,89 @@ namespace Madison.Pages
 
         public void ClickOnAccount()
         {
-            Driver.webDriver.FindElement(_accountSelector).Click();
+            _accountSelector.ActionClick();
         }
 
         public bool IsWishlistButtonDisplayed()
         {
-            return Driver.webDriver.FindElement(_myWishlistSelector).Displayed;
+           return _myWishlistHeaderSelector.IsElementPresent();
         }
 
         public void ClickOMyWishlist()
         {
-            Driver.webDriver.FindElement(_myWishlistSelector).Click();
-            WaitHelpers.WaitUntilDocumentReady();
+            _myWishlistHeaderSelector.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
         }
 
         public bool IsRedirectedToWishlist()
         {
-            return Driver.webDriver.FindElement(_myWishlistHeaderSelector).Displayed;
+            return _myWishlistHeaderSelector.IsElementPresent();
         }
 
         public int ChangeQuantity()
         {
-            var quantityInput = Driver.webDriver.FindElement(_firstItemQuantityCell);
-            var newQuantity = int.Parse(quantityInput.GetAttribute("value")) * 2;
-            quantityInput.Clear();
-            quantityInput.SendKeys(newQuantity.ToString());
+            var quantityInput = _firstItemQuantityCell.GetText();
+            //var quantityInput = Driver.webDriver.FindElement(_firstItemQuantityCell);
+            var newQuantity = int.Parse(quantityInput) * 2;
+            _firstItemQuantityCell.ClearField();
+            _firstItemQuantityCell.ActionSendKeys(newQuantity.ToString());
             return newQuantity;
         }
 
         public void ClickOnUpdateItem()
         {
-            Driver.webDriver.FindElement(_updateWishlistFirstButton).Click();
-            WaitHelpers.WaitUntilDocumentReady();
+            _updateWishlistFirstButton.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
         }
 
         public void ClickOnUpdateWishlist()
         {
-            Driver.webDriver.FindElement(_updateWishlistBigButton).Click();
-            WaitHelpers.WaitUntilDocumentReady();
+            _updateWishlistBigButton.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
         }
 
         public int ItemQuantity()
         {
-            return int.Parse(Driver.webDriver.FindElement(_firstItemQuantityCell).GetAttribute("value"));
+            return int.Parse(_firstItemQuantityCell.GetAttribute("value"));
         }
 
         public void ClickOnShareWishlist()
         {
-            Driver.webDriver.FindElement(_shareWishlistButton).Click();
-            WaitHelpers.WaitUntilDocumentReady();
+            _shareWishlistButton.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
         }
 
         public string GetUrl()
         {
-            return Driver.webDriver.Url;
+            return Browser.WebDriver.Url;
         }
 
         public bool IsShareWishlistFormDisplayed()
         {
-            return Driver.webDriver.FindElement(_shareWishlistForm).Displayed;
+            return _shareWishlistForm.IsElementPresent();
         }
 
         public void FillEmail(string email)
         {
-            var textarea = Driver.webDriver.FindElement(_shareWishlistEmailTextArea);
-            textarea.Clear();
-            textarea.SendKeys(email);
+            var textarea = _shareWishlistEmailTextArea.GetText();
+            _shareWishlistEmailTextArea.ClearField();
+            _shareWishlistEmailTextArea.ActionSendKeys(email);
         }
 
         public void ClickOnShareWishlistButton()
         {
-            Driver.webDriver.FindElement(_shareWishlistFinalButton).Click();
-            WaitHelpers.WaitUntilDocumentReady();
+            _shareWishlistFinalButton.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
         }
 
         public bool IsRequiredValidationAdviceDisplayed()
         {
-            return Driver.webDriver.FindElement(_validationAdviceLabel).Displayed;
+            return _validationAdviceLabel.IsElementPresent();
         }
 
         public string GetRequiredValidationAdvice()
         {
-            return Driver.webDriver.FindElement(_validationAdviceLabel).Text;
+            return _validationAdviceLabel.GetText();
         }
     }
 }
