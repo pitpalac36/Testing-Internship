@@ -19,6 +19,7 @@ namespace Madison.Pages
         private readonly By _shareWishlistEmailTextArea = By.CssSelector("textarea[Name='emails']");
         private readonly By _shareWishlistFinalButton = By.CssSelector(".form-buttons button");
         private readonly By _validationAdviceLabel = By.ClassName("validation-advice");
+        private readonly By _commentTextArea = By.CssSelector("textarea[name^='description']");
         #endregion
 
         public void ClickOnAccount()
@@ -102,6 +103,17 @@ namespace Madison.Pages
         public string GetRequiredValidationAdvice()
         {
             return _validationAdviceLabel.GetText();
+        }
+
+        public void InsertComment(string comment)
+        {
+            _commentTextArea.ClearField();
+            _commentTextArea.ActionSendKeys(comment);
+        }
+
+        public string ItemComment()
+        {
+            return _commentTextArea.GetAttribute("value");
         }
     }
 }

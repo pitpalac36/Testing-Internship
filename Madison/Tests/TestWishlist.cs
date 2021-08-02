@@ -42,6 +42,19 @@ namespace Madison.Tests
         }
 
         [TestMethod]
+        public void WishlistItemCommentUpdatesCorrectly()
+        {
+            Pages.HomePage.SelectMyAccountMenu("Log In");
+            Pages.LoginPage.Login();
+            Pages.MyWishlistPage.ClickOnAccount();
+            Pages.MyWishlistPage.ClickOMyWishlist();
+            var comment = string.Concat("comment", new Random().Next(100));
+            Pages.MyWishlistPage.InsertComment(comment);
+            Pages.MyWishlistPage.UpdateItem();
+            Pages.MyWishlistPage.ItemComment().Should().Be(comment);
+        }
+
+        [TestMethod]
         public void WishlistUpdatesCorrectly()
         {
             Pages.HomePage.SelectMyAccountMenu("Log In");
