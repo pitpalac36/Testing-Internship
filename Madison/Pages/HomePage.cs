@@ -86,15 +86,10 @@ namespace Madison.Pages
             accountElement.ActionClick();
         }
 
-        private void SelectMyAccountMenu(string accountMenu)
+        public void SelectMyAccountMenu(string accountMenu)
         {
+            ClickOnAccount();
             menuElements.GetElements().First(item => item.Text == accountMenu).Click();
-        }
-
-        public void ClickLogInButton()
-        {
-            SelectMyAccountMenu("Log In");
-           
         }
     }
 }
