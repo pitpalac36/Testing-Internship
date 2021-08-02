@@ -8,12 +8,12 @@ namespace Madison.Pages
     public class MyWishlistPage
     {
         #region Selectors
-        private readonly By _accountSelector = By.CssSelector(".account-cart-wrapper span+span");
+        private readonly By _accountSelector = By.CssSelector(".account-cart-wrapper a");
         private readonly By _myWishlistSelector = By.CssSelector("a[title^='My Wishlist']");
         private readonly By _myWishlistHeaderSelector = By.CssSelector(".my-wishlist h1");
-        private readonly By _firstItemQuantityCell = By.CssSelector(".first.odd input");
-        private readonly By _updateWishlistFirstButton = By.CssSelector(".first.odd button");
-        private readonly By _updateWishlistBigButton = By.CssSelector(".buttons-set.buttons-set2 button+button+button");
+        private readonly By _firstItemQuantityCell = By.CssSelector("#wishlist-view-form .first.odd input");
+        private readonly By _updateWishlistFirstButton = By.CssSelector("#wishlist-table button");
+        private readonly By _updateWishlistBigButton = By.CssSelector(".buttons-set.buttons-set2 button:last-child");
         private readonly By _shareWishlistButton = By.CssSelector(".buttons-set.buttons-set2 button");
         private readonly By _shareWishlistForm = By.CssSelector(".col-main");
         private readonly By _shareWishlistEmailTextArea = By.CssSelector("textarea[Name='emails']");
@@ -42,22 +42,19 @@ namespace Madison.Pages
             return _myWishlistHeaderSelector.IsElementPresent();
         }
 
-        public int ChangeQuantity()
+        public void ChangeQuantity(int newQuantity)
         {
-            var quantityInput = _firstItemQuantityCell.GetAttribute("value");
-            var newQuantity = int.Parse(quantityInput) * 2;
             _firstItemQuantityCell.ClearField();
             _firstItemQuantityCell.ActionSendKeys(newQuantity.ToString());
-            return newQuantity;
         }
 
-        public void ClickOnUpdateItem()
+        public void UpdateItem()
         {
             _updateWishlistFirstButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void ClickOnUpdateWishlist()
+        public void UpdateWishlist()
         {
             _updateWishlistBigButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
@@ -68,7 +65,7 @@ namespace Madison.Pages
             return int.Parse(_firstItemQuantityCell.GetAttribute("value"));
         }
 
-        public void ClickOnShareWishlist()
+        public void ShareWishlist()
         {
             _shareWishlistButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
@@ -91,7 +88,7 @@ namespace Madison.Pages
             _shareWishlistEmailTextArea.ActionSendKeys(email);
         }
 
-        public void ClickOnShareWishlistButton()
+        public void ShareWishlistFinal()
         {
             _shareWishlistFinalButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();

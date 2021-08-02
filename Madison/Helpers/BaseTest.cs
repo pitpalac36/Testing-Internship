@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using DriverOptions = NsTestFrameworkUI.Helpers.DriverOptions;
 
-//[assembly: Parallelize(Workers = 8, Scope = ExecutionScope.ClassLevel)]
+[assembly: Parallelize(Workers = 4, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Helpers
 {
     public class BaseTest

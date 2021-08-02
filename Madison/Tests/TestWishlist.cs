@@ -2,6 +2,7 @@
 using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using System;
 
 namespace Madison.Tests
 {
@@ -34,8 +35,9 @@ namespace Madison.Tests
             Pages.LoginPage.Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            var newQuantity = Pages.MyWishlistPage.ChangeQuantity();
-            Pages.MyWishlistPage.ClickOnUpdateItem();
+            var newQuantity = new Random().Next(100);
+            Pages.MyWishlistPage.ChangeQuantity(newQuantity);
+            Pages.MyWishlistPage.UpdateItem();
             Pages.MyWishlistPage.ItemQuantity().Should().Be(newQuantity);
         }
 
@@ -46,8 +48,9 @@ namespace Madison.Tests
             Pages.LoginPage.Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            var newQuantity = Pages.MyWishlistPage.ChangeQuantity();
-            Pages.MyWishlistPage.ClickOnUpdateWishlist();
+            var newQuantity = new Random().Next(100);
+            Pages.MyWishlistPage.ChangeQuantity(newQuantity);
+            Pages.MyWishlistPage.UpdateWishlist();
             Pages.MyWishlistPage.ItemQuantity().Should().Be(newQuantity);
         }
 
@@ -58,7 +61,7 @@ namespace Madison.Tests
             Pages.LoginPage.Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            Pages.MyWishlistPage.ClickOnShareWishlist();
+            Pages.MyWishlistPage.ShareWishlist();
             Pages.MyWishlistPage.GetUrl().Should().Contain("http://qa2.dev.evozon.com/wishlist/index/share/wishlist_id/");
             Pages.MyWishlistPage.IsShareWishlistFormDisplayed().Should().BeTrue();
         }
@@ -70,9 +73,9 @@ namespace Madison.Tests
             Pages.LoginPage.Login();
             Pages.MyWishlistPage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            Pages.MyWishlistPage.ClickOnShareWishlist();
+            Pages.MyWishlistPage.ShareWishlist();
             Pages.MyWishlistPage.FillEmail("");
-            Pages.MyWishlistPage.ClickOnShareWishlistButton();
+            Pages.MyWishlistPage.ShareWishlistFinal();
             Pages.MyWishlistPage.IsRequiredValidationAdviceDisplayed().Should().BeTrue();
             Pages.MyWishlistPage.GetRequiredValidationAdvice().Should().Contain("This is a required field");
         }
