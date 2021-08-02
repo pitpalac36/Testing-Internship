@@ -22,7 +22,9 @@ namespace Madison.Pages
 
         public void FillCredentials()
         {
+            _emailTextField.ClearField();
             _emailTextField.ActionSendKeys("ana.ana@outlook.com");
+            _passwordTextField.ClearField();
             _passwordTextField.ActionSendKeys("1234567");
         }
         public void Login()
