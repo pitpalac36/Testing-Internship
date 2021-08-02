@@ -20,6 +20,10 @@ namespace Madison.Pages
         private readonly By _shareWishlistFinalButton = By.CssSelector(".form-buttons button");
         private readonly By _validationAdviceLabel = By.ClassName("validation-advice");
         private readonly By _commentTextArea = By.CssSelector("textarea[name^='description']");
+        private readonly By _editItemButton = By.CssSelector("a.link-edit.button.button-secondary");
+        private readonly By _quantityInputFromShowroom = By.Id("qty");
+        private readonly By _updateFromShowroomButton = By.CssSelector("a.link-compare");
+        private readonly By _errorMessage = By.ClassName("error-msg");
         #endregion
 
         public void ClickOnAccount()
@@ -29,7 +33,7 @@ namespace Madison.Pages
 
         public bool IsWishlistButtonDisplayed()
         {
-           return _myWishlistSelector.IsElementPresent();
+            return _myWishlistSelector.IsElementPresent();
         }
 
         public void ClickOMyWishlist()
@@ -43,10 +47,10 @@ namespace Madison.Pages
             return _myWishlistHeaderSelector.IsElementPresent();
         }
 
-        public void ChangeQuantity(int newQuantity)
+        public void ChangeQuantity(string newQuantity)
         {
             _firstItemQuantityCell.ClearField();
-            _firstItemQuantityCell.ActionSendKeys(newQuantity.ToString());
+            _firstItemQuantityCell.ActionSendKeys(newQuantity);
         }
 
         public void UpdateItem()
@@ -61,9 +65,9 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public int ItemQuantity()
+        public string ItemQuantity()
         {
-            return int.Parse(_firstItemQuantityCell.GetAttribute("value"));
+            return _firstItemQuantityCell.GetAttribute("value");
         }
 
         public void ShareWishlist()
@@ -114,6 +118,29 @@ namespace Madison.Pages
         public string ItemComment()
         {
             return _commentTextArea.GetAttribute("value");
+        }
+
+        public void ClickOnEdit()
+        {
+            _editItemButton.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
+        }
+
+        public void EditQuantityFromShowroom(string quantity)
+        {
+            _quantityInputFromShowroom.ClearField();
+            _quantityInputFromShowroom.ActionSendKeys(quantity);
+        }
+
+        public void UpdateWishlistFromShowroom()
+        {
+            _updateFromShowroomButton.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
+        }
+
+        public bool IsErrorMessageDisplayed()
+        {
+            return _errorMessage.IsElementPresent();
         }
     }
 }
