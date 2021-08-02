@@ -12,36 +12,13 @@ namespace Madison.Pages
     public class LoginPage
     {
         #region Selectors
-          private readonly By email = By.Id("email");
-          private readonly By password = By.Id("pass");
-          private readonly By loginButton = By.Id("send2");
-          private readonly By pageName = By.CssSelector("head > title");
-          private readonly By alreadyRegisteresText = By.CssSelector(".col2-set > div:nth-child(2) >div >h2");
-        private readonly By formInstructions = By.CssSelector(".col2-set > div:nth-child(2) >div >h2+p");
-        
+        private readonly By email = By.Id("email");
+        private readonly By password = By.Id("pass");
+        private readonly By loginButton = By.Id("send2");
         #endregion
 
 
-        /* public string CheckLogInPageDispayed()
-         {
-             return Driver.webDriver.FindElement(pageName).Text;
 
-         }*/
-
-        public string AlreadyRegisteredTextDisplayed()
-        {
-           return Driver.webDriver.FindElement(alreadyRegisteresText).Text;
-        }
-
-        public string CheckExistingAccountMessage()
-        {
-            return Driver.webDriver.FindElement(formInstructions).Text;
-        }
-
-        public void CreateAnAccountButton()
-        {
-            
-        }
         public void FillEmail()
         {
             email.ActionSendKeys("ana.ana@outlook.com");
@@ -53,7 +30,7 @@ namespace Madison.Pages
             password.ActionSendKeys("1234567");
         }
 
-         public void FillCredentials()
+        public void FillCredentials()
         {
             FillEmail();
             FillPassword();
@@ -62,7 +39,6 @@ namespace Madison.Pages
         public void LogInSubmit()
         {
             loginButton.ActionClick();
-           //Driver.webDriver.FindElement(loginButton).Submit();
         }
 
     }
