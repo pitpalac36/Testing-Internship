@@ -79,6 +79,15 @@ namespace Madison {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string d {
+            get {
+                return ResourceManager.GetString("d", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://qa2.dev.evozon.com/home-decor/electronics/madison-earbuds.html.
         /// </summary>
         internal static string Earbuds {
