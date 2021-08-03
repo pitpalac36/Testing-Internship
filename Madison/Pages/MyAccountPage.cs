@@ -10,7 +10,9 @@ namespace Madison.Pages
 {
     public class MyAccountPage
     {
-        
+        #region Selectors
+        private readonly By _registerMessage = By.CssSelector(".success-msg");
+        #endregion
 
     }
 }

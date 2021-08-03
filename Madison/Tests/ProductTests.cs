@@ -104,7 +104,7 @@ namespace Madison.Tests
             Pages.ProductsPage.setAscendingDirection();
             Pages.ProductsPage.clickFirstProduct();
             Pages.ProductsPage.setProductQuantity(qty);
-            Pages.ProductsPage.addToCart();
+            Pages.ProductsPage.AddToCart();
             var visibility = Pages.ProductsPage.isAddToCartButtonVisible();
             visibility.Should().BeFalse();
         }
@@ -160,6 +160,8 @@ namespace Madison.Tests
         [DataRow("2", "0")]
         public void SecondFlow(string errorCountBefore, string errorCountAfter) {
             //1. TODO Login
+            Pages.HomePage.SelectMyAccountMenu(User.AccountMenu[5]);
+            Pages.LoginPage.Login(User.Usernames[0], User.Passwords[0]);
 
             //2. Access Men - New Arrivals section
             Pages.HomePage.goToMenSection();
@@ -169,6 +171,9 @@ namespace Madison.Tests
             Pages.ProductsPage.clickOnViewDetails();
 
             //4. Check error messages from product details page when adding an item to cart
+            Pages.ProductsPage.AddToCart();
+            var errors = Pages.ProductsPage.GetErrorListSelector();
+            errors.Should().HaveCount(2);
             Pages.ProductsPage.addToCart();
             var errorCount1 = Pages.ProductsPage.getErrorListSelector().Count;
             Assert.AreEqual(errorCount1, errorCountBefore.ConvertStringToInt32());
@@ -184,6 +189,8 @@ namespace Madison.Tests
 
             //6. TODO
 
+            //5. Add item to cart
+            //Pages.ProductsPage.AddToCart();
         }
 
     }

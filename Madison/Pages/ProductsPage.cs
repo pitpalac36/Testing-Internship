@@ -41,6 +41,8 @@ namespace Madison.Pages
         private readonly By errorListSelector = By.CssSelector("#product-options-wrapper dd .input-box div");
         private readonly By colorSelector = By.CssSelector(".swatch-label img");
         private readonly By sizeListSelector = By.CssSelector("#configurable_swatch_size li");
+        private readonly By errorListSelector = By.CssSelector(".validation-advice");
+        
         #endregion
         public IReadOnlyCollection<IWebElement> getFirst12ProductsFromElectronics()
         {
@@ -48,10 +50,9 @@ namespace Madison.Pages
             return elems;
         }
 
-        public IReadOnlyCollection<IWebElement> getErrorListSelector()
+        public IReadOnlyCollection<IWebElement> GetErrorListSelector()
         {
-            var elems = errorListSelector.GetElements();
-            return elems;
+            return errorListSelector.GetElements();
         }
 
         /// <summary>
@@ -109,7 +110,7 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void addToCart() 
+        public void AddToCart() 
         {
             addToCartSelector.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
