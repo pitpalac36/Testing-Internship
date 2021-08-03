@@ -9,7 +9,15 @@ namespace Madison.Tests
     [TestClass]
     public class TestWishlist: BaseTest
     {
+        private static string RandomQuantity()
+        {
+            return Faker.RandomNumber.Next(1, 100).ToString();
+        }
 
+        private static string RandomComment()
+        {
+            return Faker.Lorem.Sentence();
+        }
 
         [TestMethod]
         public void MyWishlistButtonIsDisplayed()
@@ -35,7 +43,7 @@ namespace Madison.Tests
             Pages.LoginPage.Login();
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            var newQuantity = new Random().Next(100).ToString();
+            var newQuantity = RandomQuantity();
             Pages.MyWishlistPage.ChangeQuantity(newQuantity);
             Pages.MyWishlistPage.UpdateItem();
             Pages.MyWishlistPage.ItemQuantity().Should().Be(newQuantity);
@@ -48,7 +56,7 @@ namespace Madison.Tests
             Pages.LoginPage.Login();
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            var comment = string.Concat("comment", new Random().Next(100));
+            var comment = RandomComment();
             Pages.MyWishlistPage.InsertComment(comment);
             Pages.MyWishlistPage.UpdateItem();
             Pages.MyWishlistPage.ItemComment().Should().Be(comment);
@@ -61,7 +69,7 @@ namespace Madison.Tests
             Pages.LoginPage.Login();
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            var newQuantity = new Random().Next(100).ToString();
+            var newQuantity = RandomQuantity();
             Pages.MyWishlistPage.ChangeQuantity(newQuantity);
             Pages.MyWishlistPage.UpdateWishlist();
             Pages.MyWishlistPage.ItemQuantity().Should().Be(newQuantity);
@@ -101,7 +109,7 @@ namespace Madison.Tests
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ClickOnEdit();
-            var quantity = new Random().Next(100).ToString();
+            var quantity = RandomQuantity();
             Pages.MyWishlistPage.EditQuantityFromShowroom(quantity);
             Pages.MyWishlistPage.UpdateWishlistFromShowroom();
             Pages.MyWishlistPage.ItemQuantity().Should().Be(quantity);
