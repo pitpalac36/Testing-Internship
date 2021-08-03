@@ -159,8 +159,8 @@ namespace Madison.Tests
         [TestMethod]
         public void SecondFlow() {
             //1. TODO Login
-            Pages.HomePage.SelectMyAccountMenu(ResourceFileHelper.AccountMenu[5]);
-            Pages.LoginPage.Login(ResourceFileHelper.Usernames[0], ResourceFileHelper.Passwords[0]);
+            Pages.HomePage.SelectMyAccountMenu(User.AccountMenu[5]);
+            Pages.LoginPage.Login(User.Usernames[0], User.Passwords[0]);
 
             //2. Access Men - New Arrivals section
             Pages.HomePage.goToMenSection();

@@ -13,7 +13,7 @@ namespace Madison.Tests
     class TestRegister:BaseTest 
     {
         
-
+        /*
         [DataTestMethod]
         [DynamicData(nameof(), DynamicDataSourceType.Method)]
         public void GoToRegister(string expectedMessage)
@@ -33,6 +33,6 @@ namespace Madison.Tests
             account.Should().Be();
 
 
-        }
+        }*/
     }
 }
