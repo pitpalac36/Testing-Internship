@@ -15,12 +15,14 @@ namespace Madison.Tests
     public class TestLogIn : BaseTest
     {
 
-        [TestMethod]
+        [DataTestMethod]
         [TestCategory ("Login")]
         public void TryLogin()
         {
             Pages.HomePage.SelectMyAccountMenu("Log In");
             Pages.LoginPage.Login();
+
+            //don't forget about ASSERTIONS
         }
 
         [TestMethod]
