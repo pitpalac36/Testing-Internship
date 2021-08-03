@@ -163,6 +163,11 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(User.AccountMenu[5]);
             Pages.LoginPage.Login(User.Usernames[0], User.Passwords[0]);
 
+            // Empty cart
+            Pages.HomePage.ClickOnAccount();
+            Pages.HomePage.GoToCart();
+            Pages.MyCartPage.ClickOnEmptyCartButton();
+
             //2. Access Men - New Arrivals section
             Pages.HomePage.goToMenSection();
             Pages.HomePage.goToMenNewArrivals();
@@ -175,19 +180,14 @@ namespace Madison.Tests
             var errorCount1 = Pages.ProductsPage.GetErrorListSelector().Count;
             Assert.AreEqual(errorCount1, errorCountBefore.ConvertStringToInt32());
 
+            // 5. Add item to cart
             Pages.ProductsPage.selectColor();
             Pages.ProductsPage.selectSize();
-
             Pages.ProductsPage.AddToCart();
             var errorCount2 = Pages.ProductsPage.GetErrorListSelector().Count;
             Assert.AreEqual(errorCount2, errorCountAfter.ConvertStringToInt32());
 
-            //5. TODO
-
-            //6. TODO
-
-            //5. Add item to cart
-            //Pages.ProductsPage.AddToCart();
+            //6. Check item is in cart
         }
 
     }

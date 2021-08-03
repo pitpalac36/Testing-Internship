@@ -142,7 +142,7 @@ namespace Madison.Pages
         public void selectSize()
         {
             Random rnd = new Random();
-            int randomInt = rnd.Next(1, sizeListSelector.GetElements().Count + 1);
+            int randomInt = rnd.Next(0, sizeListSelector.GetElements().Count);
             sizeListSelector.GetElements().ElementAt(randomInt).Click();
             WaitHelpers.WaitForDocumentReadyState();
         }
