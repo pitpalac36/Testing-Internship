@@ -57,15 +57,31 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void InputValueIntoQuantityField(string quantity)
+        public void InputValueIntoQuantityField(IWebElement inputField,string quantity)
         {
-            _quantityField.GetElements().First().SendKeys(quantity);
+            inputField.SendKeys(quantity);
             _updateShoppingCart.ActionClick();
         }
+
+        public IList<IWebElement> GetQuantityInputFields()
+        {
+            return _quantityField.GetElements();
+        }
+
+        public string GetValueForInpuField(IWebElement inputField)
+        {
+            return inputField.GetAttribute("value").ToString();
+        }
+
 
         public List<string> GetValueFromQuantityField()
         {
             return _quantityField.GetElements().Select(el => el.GetAttribute("value").ToString()).ToList();
+        }
+
+        public string GetValueForInputField(IWebElement inputField)
+        {
+            return inputField.GetAttribute("value").ToString();
         }
 
         public bool CheckoutFormVisibility()
@@ -103,9 +119,9 @@ namespace Madison.Pages
             return float.Parse(_subtotalPriceLabel.GetText().Trim('$'), CultureInfo.InvariantCulture);
         }
 
-        public void EmptyQuantityLabel()
+        public void EmptyQuantityLabel(IWebElement quantityField)
         {
-            _quantityField.GetElements().First().Clear();
+            quantityField.Clear();
         }
 
 

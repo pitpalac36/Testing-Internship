@@ -2,6 +2,7 @@
 using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NsTestFrameworkUI.Helpers;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -130,9 +131,10 @@ namespace Madison.Tests
             Pages.MyCartPage.AddItemToCart(link);
             Pages.MyCartPage.GoToCart();
             List<string> quantity = Pages.MyCartPage.GetValueFromQuantityField();
-            Pages.MyCartPage.EmptyQuantityLabel();
+            IWebElement inputField = Pages.MyCartPage.GetQuantityInputFields().First();
+            Pages.MyCartPage.EmptyQuantityLabel(inputField);
             int quantity_int = int.Parse(quantity.First());
-            Pages.MyCartPage.InputValueIntoQuantityField((quantity_int * 2).ToString());
+            Pages.MyCartPage.InputValueIntoQuantityField(inputField,(quantity_int * 2).ToString());
             string new_quantity = Pages.MyCartPage.GetValueFromQuantityField().First();
             new_quantity.Should().Be((quantity_int * 2).ToString());
         }
