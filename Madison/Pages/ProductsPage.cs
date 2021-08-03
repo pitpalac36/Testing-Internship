@@ -11,6 +11,12 @@ using System.Threading;
 
 namespace Madison.Pages
 {
+    public class Product
+    {
+        public string Name { get; set; }
+        public string Color { get; set; }
+        private string Size { get; set; }
+    }
     public class ProductsPage
     {
         #region Selectors
@@ -134,17 +140,20 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void selectColor()
+        public string selectColor()
         {
             colorSelector.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
+            return colorSelector.GetAttribute("alt");
         }
-        public void selectSize()
+        public string selectSize()
         {
             Random rnd = new Random();
             int randomInt = rnd.Next(0, sizeListSelector.GetElements().Count);
+            var size = sizeListSelector.GetElements().ElementAt(randomInt).GetAttribute("value");
             sizeListSelector.GetElements().ElementAt(randomInt).Click();
             WaitHelpers.WaitForDocumentReadyState();
+            return size;
         }
 
         /// <summary>

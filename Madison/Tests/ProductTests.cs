@@ -181,15 +181,16 @@ namespace Madison.Tests
             Assert.AreEqual(errorCount1, errorCountBefore.ConvertStringToInt32());
 
             // 5. Add item to cart
-            Pages.ProductsPage.selectColor();
-            Pages.ProductsPage.selectSize();
+            var color = Pages.ProductsPage.selectColor();
+            var size = Pages.ProductsPage.selectSize();
             Pages.ProductsPage.AddToCart();
             var errorCount2 = Pages.ProductsPage.GetErrorListSelector().Count;
             Assert.AreEqual(errorCount2, errorCountAfter.ConvertStringToInt32());
 
             //6. Check item is in cart
             Pages.ShoppingCartPage.IsSuccessMessageDisplayed().Should().BeTrue();
+            Pages.ShoppingCartPage.FirstItemColor().Should().Be(color);
+            //Pages.ShoppingCartPage.FirstItemSize().Should().Be(size);
         }
-
     }
 }
