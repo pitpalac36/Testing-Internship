@@ -10,7 +10,7 @@ using System.Threading;
 using NsTestFrameworkUI;
 using NsTestFrameworkUI.Helpers;
 
-[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
+//[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Tests
 {
     [TestClass]
@@ -157,7 +157,8 @@ namespace Madison.Tests
         }
 
         [TestMethod]
-        public void SecondFlow() {
+        [DataRow("2", "0")]
+        public void SecondFlow(string errorCountBefore, string errorCountAfter) {
             //1. TODO Login
             Pages.HomePage.SelectMyAccountMenu(User.AccountMenu[5]);
             Pages.LoginPage.Login(User.Usernames[0], User.Passwords[0]);
@@ -171,8 +172,19 @@ namespace Madison.Tests
 
             //4. Check error messages from product details page when adding an item to cart
             Pages.ProductsPage.AddToCart();
-            var errors = Pages.ProductsPage.GetErrorListSelector();
-            errors.Should().HaveCount(2);
+            var errorCount1 = Pages.ProductsPage.GetErrorListSelector().Count;
+            Assert.AreEqual(errorCount1, errorCountBefore.ConvertStringToInt32());
+
+            Pages.ProductsPage.selectColor();
+            Pages.ProductsPage.selectSize();
+
+            Pages.ProductsPage.AddToCart();
+            var errorCount2 = Pages.ProductsPage.GetErrorListSelector().Count;
+            Assert.AreEqual(errorCount2, errorCountAfter.ConvertStringToInt32());
+
+            //5. TODO
+
+            //6. TODO
 
             //5. Add item to cart
             //Pages.ProductsPage.AddToCart();
