@@ -14,7 +14,6 @@ namespace Madison.Pages
     public class HomePage
     {
         #region Selectors
-        private readonly By homeDecorSelector = By.CssSelector(".level1.nav-4-3 a");
         private readonly By homeDecorListSelector = By.CssSelector(".level0.nav-4.parent li");
         private readonly By SectionsListSelector = By.CssSelector("#nav ol li.level0");
         private readonly By SectionsSelector = By.CssSelector(".nav-primary");
@@ -47,10 +46,6 @@ namespace Madison.Pages
         /// Methods which extract Lists
         /// </summary>
         /// <returns></returns>
-        public IReadOnlyCollection<IWebElement> getHomeDecorList() {
-            var elems = homeDecorListSelector.GetElements();
-            return elems;
-        }
 
         public IReadOnlyCollection<IWebElement> getSectionsList()
         {
