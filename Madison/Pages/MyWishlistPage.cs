@@ -20,7 +20,7 @@ namespace Madison.Pages
         private readonly By _shareWishlistFinalButton = By.CssSelector(".form-buttons button");
         private readonly By _validationAdviceLabel = By.ClassName("validation-advice");
         private readonly By _commentTextArea = By.CssSelector("textarea[name^='description']");
-        private readonly By _editItemButton = By.CssSelector("a.link-edit.button.button-secondary");
+        private readonly By _editItemButton = By.CssSelector(".link-edit");
         private readonly By _quantityInputFromShowroom = By.Id("qty");
         private readonly By _updateFromShowroomButton = By.CssSelector("a.link-compare");
         private readonly By _errorMessage = By.ClassName("error-msg");
