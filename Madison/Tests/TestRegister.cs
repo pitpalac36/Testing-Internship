@@ -10,29 +10,77 @@ using System.Threading.Tasks;
 namespace Madison.Tests
 {
     [TestClass]
-    class TestRegister:BaseTest 
+    public class TestRegister:BaseTest 
     {
         
-        /*
-        [DataTestMethod]
-        [DynamicData(nameof(), DynamicDataSourceType.Method)]
-        public void GoToRegister(string expectedMessage)
+        [TestMethod]
+        //[DynamicData(nameof(GetAccount), DynamicDataSourceType.Method)]
+        public void Registration()
         {
-            Pages.HomePage.SelectMyAccountMenu(User.AccountMenu[4]);
-            Pages.RegisterPage.GetCreateAccountMessage().Should().Be(expectedMessage);
+            UserDetails userDetails = new UserDetails();
+            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[4]);
+            Pages.RegisterPage.ClickRegisterButton();
+
+            Pages.RegisterPage.GetErrorMessagesFromForm().Should().OnlyContain(x => x.Equals(Messages.Mandatory_Error));
+
+            Pages.RegisterPage.FillRegistrationForm(userDetails);
+            Pages.RegisterPage.SubscribeToNewsletter();
+            Pages.RegisterPage.ClickRegisterButton();
+
+            Pages.RegisterPage.GetErrorMessagesFromForm().Should().HaveCount(userDetails.GetNumberOfEmptyMandatoryFields());
+            Pages.RegisterPage.GetSuccessMessage().Should().Be(Messages.Success_Login);
+            Pages.RegisterPage.MergeUserNameWithWelcome().Should().Be(Pages.MyAccountPage.GetWelcomeMessage());
         }
+   
 
-
-        [DataTestMethod]
-        [DynamicData(nameof(), DynamicDataSourceType.Method)]
-        public void Registration(Account account)
+        /*public static IEnumerable<object[]> GetAccount()
         {
-            Pages.HomePage.SelectMyAccountMenu(User.AccountMenu[4]);
-            Pages.RegisterPage.RegisterButtonClick();
-
-            account.Should().Be();
-
-
+            var password = Faker.Internet.DomainName();
+            yield return new object[] { new UserDetails {LastName = Faker.Name.Last(),
+                FirstName = Faker.Name.First(),
+                MiddleName = Faker.Name.Middle(),
+                EmailAddress = Faker.Internet.Email(),
+                Password = password,
+                ConfirmPassword = password
+            } };
+            yield return new object[]
+            {
+                new UserDetails{
+                LastName = "",
+                FirstName = Faker.Name.First(),
+                MiddleName = Faker.Name.Middle(),
+                EmailAddress = Faker.Internet.Email(),
+                Password = password,
+                ConfirmPassword = password
+                } };
+            yield return new object[]
+            {new UserDetails{
+                LastName = "",
+                FirstName = "",
+                MiddleName = "",
+                EmailAddress = "",
+                Password = "",
+                ConfirmPassword = ""
+            } };
+            yield return new object[]
+            { new UserDetails{
+                LastName = Faker.Name.Last(),
+                FirstName = Faker.Name.First(),
+                MiddleName = "",
+                EmailAddress = "",
+                Password = "",
+                ConfirmPassword = ""
+            } };
+            yield return new object[]
+            { new UserDetails{
+                LastName = Faker.Name.Last(),
+                FirstName = Faker.Name.First(),
+                MiddleName = "",
+                EmailAddress = Faker.Internet.Email(),
+                Password = "123456",
+                ConfirmPassword = ""
+            } };
         }*/
+
     }
 }
