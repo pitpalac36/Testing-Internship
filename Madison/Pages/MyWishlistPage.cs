@@ -11,7 +11,7 @@ namespace Madison.Pages
         private readonly By _accountSelector = By.CssSelector(".account-cart-wrapper a");
         private readonly By _myWishlistSelector = By.CssSelector("a[title^='My Wishlist']");
         private readonly By _myWishlistHeaderSelector = By.CssSelector(".my-wishlist h1");
-        private readonly By _firstItemQuantityCell = By.CssSelector("#wishlist-view-form .first.odd input");
+        private readonly By _firstItemQuantityCell = By.CssSelector("#wishlist-view-form .first .qty");
         private readonly By _updateWishlistFirstButton = By.CssSelector("#wishlist-table button");
         private readonly By _updateWishlistBigButton = By.CssSelector(".buttons-set2 .btn-update");
         private readonly By _shareWishlistButton = By.CssSelector(".buttons-set [name='save_and_share']");
