@@ -14,7 +14,6 @@ namespace Madison.Pages
     public class HomePage
     {
         #region Selectors
-        private readonly By homeDecorSelector = By.CssSelector(".level1.nav-4-3 a");
         private readonly By homeDecorListSelector = By.CssSelector(".level0.nav-4.parent li");
         private readonly By SectionsListSelector = By.CssSelector("#nav ol li.level0");
         private readonly By SectionsSelector = By.CssSelector(".nav-primary");
@@ -24,6 +23,7 @@ namespace Madison.Pages
         private readonly By electronicsPageTitleSelector = By.CssSelector(".page-title.category-title h1");
         private readonly By accountElement = By.CssSelector(".account-cart-wrapper > a");
         private readonly By menuElements = By.CssSelector("#header-account>.links>ul li");
+        private readonly By _cartQuantityLabel = By.CssSelector(".count");
 
         #endregion
 
@@ -37,6 +37,12 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
+        public bool IsCartQuantityLabelPresent()
+        {
+            return _cartQuantityLabel.IsElementPresent();
+        }
+
+
         public void goFromHomePageToElectronics()
         {
             electronicsHomePageSelector.ActionClick();
@@ -47,10 +53,6 @@ namespace Madison.Pages
         /// Methods which extract Lists
         /// </summary>
         /// <returns></returns>
-        public IReadOnlyCollection<IWebElement> getHomeDecorList() {
-            var elems = homeDecorListSelector.GetElements();
-            return elems;
-        }
 
         public IReadOnlyCollection<IWebElement> getSectionsList()
         {
