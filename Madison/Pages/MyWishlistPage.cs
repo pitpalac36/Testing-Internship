@@ -26,11 +26,6 @@ namespace Madison.Pages
         private readonly By _errorMessage = By.ClassName("error-msg");
         #endregion
 
-        public void ClickOnAccount()
-        {
-            _accountSelector.ActionClick();
-        }
-
         public bool IsWishlistButtonDisplayed()
         {
             return _myWishlistSelector.IsElementPresent();
