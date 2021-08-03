@@ -168,6 +168,8 @@ namespace Madison.Tests
             Pages.ProductsPage.clickOnViewDetails();
 
             //4. Check error messages from product details page when adding an item to cart
+            var errorCount = Pages.ProductsPage.getErrorListSelector();
+
 
         }
 
