@@ -14,6 +14,18 @@ namespace Madison.Tests
     public class TestCart : BaseTest
     {
 
+        public static IEnumerable<object[]> GetData()
+        {
+            yield return new object[] { WebLinks.Earbuds, WebLinks.JACKIE_O_ROUND_SUNGLASSES,WebLinks.Aviator_Sunglasses };
+        }
+
+        public static IEnumerable<object[]> GetOneLink()
+        {
+            yield return new object[] { WebLinks.Earbuds };
+            yield return new object[] { WebLinks.Aviator_Sunglasses };
+            yield return new object[] { WebLinks.JACKIE_O_ROUND_SUNGLASSES };
+        }
+
 
         [TestMethod]
         public void EmptyCartShowsEmptyCartHeader()
@@ -71,38 +83,51 @@ namespace Madison.Tests
             visibility.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void CartLabelDisplayedWithItemsInCart()
+        [DataTestMethod]
+        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        public void CartLabelDisplayedWithItemsInCart(params string[] itemLink)
         {
-            Pages.MyCartPage.AddItemToCart();
+            foreach(string link in itemLink)
+            {
+                Pages.MyCartPage.AddItemToCart(link);
+            }
             bool visibility = Pages.MyCartPage.CartLabelVisibility();
             visibility.Should().BeTrue();
         }
 
-        [TestMethod]
-        public void EmptyCartButtonDeletesCartElements()
+        [DataTestMethod]
+        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        public void EmptyCartButtonDeletesCartElements(params string[] itemLink)
         {
-            Pages.MyCartPage.AddItemToCart();
+            foreach (string link in itemLink)
+            {
+                Pages.MyCartPage.AddItemToCart(link);
+            }
             Pages.MyCartPage.ClickOnEmptyCartButton();
             string header = Pages.MyCartPage.GetHeaderMessage();
             string expected_message = ResourceFileHelper.GetValueAssociatedToString("EmptyCartMessage");
             header.Should().Be(expected_message);
         }
 
-        [TestMethod]
-        public void CheckMatchingSubtotals()
+        [DataTestMethod]
+        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        public void CheckMatchingSubtotals(params string[] itemLink)
         {
-            Pages.MyCartPage.AddItemToCart();
+            foreach (string link in itemLink)
+            {
+                Pages.MyCartPage.AddItemToCart(link);
+            }
             Pages.MyCartPage.GoToCart();
             float subtotalSum = Pages.MyCartPage.GetSubtotalItemsPrice();
             float subtotal = Pages.MyCartPage.GetSubtotalLabelPrice();
             subtotal.Should().Be(subtotalSum);
         }
 
-        [TestMethod]
-        public void UpdateQuantityButtonTest()
+        [DataTestMethod]
+        [DynamicData(nameof(GetOneLink), DynamicDataSourceType.Method)]
+        public void UpdateQuantityButtonTest(string link)
         {
-            Pages.MyCartPage.AddItemToCart();
+            Pages.MyCartPage.AddItemToCart(link);
             Pages.MyCartPage.GoToCart();
             List<string> quantity = Pages.MyCartPage.GetValueFromQuantityField();
             Pages.MyCartPage.EmptyQuantityLabel();
