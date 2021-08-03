@@ -13,10 +13,6 @@ namespace Madison.Tests
     class TestRegister:BaseTest 
     {
         
-
-
-
-        /*
         [DataTestMethod]
         [DynamicData(nameof(GetAccount), DynamicDataSourceType.Method)]
         public void Registration(Account account)
@@ -24,13 +20,11 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(User.AccountMenu[4]);
             Pages.RegisterPage.RegisterButtonClick();
 
-            account.Should().Be();
+            Pages.RegisterPage.FillRegistrationForm(account);
+
 
 
         }
-        */
-    
-
 
         public static IEnumerable<object> GetAccount()
         {
