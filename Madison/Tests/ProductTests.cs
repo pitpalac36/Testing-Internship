@@ -188,6 +188,7 @@ namespace Madison.Tests
             Assert.AreEqual(errorCount2, errorCountAfter.ConvertStringToInt32());
 
             //6. Check item is in cart
+            Pages.ShoppingCartPage.IsSuccessMessageDisplayed().Should().BeTrue();
         }
 
     }
