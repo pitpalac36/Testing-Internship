@@ -10,22 +10,21 @@ using System.Threading.Tasks;
 namespace Madison.Tests
 {
     [TestClass]
-    class TestRegister:BaseTest 
+    public class TestRegister:BaseTest 
     {
         
-        [DataTestMethod]
-        [DynamicData(nameof(GetAccount), DynamicDataSourceType.Method)]
-        public void Registration(Account account)
+        [TestMethod]
+        //[DynamicData(nameof(GetAccount), DynamicDataSourceType.Method)]
+        public void Registration()
         {
             Pages.HomePage.SelectMyAccountMenu(User.AccountMenu[4]);
             Pages.RegisterPage.RegisterButtonClick();
-
-            Pages.RegisterPage.FillRegistrationForm(account);
+            Pages.RegisterPage.GetErrorMessagesFromForm().Should().OnlyContain(x => x.Equals(Messages.Mandatory_Error));
+           // Pages.RegisterPage.FillRegistrationForm(account);
 
 
         }
-    
-
+   
 
         public static IEnumerable<object> GetAccount()
         {
