@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using NsTestFrameworkUI;
+using NsTestFrameworkUI.Helpers;
 
-//[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
+[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Tests
 {
     [TestClass]
@@ -59,7 +61,7 @@ namespace Madison.Tests
             Pages.HomePage.goToHomeDecor();
             Pages.HomePage.goFromHomePageToElectronics();
             var products = Pages.ProductsPage.getFirst12ProductsFromElectronics();
-            products.Count.Should().Be(count);
+            products.Count.Should().BeLessOrEqualTo(count);
         }
 
         [DataRow("$20.00", "$400.00")]
@@ -78,6 +80,7 @@ namespace Madison.Tests
         }
 
         [TestMethod]
+        [TestCategory("Product")]
         public void checkFirstItemPriceConsistency()
         {
             Pages.HomePage.goToHomeDecor();
@@ -92,6 +95,7 @@ namespace Madison.Tests
 
         [DataRow("2")]
         [TestMethod]
+        [TestCategory("Product")]
         public void addNegativeQuantityForProduct(string qty)
         {
             Pages.HomePage.goToHomeDecor();
@@ -106,6 +110,7 @@ namespace Madison.Tests
         }
 
         [TestMethod]
+        [TestCategory("Product")]
         public void checkIfReviewButtonIsVisible()
         {
             Pages.HomePage.goToHomeDecor();
@@ -118,8 +123,10 @@ namespace Madison.Tests
             visibility.Should().BeTrue();
 
         }
+
         [DataRow("nice", "good product", "georgel de pe coclauri")]
         [TestMethod]
+        [TestCategory("Product")]
         public void checkSubmitReviewForm(string review, string summary, string nickname)
         {
             Pages.HomePage.goToHomeDecor();
@@ -134,6 +141,35 @@ namespace Madison.Tests
             Pages.ProductsPage.clickOnSubmitReviews();
             var visibility = Pages.ProductsPage.isSuccessMessagePresent();
             visibility.Should().BeTrue();
+
+        }
+
+        [Ignore]
+        [TestCategory("Product")]
+        public void verifyRecentlyViewedProducts() {
+            Pages.HomePage.goToHomeDecor();
+            Pages.HomePage.goFromHomePageToElectronics();
+            Pages.ProductsPage.selectSortByPrice();
+            Pages.ProductsPage.setDescendingDirection();
+            Pages.ProductsPage.clickFirstProduct();
+            Browser.SwitchToLastTab();
+            // TODO
+        }
+
+        [TestMethod]
+        public void SecondFlow() {
+            //1. TODO Login
+
+            //2. Access Men - New Arrivals section
+            Pages.HomePage.goToMenSection();
+            Pages.HomePage.goToMenNewArrivals();
+
+            //3. Open product details page(of first item)
+            Pages.ProductsPage.clickOnViewDetails();
+
+            //4. Check error messages from product details page when adding an item to cart
+            var errorCount = Pages.ProductsPage.getErrorListSelector();
+
 
         }
 

@@ -21,8 +21,8 @@ namespace Madison.Tests
         [TestMethod]
         public void ClickOnMyWishlistButtonRedirects()
         {
-            Pages.HomePage.SelectMyAccountMenu("Log In");
-            Pages.LoginPage.Login();
+            Pages.HomePage.SelectMyAccountMenu(ResourceFileHelper.AccountMenu[5]);
+            Pages.LoginPage.Login(ResourceFileHelper.Usernames[0], ResourceFileHelper.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.IsRedirectedToWishlist().Should().BeTrue();
@@ -31,8 +31,8 @@ namespace Madison.Tests
         [TestMethod]
         public void WishlistItemQuantityUpdatesCorrectly()
         {
-            Pages.HomePage.SelectMyAccountMenu("Log In");
-            Pages.LoginPage.Login();
+            Pages.HomePage.SelectMyAccountMenu(ResourceFileHelper.AccountMenu[5]);
+            Pages.LoginPage.Login(ResourceFileHelper.Usernames[0], ResourceFileHelper.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             var newQuantity = new Random().Next(100).ToString();
@@ -44,8 +44,8 @@ namespace Madison.Tests
         [TestMethod]
         public void WishlistItemCommentUpdatesCorrectly()
         {
-            Pages.HomePage.SelectMyAccountMenu("Log In");
-            Pages.LoginPage.Login();
+            Pages.HomePage.SelectMyAccountMenu(ResourceFileHelper.AccountMenu[5]);
+            Pages.LoginPage.Login(ResourceFileHelper.Usernames[0], ResourceFileHelper.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             var comment = string.Concat("comment", new Random().Next(100));
@@ -57,8 +57,8 @@ namespace Madison.Tests
         [TestMethod]
         public void WishlistUpdatesCorrectly()
         {
-            Pages.HomePage.SelectMyAccountMenu("Log In");
-            Pages.LoginPage.Login();
+            Pages.HomePage.SelectMyAccountMenu(ResourceFileHelper.AccountMenu[5]);
+            Pages.LoginPage.Login(ResourceFileHelper.Usernames[0], ResourceFileHelper.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             var newQuantity = new Random().Next(100).ToString();
@@ -70,8 +70,8 @@ namespace Madison.Tests
         [TestMethod]
         public void ClickOnShareWishlistButtonRedirects()
         {
-            Pages.HomePage.SelectMyAccountMenu("Log In");
-            Pages.LoginPage.Login();
+            Pages.HomePage.SelectMyAccountMenu(ResourceFileHelper.AccountMenu[5]);
+            Pages.LoginPage.Login(ResourceFileHelper.Usernames[0], ResourceFileHelper.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ShareWishlist();
@@ -82,8 +82,8 @@ namespace Madison.Tests
         [TestMethod]
         public void ShareWishlistFormValidatesEmptyEmail()
         {
-            Pages.HomePage.SelectMyAccountMenu("Log In");
-            Pages.LoginPage.Login();
+            Pages.HomePage.SelectMyAccountMenu(ResourceFileHelper.AccountMenu[5]);
+            Pages.LoginPage.Login(ResourceFileHelper.Usernames[0], ResourceFileHelper.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ShareWishlist();
@@ -96,8 +96,8 @@ namespace Madison.Tests
         [TestMethod]
         public void UpdateWishlistFromShowroom()
         {
-            Pages.HomePage.SelectMyAccountMenu("Log In");
-            Pages.LoginPage.Login();
+            Pages.HomePage.SelectMyAccountMenu(ResourceFileHelper.AccountMenu[5]);
+            Pages.LoginPage.Login(ResourceFileHelper.Usernames[0], ResourceFileHelper.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ClickOnEdit();
