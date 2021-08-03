@@ -16,16 +16,16 @@ namespace Madison.Pages
         private readonly By _emailTextField = By.Id("email");
         private readonly By _passwordTextField = By.Id("pass");
         private readonly By _loginButton = By.Id("send2");
-        private readonly By _alreadyRegisteredText = By.CssSelector(".col2-set > div:nth-child(2) >div >h2");
-        private readonly By _existingAccountMessage = By.CssSelector(".col2-set > div:nth-child(2) >div p:nth-child(2)");
+        private readonly By _alreadyRegisteredText = By.CssSelector("div.content.fieldset >h2");
+        private readonly By _existingAccountMessage = By.CssSelector(".content.fieldset >h2+p");
         #endregion
 
         public void FillCredentials()
         {
             _emailTextField.ClearField();
-            _emailTextField.ActionSendKeys("ana.ana@outlook.com");
+            _emailTextField.ActionSendKeys(ResourceFileHelper.Usernames[0]);
             _passwordTextField.ClearField();
-            _passwordTextField.ActionSendKeys("1234567");
+            _passwordTextField.ActionSendKeys(ResourceFileHelper.Passwords[0]);
         }
         public void Login()
         {
