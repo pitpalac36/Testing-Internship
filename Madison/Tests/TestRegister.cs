@@ -23,7 +23,7 @@ namespace Madison.Tests
 
             Pages.RegisterPage.GetErrorMessagesFromForm().Should().OnlyContain(x => x.Equals(Messages.Mandatory_Error));
 
-            Pages.RegisterPage.FillRegistrationForm(userDetails);
+            Pages.RegisterPage.FillRegistrationForm();
             Pages.RegisterPage.SubscribeToNewsletter();
             Pages.RegisterPage.ClickRegisterButton();
 

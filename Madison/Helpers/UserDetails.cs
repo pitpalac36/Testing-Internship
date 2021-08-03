@@ -8,7 +8,7 @@ namespace Madison.Helpers
 {
     public class UserDetails
     {
-        public static string password = Faker.Internet.DomainName();
+        private static string password = Faker.Internet.DomainName();
         public static string FirstName { get; set; } = Faker.Name.First();
         public static string MiddleName { get; set; } = Faker.Name.Middle();
         public static string LastName { get; set; } = Faker.Name.Last();

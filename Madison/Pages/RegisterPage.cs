@@ -71,7 +71,7 @@ namespace Madison.Pages
 
         public string MergeUserNameWithWelcome()
         {
-            return "WELCOME, " + UserDetails.FirstName.ToUpper() + " " + UserDetails.MiddleName.ToUpper() + " " + UserDetails.LastName.ToUpper() + "";
+            return "WELCOME, " + UserDetails.FirstName.ToUpper() + " " + UserDetails.MiddleName.ToUpper() + " " + UserDetails.LastName.ToUpper() + "!";
         }
     }
 }
