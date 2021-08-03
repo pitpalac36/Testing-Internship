@@ -35,6 +35,9 @@ namespace Madison.Pages
         private readonly By summaryFieldSelector = By.CssSelector("#summary_field");
         private readonly By nicknameFieldSelector = By.CssSelector("#nickname_field");
         private readonly By successSelector = By.CssSelector(".success-msg span");
+
+        //second flow
+        private readonly By viewDetails = By.CssSelector("li:nth-child(1) .actions > a");
         
         #endregion
         public IReadOnlyCollection<IWebElement> getFirst12ProductsFromElectronics()
@@ -116,6 +119,10 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
+        public void clickOnViewDetails() {
+            viewDetails.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
+        }
 
         /// <summary>
         /// getters

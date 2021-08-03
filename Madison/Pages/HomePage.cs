@@ -23,6 +23,10 @@ namespace Madison.Pages
         private readonly By electronicsPageTitleSelector = By.CssSelector(".page-title.category-title h1");
         private readonly By accountElement = By.CssSelector(".account-cart-wrapper > a");
         private readonly By menuElements = By.CssSelector("#header-account>.links>ul li");
+        
+        // second flow
+        private readonly By menSectionSelector = By.CssSelector(".level0.nav-2.parent .level0.has-children");
+        private readonly By menNewArrivalsSelector = By.CssSelector(".level1.nav-2-1.first a");
 
         #endregion
 
@@ -42,6 +46,20 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
 
         }
+
+        public void goToMenSection() 
+        {
+            menSectionSelector.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
+        }
+
+        public void goToMenNewArrivals() 
+        {
+            menNewArrivalsSelector.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
+        }
+
+
         /// <summary>
         /// Methods which extract Lists
         /// </summary>
