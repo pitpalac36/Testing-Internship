@@ -23,7 +23,6 @@ namespace Madison.Tests
             Pages.RegisterPage.FillRegistrationForm(account);
 
 
-
         }
     
 
