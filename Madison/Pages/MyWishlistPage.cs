@@ -88,7 +88,6 @@ namespace Madison.Pages
 
         public void FillEmail(string email)
         {
-            var textarea = _shareWishlistEmailTextArea.GetText();
             _shareWishlistEmailTextArea.ClearField();
             _shareWishlistEmailTextArea.ActionSendKeys(email);
         }
