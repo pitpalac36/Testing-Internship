@@ -37,6 +37,17 @@ namespace Madison.Helpers
             "",
             "",
         };
+
+        public static string AlreadyExistingAccountMessage = "If you have an account with us, please log in.";
+        public static List<string> AccountMenu = new List<string>
+        {
+            "My Account",
+            "My Wishlist",
+            "My Cart",
+            "Checkout",
+            "Register",
+            "Log In",
+        };
     }
 }
 
