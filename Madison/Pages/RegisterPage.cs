@@ -27,6 +27,7 @@ namespace Madison.Pages
         private readonly By _errorMandatoryPassword = By.CssSelector("#advice-required-entry-password");
         private readonly By _errorMandatoryConfirmationPassword = By.CssSelector("#advice-required-entry-confirmation");
         private readonly By _createAccountMessage = By.CssSelector(".page-title h1");
+        private readonly By _errorList = By.CssSelector(".validation-advice");
         #endregion
 
         public void FillRegistrationForm(Account account)
@@ -63,9 +64,9 @@ namespace Madison.Pages
         }
 
 
-        public void GetErrorMessagesFromForm()
+        public List<string> GetErrorMessagesFromForm()
         {
-
+            return _errorList.GetElements().Select(el => el.Text).ToList();
         }
 
     }
