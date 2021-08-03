@@ -14,8 +14,6 @@ namespace Madison.Pages
     public class ProductsPage
     {
         #region Selectors
-        private readonly By samsungGalaxySelector = By.CssSelector("#product-collection-image-918");
-        private readonly By productNameSelector = By.CssSelector(".product-name h1");
         private readonly By electronicsProductsSelector = By.CssSelector(".products-grid.products-grid--max-4-col .item.last");
         private readonly By sortSelector = By.CssSelector(".toolbar-bottom div.sorter div select");
         private readonly By sortPriceSelector = By.CssSelector(".toolbar-bottom div.sorter div select option:nth-child(3)");
