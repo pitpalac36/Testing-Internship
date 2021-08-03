@@ -10,7 +10,7 @@ using System.Threading;
 using NsTestFrameworkUI;
 using NsTestFrameworkUI.Helpers;
 
-[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
+//[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Tests
 {
     [TestClass]
@@ -172,22 +172,22 @@ namespace Madison.Tests
 
             //4. Check error messages from product details page when adding an item to cart
             Pages.ProductsPage.AddToCart();
-            var errors = Pages.ProductsPage.GetErrorListSelector();
-            errors.Should().HaveCount(2);
-            Pages.ProductsPage.addToCart();
-            var errorCount1 = Pages.ProductsPage.getErrorListSelector().Count;
+            var errorCount1 = Pages.ProductsPage.GetErrorListSelector().Count;
             Assert.AreEqual(errorCount1, errorCountBefore.ConvertStringToInt32());
 
             Pages.ProductsPage.selectColor();
             Pages.ProductsPage.selectSize();
 
-            Pages.ProductsPage.addToCart();
-            var errorCount2 = Pages.ProductsPage.getErrorListSelector().Count;
+            Pages.ProductsPage.AddToCart();
+            var errorCount2 = Pages.ProductsPage.GetErrorListSelector().Count;
             Assert.AreEqual(errorCount2, errorCountAfter.ConvertStringToInt32());
 
             //5. TODO
 
             //6. TODO
+            //Pages.ProductsPage.AddToCart();
+            //var errors = Pages.ProductsPage.GetErrorListSelector();
+            //errors.Should().HaveCount(2);
 
             //5. Add item to cart
             //Pages.ProductsPage.AddToCart();

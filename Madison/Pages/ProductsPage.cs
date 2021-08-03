@@ -41,7 +41,7 @@ namespace Madison.Pages
         private readonly By errorListSelector = By.CssSelector("#product-options-wrapper dd .input-box div");
         private readonly By colorSelector = By.CssSelector(".swatch-label img");
         private readonly By sizeListSelector = By.CssSelector("#configurable_swatch_size li");
-        private readonly By errorListSelector = By.CssSelector(".validation-advice");
+        //private readonly By errorListSelector = By.CssSelector(".validation-advice");
         
         #endregion
         public IReadOnlyCollection<IWebElement> getFirst12ProductsFromElectronics()
