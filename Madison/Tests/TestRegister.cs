@@ -13,65 +13,66 @@ namespace Madison.Tests
     public class TestRegister:BaseTest 
     {
         
-        [TestMethod]
-        //[DynamicData(nameof(GetAccount), DynamicDataSourceType.Method)]
-        public void Registration()
+        [DataTestMethod]
+        [DynamicData(nameof(GetAccount), DynamicDataSourceType.Method)]
+        public void Registration(Account account)
         {
             Pages.HomePage.SelectMyAccountMenu(User.AccountMenu[4]);
+            Pages.RegisterPage.FillRegistrationForm(account);
             Pages.RegisterPage.RegisterButtonClick();
             Pages.RegisterPage.GetErrorMessagesFromForm().Should().OnlyContain(x => x.Equals(Messages.Mandatory_Error));
-           // Pages.RegisterPage.FillRegistrationForm(account);
-
-
+            Pages.RegisterPage.GetErrorMessagesFromForm().Should().HaveCount(account.GetNumberOfEmptyMandatoryFields());
+          //refactor, rename account to AccountDetails
         }
    
 
-        public static IEnumerable<object> GetAccount()
+        public static IEnumerable<object[]> GetAccount()
         {
             var password = Faker.Internet.DomainName();
-            yield return new Account { LastName = Faker.Name.Last(),
+            yield return new object[] { new Account {LastName = Faker.Name.Last(),
                 FirstName = Faker.Name.First(),
                 MiddleName = Faker.Name.Middle(),
                 EmailAddress = Faker.Internet.Email(),
                 Password = password,
                 ConfirmPassword = password
-        };
-            yield return new Account
+            } };
+            yield return new object[]
             {
+                new Account{
                 LastName = "",
                 FirstName = Faker.Name.First(),
                 MiddleName = Faker.Name.Middle(),
                 EmailAddress = Faker.Internet.Email(),
                 Password = password,
                 ConfirmPassword = password
-            };
-            yield return new Account
-            {
+                } };
+            yield return new object[]
+            {new Account{
                 LastName = "",
                 FirstName = "",
                 MiddleName = "",
                 EmailAddress = "",
                 Password = "",
                 ConfirmPassword = ""
-            };
-            yield return new Account
-            {
+            } };
+            yield return new object[]
+            { new Account{
                 LastName = Faker.Name.Last(),
                 FirstName = Faker.Name.First(),
                 MiddleName = "",
                 EmailAddress = "",
                 Password = "",
                 ConfirmPassword = ""
-            };
-            yield return new Account
-            {
+            } };
+            yield return new object[]
+            { new Account{
                 LastName = Faker.Name.Last(),
                 FirstName = Faker.Name.First(),
                 MiddleName = "",
                 EmailAddress = Faker.Internet.Email(),
                 Password = "123456",
                 ConfirmPassword = ""
-            };
+            } };
         }
 
     }

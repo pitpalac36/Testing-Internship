@@ -44,7 +44,7 @@ namespace Madison.Pages
             _lastNameInputField.ActionSendKeys(account.LastName);
             _emailInputField.ActionSendKeys(account.EmailAddress);
             _passwordInputField.ActionSendKeys(account.Password);
-            _passwordInputField.ActionSendKeys(account.ConfirmPassword);
+            _confirmPasswordInputField.ActionSendKeys(account.ConfirmPassword);
         }
 
         public void SubscribeToNewsletter()
