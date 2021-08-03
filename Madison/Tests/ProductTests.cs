@@ -185,9 +185,6 @@ namespace Madison.Tests
             //5. TODO
 
             //6. TODO
-            //Pages.ProductsPage.AddToCart();
-            //var errors = Pages.ProductsPage.GetErrorListSelector();
-            //errors.Should().HaveCount(2);
 
             //5. Add item to cart
             //Pages.ProductsPage.AddToCart();
