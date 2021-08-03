@@ -14,8 +14,6 @@ namespace Madison.Pages
     public class ProductsPage
     {
         #region Selectors
-        private readonly By samsungGalaxySelector = By.CssSelector("#product-collection-image-918");
-        private readonly By productNameSelector = By.CssSelector(".product-name h1");
         private readonly By electronicsProductsSelector = By.CssSelector(".products-grid.products-grid--max-4-col .item.last");
         private readonly By sortSelector = By.CssSelector(".toolbar-bottom div.sorter div select");
         private readonly By sortPriceSelector = By.CssSelector(".toolbar-bottom div.sorter div select option:nth-child(3)");
@@ -39,6 +37,9 @@ namespace Madison.Pages
         //second flow
         private readonly By viewDetailsSelector = By.CssSelector("li:nth-child(1) .actions > a");
         private readonly By errorListSelector = By.CssSelector("#product-options-wrapper dd .input-box div");
+        private readonly By colorSelector = By.CssSelector(".swatch-label img");
+        private readonly By sizeListSelector = By.CssSelector("#configurable_swatch_size li");
+        //private readonly By errorListSelector = By.CssSelector(".validation-advice");
         
         #endregion
         public IReadOnlyCollection<IWebElement> getFirst12ProductsFromElectronics()
@@ -47,10 +48,9 @@ namespace Madison.Pages
             return elems;
         }
 
-        public IReadOnlyCollection<IWebElement> getErrorListSelector()
+        public IReadOnlyCollection<IWebElement> GetErrorListSelector()
         {
-            var elems = errorListSelector.GetElements();
-            return elems;
+            return errorListSelector.GetElements();
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void addToCart() 
+        public void AddToCart() 
         {
             addToCartSelector.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
@@ -126,9 +126,26 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void clickOnViewDetails() {
+        public void clickOnViewDetails() 
+        {
             viewDetailsSelector.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
+        }
+
+        public string selectColor()
+        {
+            colorSelector.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
+            return colorSelector.GetAttribute("alt");
+        }
+        public string selectSize()
+        {
+            Random rnd = new Random();
+            int randomInt = rnd.Next(0, sizeListSelector.GetElements().Count);
+            var size = sizeListSelector.GetElements().ElementAt(randomInt).GetAttribute("value");
+            sizeListSelector.GetElements().ElementAt(randomInt).Click();
+            WaitHelpers.WaitForDocumentReadyState();
+            return size;
         }
 
         /// <summary>

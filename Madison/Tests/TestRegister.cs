@@ -30,7 +30,6 @@ namespace Madison.Tests
             Pages.RegisterPage.GetErrorMessagesFromForm().Should().HaveCount(userDetails.GetNumberOfEmptyMandatoryFields());
             Pages.RegisterPage.GetSuccessMessage().Should().Be(Messages.Success_Login);
             Pages.RegisterPage.MergeUserNameWithWelcome().Should().Be(Pages.MyAccountPage.GetWelcomeMessage());
-
         }
    
 
