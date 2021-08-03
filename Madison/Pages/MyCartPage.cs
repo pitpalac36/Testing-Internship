@@ -33,13 +33,7 @@ namespace Madison.Pages
         #endregion
         
 
-        public void AddItemToCart(string itemLink)
-        {
-            Browser.GoTo(itemLink);
-            WaitHelpers.WaitForDocumentReadyState();
-            By addToCartButton = By.CssSelector(".button.btn-cart:nth-child(1)");
-            addToCartButton.ActionClick();
-        }
+
 
         public string GetHeaderMessage()
         {

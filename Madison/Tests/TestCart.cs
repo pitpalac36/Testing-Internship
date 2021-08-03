@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Madison.Helpers;
+using Madison.Pages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NsTestFrameworkUI.Helpers;
 using OpenQA.Selenium;
@@ -91,7 +92,7 @@ namespace Madison.Tests
         {
             foreach(string link in itemLink)
             {
-                Pages.MyCartPage.AddItemToCart(link);
+               Pages.ProductDetailPage.AddItemToCart(link);
             }
             bool visibility = Pages.MyCartPage.CartLabelVisibility();
             visibility.Should().BeTrue();
@@ -103,7 +104,7 @@ namespace Madison.Tests
         {
             foreach (string link in itemLink)
             {
-                Pages.MyCartPage.AddItemToCart(link);
+                Pages.ProductDetailPage.AddItemToCart(link);
             }
             Pages.MyCartPage.ClickOnEmptyCartButton();
             string header = Pages.MyCartPage.GetHeaderMessage();
@@ -117,7 +118,7 @@ namespace Madison.Tests
         {
             foreach (string link in itemLink)
             {
-                Pages.MyCartPage.AddItemToCart(link);
+                Pages.ProductDetailPage.AddItemToCart(link);
             }
             Browser.GoTo(WebLinks.CartLink);
             float subtotalSum = Pages.MyCartPage.GetSubtotalItemsPrice();
@@ -129,7 +130,7 @@ namespace Madison.Tests
         [DynamicData(nameof(GetOneLink), DynamicDataSourceType.Method)]
         public void UpdateQuantityButtonTest(string link)
         {
-            Pages.MyCartPage.AddItemToCart(link);
+            Pages.ProductDetailPage.AddItemToCart(link);
             Browser.GoTo(WebLinks.CartLink);
             IList<IWebElement> inputField = Pages.MyCartPage.GetQuantityInputFields();
             for(int i=0;i<inputField.Count;i++)
