@@ -31,5 +31,7 @@ namespace Madison.Tests
         public static SearchTermsPage SearchTermsPage => PageHelpers.InitPage(new SearchTermsPage());
         public static SiteMapPage SiteMapPage => PageHelpers.InitPage(new SiteMapPage());
 
+        public static ProductDetailPage ProductDetailPage => PageHelpers.InitPage(new ProductDetailPage());
+
     }
 }
