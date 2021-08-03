@@ -17,13 +17,12 @@ namespace Madison.Pages
     {
         #region Selectors
         private readonly By _shoppingCartHeader = By.CssSelector("h1");
-        //private readonly By _updateShoppingCart = By.CssSelector(".btn-update[title="+ "Update Shopping Cart"+ "]:not([style=" +"visibility: hidden;" +"])");
+        //private readonly By _updateShoppingCart = By.CssSelector(".btn-update[title=Update Shopping Cart]:not([style=visibility: hidden;])");
         private readonly By _updateShoppingCart = By.CssSelector(".button2.btn-update:nth-child(3)");
         private readonly By _continueShopping = By.CssSelector(".button2.btn-continue");
         private readonly By _emptyShoppingCartButton = By.CssSelector("#empty_cart_button");
         private readonly By _couponCodeInputArea = By.CssSelector("#coupon_code");
         private readonly By _shoppingCartTable = By.CssSelector("#shopping-cart-table");
-        private readonly By _cartLabel = By.CssSelector(".count");
         private readonly By _errorMessage = By.CssSelector(".error-msg");
         private readonly By _continueShoppingLinkEmptyCart = By.CssSelector(".cart-empty > p > a");
         private readonly By _checkoutForm = By.CssSelector(".cart-forms");
@@ -33,13 +32,7 @@ namespace Madison.Pages
         #endregion
         
 
-        public void AddItemToCart(string itemLink)
-        {
-            Browser.GoTo(itemLink);
-            WaitHelpers.WaitForDocumentReadyState();
-            By addToCartButton = By.CssSelector(".button.btn-cart:nth-child(1)");
-            addToCartButton.ActionClick();
-        }
+
 
         public string GetHeaderMessage()
         {
@@ -83,11 +76,6 @@ namespace Madison.Pages
         public bool CheckoutFormVisibility()
         {
             return _checkoutForm.IsElementPresent();
-        }
-
-        public bool CartLabelVisibility()
-        {
-            return _cartLabel.IsElementPresent();
         }
 
         public bool ItemTableVisibility()
