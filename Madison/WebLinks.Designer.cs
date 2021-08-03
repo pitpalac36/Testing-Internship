@@ -113,5 +113,14 @@ namespace Madison {
                 return ResourceManager.GetString("JACKIE O ROUND SUNGLASSES", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for registering with Madison Island..
+        /// </summary>
+        internal static string Success_Login {
+            get {
+                return ResourceManager.GetString("Success Login", resourceCulture);
+            }
+        }
     }
 }
