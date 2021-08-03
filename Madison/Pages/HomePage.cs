@@ -28,7 +28,7 @@ namespace Madison.Pages
         
         // second flow
         private readonly By menSectionSelector = By.CssSelector(".level0.nav-2.parent .level0.has-children");
-        private readonly By menNewArrivalsSelector = By.CssSelector(".level1.nav-2-1.first a");
+        private readonly By menNewArrivalsSelector = By.CssSelector(".col-main li:nth-child(1) img");
 
         #endregion
 
