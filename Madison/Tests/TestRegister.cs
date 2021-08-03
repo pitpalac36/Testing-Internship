@@ -13,6 +13,38 @@ namespace Madison.Tests
     class TestRegister:BaseTest 
     {
         [DataTestMethod]
-        
+
+
+
+        public static IEnumerable<object> GetAccount()
+        {
+            var password = Faker.Internet.DomainName();
+            yield return new Account { LastName = Faker.Name.Last(),
+                FirstName = Faker.Name.First(),
+                MiddleName = Faker.Name.Middle(),
+                EmailAddress = Faker.Internet.Email(),
+                Password = password,
+                ConfirmPassword = password
+        };
+            yield return new Account
+            {
+                LastName = "",
+                FirstName = Faker.Name.First(),
+                MiddleName = Faker.Name.Middle(),
+                EmailAddress = Faker.Internet.Email(),
+                Password = password,
+                ConfirmPassword = password
+            };
+            yield return new Account
+            {
+                LastName = "",
+                FirstName = "",
+                MiddleName = "",
+                EmailAddress = "",
+                Password = "",
+                ConfirmPassword = ""
+            };
+        }
+
     }
 }
