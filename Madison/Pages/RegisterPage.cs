@@ -26,6 +26,7 @@ namespace Madison.Pages
         private readonly By _errorMandatoryEmail = By.CssSelector("#advice-required-entry-email_address");
         private readonly By _errorMandatoryPassword = By.CssSelector("#advice-required-entry-password");
         private readonly By _errorMandatoryConfirmationPassword = By.CssSelector("#advice-required-entry-confirmation");
+        private readonly By _createAccountMessage = By.CssSelector(".page-title h1");
         #endregion
 
         public void FillRegistrationForm(Account account)
@@ -55,5 +56,12 @@ namespace Madison.Pages
         {
             _registerButton.ActionClick();
         }
+
+        public string GetCreateAccountMessage()
+        {
+            return _createAccountMessage.GetText(); 
+        }
+
+
     }
 }
