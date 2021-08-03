@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Aviator Sunglasses" xml:space="preserve">
+    <value>http://qa2.dev.evozon.com/accessories/eyewear/aviator-sunglasses.html</value>
+  </data>
   <data name="CartLink" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/checkout/cart/</value>
   </data>
@@ -128,5 +131,8 @@
   </data>
   <data name="Homepage" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/</value>
+  </data>
+  <data name="JACKIE O ROUND SUNGLASSES" xml:space="preserve">
+    <value>http://qa2.dev.evozon.com/accessories/eyewear/jackie-o-round-sunglasses.html</value>
   </data>
 </root>

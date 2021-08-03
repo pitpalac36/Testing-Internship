@@ -33,9 +33,8 @@ namespace Madison.Pages
         #endregion
         
 
-        public void AddItemToCart()
+        public void AddItemToCart(string itemLink)
         {
-            string itemLink = ResourceFileHelper.GetValueAssociatedToString("Earbuds");
             Browser.GoTo(itemLink);
             WaitHelpers.WaitForDocumentReadyState();
             By addToCartButton = By.CssSelector(".button.btn-cart:nth-child(1)");

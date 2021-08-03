@@ -61,6 +61,15 @@ namespace Madison {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://qa2.dev.evozon.com/accessories/eyewear/aviator-sunglasses.html.
+        /// </summary>
+        internal static string Aviator_Sunglasses {
+            get {
+                return ResourceManager.GetString("Aviator Sunglasses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://qa2.dev.evozon.com/checkout/cart/.
         /// </summary>
         internal static string CartLink {
@@ -93,6 +102,15 @@ namespace Madison {
         internal static string Homepage {
             get {
                 return ResourceManager.GetString("Homepage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://qa2.dev.evozon.com/accessories/eyewear/jackie-o-round-sunglasses.html.
+        /// </summary>
+        internal static string JACKIE_O_ROUND_SUNGLASSES {
+            get {
+                return ResourceManager.GetString("JACKIE O ROUND SUNGLASSES", resourceCulture);
             }
         }
     }
