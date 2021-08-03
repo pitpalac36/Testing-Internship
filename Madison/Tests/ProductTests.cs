@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 //[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Tests
@@ -21,13 +22,14 @@ namespace Madison.Tests
             checkVisibility.Should().BeTrue();
         }
 
-        [TestMethod]
+        [DataRow(6)]
+        [DataTestMethod]
         [TestCategory("Product")]          
                 
-        public void verifyHomeDecorHeaderCount()
+        public void verifyHomeDecorHeaderCount(int count)
         {
             var headerCount = Pages.HomePage.getSectionsList();
-            headerCount.Count.Should().Be(6);
+            headerCount.Count.Should().Be(count);
         }
 
         [TestMethod]
@@ -49,19 +51,21 @@ namespace Madison.Tests
             checkVisibility.Should().BeTrue();
         }
 
+        [DataRow(12)]
         [TestMethod]
         [TestCategory("Product")]
-        public void checkIfShowProductsDisplaysACorrectNumberOfProducts()
+        public void checkIfShowProductsDisplaysACorrectNumberOfProducts(int count)
         {
             Pages.HomePage.goToHomeDecor();
             Pages.HomePage.goFromHomePageToElectronics();
             var products = Pages.ProductsPage.getFirst12ProductsFromElectronics();
-            products.Count.Should().Be(12);
+            products.Count.Should().Be(count);
         }
 
+        [DataRow("$20.00", "$400.00")]
         [TestMethod]
         [TestCategory("Product")]
-        public void verifyCheapestProductPrice()
+        public void verifyCheapestProductPrice(string firstPrice, string secondPrice)
         {
             Pages.HomePage.goToHomeDecor();
             Pages.HomePage.goFromHomePageToElectronics();
@@ -69,8 +73,68 @@ namespace Madison.Tests
             Pages.ProductsPage.setAscendingDirection();
             var cheapItem = Pages.ProductsPage.getFirstProductPrice();
             var expensiveItem = Pages.ProductsPage.getLastProductPrice();
-            cheapItem.Should().Be("$20.00");
-            expensiveItem.Should().Be("$400.00");
+            cheapItem.Should().Be(firstPrice);
+            expensiveItem.Should().Be(secondPrice);
+        }
+
+        [TestMethod]
+        public void checkFirstItemPriceConsistency()
+        {
+            Pages.HomePage.goToHomeDecor();
+            Pages.HomePage.goFromHomePageToElectronics();
+            Pages.ProductsPage.selectSortByPrice();
+            Pages.ProductsPage.setAscendingDirection();
+            var expectedPrice = Pages.ProductsPage.getFirstProductPrice();
+            Pages.ProductsPage.clickFirstProduct();
+            var actualPrice = Pages.ProductsPage.getItemOpenedPrice();
+            actualPrice.Should().Be(expectedPrice);
+        }
+
+        [DataRow("2")]
+        [TestMethod]
+        public void addNegativeQuantityForProduct(string qty)
+        {
+            Pages.HomePage.goToHomeDecor();
+            Pages.HomePage.goFromHomePageToElectronics();
+            Pages.ProductsPage.selectSortByPrice();
+            Pages.ProductsPage.setAscendingDirection();
+            Pages.ProductsPage.clickFirstProduct();
+            Pages.ProductsPage.setProductQuantity(qty);
+            Pages.ProductsPage.addToCart();
+            var visibility = Pages.ProductsPage.isAddToCartButtonVisible();
+            visibility.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void checkIfReviewButtonIsVisible()
+        {
+            Pages.HomePage.goToHomeDecor();
+            Pages.HomePage.goFromHomePageToElectronics();
+            Pages.ProductsPage.selectSortByPrice();
+            Pages.ProductsPage.setDescendingDirection();
+            Pages.ProductsPage.clickFirstProduct();
+            Pages.ProductsPage.clickOnReviews();
+            var visibility = Pages.ProductsPage.isReviewButtonPresent();
+            visibility.Should().BeTrue();
+
+        }
+        [DataRow("nice", "good product", "georgel de pe coclauri")]
+        [TestMethod]
+        public void checkSubmitReviewForm(string review, string summary, string nickname)
+        {
+            Pages.HomePage.goToHomeDecor();
+            Pages.HomePage.goFromHomePageToElectronics();
+            Pages.ProductsPage.selectSortByPrice();
+            Pages.ProductsPage.setDescendingDirection();
+            Pages.ProductsPage.clickFirstProduct();
+            Pages.ProductsPage.clickOnReviews();
+            Pages.ProductsPage.setReview(review);
+            Pages.ProductsPage.setSummary(summary);
+            Pages.ProductsPage.setNickname(nickname);
+            Pages.ProductsPage.clickOnSubmitReviews();
+            var visibility = Pages.ProductsPage.isSuccessMessagePresent();
+            visibility.Should().BeTrue();
+
         }
 
     }
