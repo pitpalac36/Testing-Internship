@@ -99,12 +99,6 @@ namespace Madison.Pages
             return _shoppingCartTable.IsElementPresent();
         }
 
-        public void GoToCart()
-        {
-            string cartUrl = ResourceFileHelper.GetValueAssociatedToString("CartLink");
-            Browser.GoTo(cartUrl);
-            WaitHelpers.WaitForDocumentReadyState();
-        }
 
 
         public float GetSubtotalItemsPrice()

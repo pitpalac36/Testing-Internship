@@ -31,7 +31,7 @@ namespace Madison.Tests
         [TestMethod]
         public void EmptyCartShowsEmptyCartHeader()
         {
-            Pages.MyCartPage.GoToCart();
+            Browser.GoTo(WebLinks.CartLink);
             string header = Pages.MyCartPage.GetHeaderMessage();
             string expected_message = ResourceFileHelper.GetValueAssociatedToString("EmptyCartMessage");
             header.Should().Be(expected_message);
@@ -40,7 +40,7 @@ namespace Madison.Tests
         [TestMethod]
         public void EmptyCartVisibleContinueShopingLink()
         {
-            Pages.MyCartPage.GoToCart();
+            Browser.GoTo(WebLinks.CartLink);
             bool displayed = Pages.MyCartPage.ContinueShoppingLinkEmptyIsVisible();
             displayed.Should().BeTrue();
         }
@@ -48,7 +48,7 @@ namespace Madison.Tests
         [TestMethod]
         public void CartTableNotVisibleEmpty()
         {
-            Pages.MyCartPage.GoToCart();
+            Browser.GoTo(WebLinks.CartLink);
             bool displayed = Pages.MyCartPage.ItemTableVisibility();
             displayed.Should().BeFalse();
 
@@ -58,7 +58,8 @@ namespace Madison.Tests
         [TestMethod]
         public void CartCheckoutFormNotVisibleWhenEmpty()
         {
-            Pages.MyCartPage.GoToCart();
+            //Pages.MyCartPage.GoToCart();
+            Browser.GoTo(WebLinks.CartLink);
             bool displayed = Pages.MyCartPage.CheckoutFormVisibility();
             displayed.Should().BeFalse();
             
@@ -68,7 +69,7 @@ namespace Madison.Tests
         public void ContinueShoppingLinkRedirectsToHomePage()
         {
             string homepageUrl = ResourceFileHelper.GetValueAssociatedToString("Homepage");
-            Pages.MyCartPage.GoToCart();
+            Browser.GoTo(WebLinks.CartLink);
             string cart_url = Browser.WebDriver.Url;
             Pages.MyCartPage.ClickOnContinueShoppingLinkEmptyCart();
             string redirected_url = Browser.WebDriver.Url;
@@ -79,7 +80,7 @@ namespace Madison.Tests
         [TestMethod]
         public void CartLabelNotDisplayedWhenCartIsEmpty()
         {
-            Pages.MyCartPage.GoToCart();
+            Browser.GoTo(WebLinks.CartLink);
             bool visibility = Pages.MyCartPage.CartLabelVisibility();
             visibility.Should().BeFalse();
         }
@@ -118,7 +119,7 @@ namespace Madison.Tests
             {
                 Pages.MyCartPage.AddItemToCart(link);
             }
-            Pages.MyCartPage.GoToCart();
+            Browser.GoTo(WebLinks.CartLink);
             float subtotalSum = Pages.MyCartPage.GetSubtotalItemsPrice();
             float subtotal = Pages.MyCartPage.GetSubtotalLabelPrice();
             subtotal.Should().Be(subtotalSum);
@@ -129,7 +130,7 @@ namespace Madison.Tests
         public void UpdateQuantityButtonTest(string link)
         {
             Pages.MyCartPage.AddItemToCart(link);
-            Pages.MyCartPage.GoToCart();
+            Browser.GoTo(WebLinks.CartLink);
             List<string> quantity = Pages.MyCartPage.GetValueFromQuantityField();
             IWebElement inputField = Pages.MyCartPage.GetQuantityInputFields().First();
             Pages.MyCartPage.EmptyQuantityLabel(inputField);
