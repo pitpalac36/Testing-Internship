@@ -131,12 +131,12 @@ namespace Madison.Tests
         {
             Pages.MyCartPage.AddItemToCart(link);
             Browser.GoTo(WebLinks.CartLink);
-            List<string> quantity = Pages.MyCartPage.GetValueFromQuantityField();
+            List<string> quantity = Pages.MyCartPage.GetQuantity();
             IWebElement inputField = Pages.MyCartPage.GetQuantityInputFields().First();
-            Pages.MyCartPage.EmptyQuantityLabel(inputField);
+            Pages.MyCartPage.EmptyQuantityField(inputField);
             int quantity_int = int.Parse(quantity.First());
             Pages.MyCartPage.InputValueIntoQuantityField(inputField,(quantity_int * 2).ToString());
-            string new_quantity = Pages.MyCartPage.GetValueFromQuantityField().First();
+            string new_quantity = Pages.MyCartPage.GetQuantity().First();
             new_quantity.Should().Be((quantity_int * 2).ToString());
         }
 

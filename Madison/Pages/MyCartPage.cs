@@ -68,13 +68,9 @@ namespace Madison.Pages
             return _quantityField.GetElements();
         }
 
-        public string GetValueForInpuField(IWebElement inputField)
-        {
-            return inputField.GetAttribute("value").ToString();
-        }
 
 
-        public List<string> GetValueFromQuantityField()
+        public List<string> GetQuantity()
         {
             return _quantityField.GetElements().Select(el => el.GetAttribute("value").ToString()).ToList();
         }
@@ -113,7 +109,7 @@ namespace Madison.Pages
             return float.Parse(_subtotalPriceLabel.GetText().Trim('$'), CultureInfo.InvariantCulture);
         }
 
-        public void EmptyQuantityLabel(IWebElement quantityField)
+        public void EmptyQuantityField(IWebElement quantityField)
         {
             quantityField.Clear();
         }
