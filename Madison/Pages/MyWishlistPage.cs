@@ -13,7 +13,7 @@ namespace Madison.Pages
         private readonly By _myWishlistHeaderSelector = By.CssSelector(".my-wishlist h1");
         private readonly By _firstItemQuantityCell = By.CssSelector("#wishlist-view-form .first.odd input");
         private readonly By _updateWishlistFirstButton = By.CssSelector("#wishlist-table button");
-        private readonly By _updateWishlistBigButton = By.CssSelector(".buttons-set.buttons-set2 button:last-child");
+        private readonly By _updateWishlistBigButton = By.CssSelector(".buttons-set2 .btn-update");
         private readonly By _shareWishlistButton = By.CssSelector(".buttons-set [name='save_and_share']");
         private readonly By _shareWishlistForm = By.CssSelector(".col-main");
         private readonly By _shareWishlistEmailTextArea = By.CssSelector("textarea[Name='emails']");
