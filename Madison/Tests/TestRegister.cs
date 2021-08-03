@@ -13,10 +13,6 @@ namespace Madison.Tests
     class TestRegister:BaseTest 
     {
         
-
-
-
-        /*
         [DataTestMethod]
         [DynamicData(nameof(GetAccount), DynamicDataSourceType.Method)]
         public void Registration(Account account)
@@ -28,7 +24,6 @@ namespace Madison.Tests
 
 
         }
-        */
     
 
 
@@ -58,6 +53,24 @@ namespace Madison.Tests
                 MiddleName = "",
                 EmailAddress = "",
                 Password = "",
+                ConfirmPassword = ""
+            };
+            yield return new Account
+            {
+                LastName = Faker.Name.Last(),
+                FirstName = Faker.Name.First(),
+                MiddleName = "",
+                EmailAddress = "",
+                Password = "",
+                ConfirmPassword = ""
+            };
+            yield return new Account
+            {
+                LastName = Faker.Name.Last(),
+                FirstName = Faker.Name.First(),
+                MiddleName = "",
+                EmailAddress = Faker.Internet.Email(),
+                Password = "123456",
                 ConfirmPassword = ""
             };
         }
