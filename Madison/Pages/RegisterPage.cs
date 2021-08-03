@@ -21,16 +21,16 @@ namespace Madison.Pages
         private readonly By _confirmPasswordInputField = By.CssSelector("#confirmation");
         private readonly By _newsletterButton = By.CssSelector("#is_subscribed");
         private readonly By _registerButton = By.CssSelector(".button[title=Register]");
-        private readonly By _errorMandatoryFirstName = By.CssSelector("#advice-required-entry-firstname");
+/*        private readonly By _errorMandatoryFirstName = By.CssSelector("#advice-required-entry-firstname");
         private readonly By _errorMandatoryLastName = By.CssSelector("#advice-required-entry-lastname");
         private readonly By _errorMandatoryEmail = By.CssSelector("#advice-required-entry-email_address");
         private readonly By _errorMandatoryPassword = By.CssSelector("#advice-required-entry-password");
-        private readonly By _errorMandatoryConfirmationPassword = By.CssSelector("#advice-required-entry-confirmation");
-        private readonly By _createAccountMessage = By.CssSelector(".page-title h1");
+        private readonly By _errorMandatoryConfirmationPassword = By.CssSelector("#advice-required-entry-confirmation");*/
         private readonly By _errorList = By.CssSelector(".validation-advice");
+        private readonly By _succesMessage = By.CssSelector(".success-msg li span");
         #endregion
 
-        public void FillRegistrationForm(Account account)
+        public void FillRegistrationForm()
         {
             _firstNameInputField.ClearField();
             _middleNameInputField.ClearField();
@@ -39,28 +39,23 @@ namespace Madison.Pages
             _passwordInputField.ClearField();
             _confirmPasswordInputField.ClearField();
 
-            _firstNameInputField.ActionSendKeys(account.FirstName);
-            _middleNameInputField.ActionSendKeys(account.MiddleName);
-            _lastNameInputField.ActionSendKeys(account.LastName);
-            _emailInputField.ActionSendKeys(account.EmailAddress);
-            _passwordInputField.ActionSendKeys(account.Password);
-            _confirmPasswordInputField.ActionSendKeys(account.ConfirmPassword);
+            _firstNameInputField.ActionSendKeys(UserDetails.FirstName);
+            _middleNameInputField.ActionSendKeys(UserDetails.MiddleName);
+            _lastNameInputField.ActionSendKeys(UserDetails.LastName);
+            _emailInputField.ActionSendKeys(UserDetails.EmailAddress);
+            _passwordInputField.ActionSendKeys(UserDetails.Password);
+            _confirmPasswordInputField.ActionSendKeys(UserDetails.ConfirmPassword);
         }
 
         public void SubscribeToNewsletter()
         {
-            _newsletterButton.ClearField();
+           // _newsletterButton.ClearField();  DA EROARE CU EA 
             _newsletterButton.ActionClick();
         }
 
-        public void RegisterButtonClick()
+        public void ClickRegisterButton()
         {
             _registerButton.ActionClick();
-        }
-
-        public string GetCreateAccountMessage()
-        {
-            return _createAccountMessage.GetText(); 
         }
 
 
@@ -69,5 +64,14 @@ namespace Madison.Pages
             return _errorList.GetElements().Select(el => el.Text).ToList();
         }
 
+        public string GetSuccessMessage()
+        {
+            return _succesMessage.GetText();
+        }
+
+        public string MergeUserNameWithWelcome()
+        {
+            return "WELCOME, " + UserDetails.FirstName.ToUpper() + " " + UserDetails.MiddleName.ToUpper() + " " + UserDetails.LastName.ToUpper() + "";
+        }
     }
 }

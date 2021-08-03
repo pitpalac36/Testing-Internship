@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Madison.Helpers
 {
-    class User
+    class Constants
     {
 
         public static List<string> Usernames = new List<string>
@@ -26,7 +26,6 @@ namespace Madison.Helpers
             "",
         };
 
-        public static string AlreadyExistingAccountMessage = "If you have an account with us, please log in.";
         public static List<string> AccountMenu = new List<string>
         {
             "My Account",

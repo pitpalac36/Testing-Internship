@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace Madison.Helpers
 {
-    public class Account
+    public class UserDetails
     {
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
-        public string EmailAddress { get; set; }
-        public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
+        public static string password = Faker.Internet.DomainName();
+        public static string FirstName { get; set; } = Faker.Name.First();
+        public static string MiddleName { get; set; } = Faker.Name.Middle();
+        public static string LastName { get; set; } = Faker.Name.Last();
+        public static string EmailAddress { get; set; } = Faker.Internet.Email();
+        public static string Password { get; set; } = password;
+        public static string ConfirmPassword { get; set; } = password;
 
         public int GetNumberOfEmptyMandatoryFields()
         {

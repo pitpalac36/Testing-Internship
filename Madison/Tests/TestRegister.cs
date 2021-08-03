@@ -13,23 +13,31 @@ namespace Madison.Tests
     public class TestRegister:BaseTest 
     {
         
-        [DataTestMethod]
-        [DynamicData(nameof(GetAccount), DynamicDataSourceType.Method)]
-        public void Registration(Account account)
+        [TestMethod]
+        //[DynamicData(nameof(GetAccount), DynamicDataSourceType.Method)]
+        public void Registration()
         {
-            Pages.HomePage.SelectMyAccountMenu(User.AccountMenu[4]);
-            Pages.RegisterPage.FillRegistrationForm(account);
-            Pages.RegisterPage.RegisterButtonClick();
+            UserDetails userDetails = new UserDetails();
+            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[4]);
+            Pages.RegisterPage.ClickRegisterButton();
+
             Pages.RegisterPage.GetErrorMessagesFromForm().Should().OnlyContain(x => x.Equals(Messages.Mandatory_Error));
-            Pages.RegisterPage.GetErrorMessagesFromForm().Should().HaveCount(account.GetNumberOfEmptyMandatoryFields());
-          //refactor, rename account to AccountDetails
+
+            Pages.RegisterPage.FillRegistrationForm(userDetails);
+            Pages.RegisterPage.SubscribeToNewsletter();
+            Pages.RegisterPage.ClickRegisterButton();
+
+            Pages.RegisterPage.GetErrorMessagesFromForm().Should().HaveCount(userDetails.GetNumberOfEmptyMandatoryFields());
+            Pages.RegisterPage.GetSuccessMessage().Should().Be(Messages.Success_Login);
+            Pages.RegisterPage.MergeUserNameWithWelcome().Should().Be(Pages.MyAccountPage.GetWelcomeMessage());
+
         }
    
 
-        public static IEnumerable<object[]> GetAccount()
+        /*public static IEnumerable<object[]> GetAccount()
         {
             var password = Faker.Internet.DomainName();
-            yield return new object[] { new Account {LastName = Faker.Name.Last(),
+            yield return new object[] { new UserDetails {LastName = Faker.Name.Last(),
                 FirstName = Faker.Name.First(),
                 MiddleName = Faker.Name.Middle(),
                 EmailAddress = Faker.Internet.Email(),
@@ -38,7 +46,7 @@ namespace Madison.Tests
             } };
             yield return new object[]
             {
-                new Account{
+                new UserDetails{
                 LastName = "",
                 FirstName = Faker.Name.First(),
                 MiddleName = Faker.Name.Middle(),
@@ -47,7 +55,7 @@ namespace Madison.Tests
                 ConfirmPassword = password
                 } };
             yield return new object[]
-            {new Account{
+            {new UserDetails{
                 LastName = "",
                 FirstName = "",
                 MiddleName = "",
@@ -56,7 +64,7 @@ namespace Madison.Tests
                 ConfirmPassword = ""
             } };
             yield return new object[]
-            { new Account{
+            { new UserDetails{
                 LastName = Faker.Name.Last(),
                 FirstName = Faker.Name.First(),
                 MiddleName = "",
@@ -65,7 +73,7 @@ namespace Madison.Tests
                 ConfirmPassword = ""
             } };
             yield return new object[]
-            { new Account{
+            { new UserDetails{
                 LastName = Faker.Name.Last(),
                 FirstName = Faker.Name.First(),
                 MiddleName = "",
@@ -73,7 +81,7 @@ namespace Madison.Tests
                 Password = "123456",
                 ConfirmPassword = ""
             } };
-        }
+        }*/
 
     }
 }
