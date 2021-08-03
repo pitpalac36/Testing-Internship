@@ -57,7 +57,7 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void InputValueIntoQuantityField(IWebElement inputField,string quantity)
+        public void InsertQuantity(IWebElement inputField,string quantity)
         {
             inputField.SendKeys(quantity);
             _updateShoppingCart.ActionClick();
