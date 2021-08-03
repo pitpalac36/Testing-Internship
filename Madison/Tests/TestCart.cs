@@ -19,6 +19,7 @@ namespace Madison.Tests
         public static IEnumerable<object[]> GetData()
         {
             yield return new object[] { WebLinks.Earbuds, WebLinks.JACKIE_O_ROUND_SUNGLASSES,WebLinks.Aviator_Sunglasses };
+            yield return new object[] { WebLinks.Earbuds };
         }
 
         public static IEnumerable<object[]> GetOneLink()
@@ -127,10 +128,13 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetOneLink), DynamicDataSourceType.Method)]
-        public void UpdateQuantityButtonTest(string link)
+        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        public void UpdateQuantityButtonTest(params string[] itemLink)
         {
-            Pages.ProductDetailPage.AddItemToCart(link);
+            foreach (string link in itemLink)
+            {
+                Pages.ProductDetailPage.AddItemToCart(link);
+            }
             Browser.GoTo(WebLinks.CartLink);
             IList<IWebElement> inputField = Pages.MyCartPage.GetQuantityInputFields();
             for(int i=0;i<inputField.Count;i++)
