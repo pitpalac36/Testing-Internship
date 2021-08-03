@@ -22,14 +22,14 @@ namespace Madison {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class WebLinks {
+    internal class Messages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal WebLinks() {
+        internal Messages() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Madison {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Madison.WebLinks", typeof(WebLinks).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Madison.Messages", typeof(Messages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,20 @@ namespace Madison {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://qa2.dev.evozon.com/accessories/eyewear/aviator-sunglasses.html.
+        ///   Looks up a localized string similar to If you have an account with us, please log in..
         /// </summary>
-        internal static string Aviator_Sunglasses {
+        internal static string Already_Existing_Account {
             get {
-                return ResourceManager.GetString("Aviator Sunglasses", resourceCulture);
+                return ResourceManager.GetString("Already Existing Account", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://qa2.dev.evozon.com/checkout/cart/.
+        ///   Looks up a localized string similar to This is a required field..
         /// </summary>
-        internal static string CartLink {
+        internal static string Mandatory_Error {
             get {
-                return ResourceManager.GetString("CartLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://qa2.dev.evozon.com/home-decor/electronics/madison-earbuds.html.
-        /// </summary>
-        internal static string Earbuds {
-            get {
-                return ResourceManager.GetString("Earbuds", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SHOPPING CART IS EMPTY.
-        /// </summary>
-        internal static string EmptyCartMessage {
-            get {
-                return ResourceManager.GetString("EmptyCartMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://qa2.dev.evozon.com/.
-        /// </summary>
-        internal static string Homepage {
-            get {
-                return ResourceManager.GetString("Homepage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://qa2.dev.evozon.com/accessories/eyewear/jackie-o-round-sunglasses.html.
-        /// </summary>
-        internal static string JACKIE_O_ROUND_SUNGLASSES {
-            get {
-                return ResourceManager.GetString("JACKIE O ROUND SUNGLASSES", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://qa2.dev.evozon.com/customer/account/create/.
-        /// </summary>
-        internal static string Register {
-            get {
-                return ResourceManager.GetString("Register", resourceCulture);
+                return ResourceManager.GetString("Mandatory Error", resourceCulture);
             }
         }
         

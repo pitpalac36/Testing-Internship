@@ -25,6 +25,8 @@ namespace Madison.Tests
 
 
         }
+    
+
 
         public static IEnumerable<object> GetAccount()
         {
@@ -52,6 +54,24 @@ namespace Madison.Tests
                 MiddleName = "",
                 EmailAddress = "",
                 Password = "",
+                ConfirmPassword = ""
+            };
+            yield return new Account
+            {
+                LastName = Faker.Name.Last(),
+                FirstName = Faker.Name.First(),
+                MiddleName = "",
+                EmailAddress = "",
+                Password = "",
+                ConfirmPassword = ""
+            };
+            yield return new Account
+            {
+                LastName = Faker.Name.Last(),
+                FirstName = Faker.Name.First(),
+                MiddleName = "",
+                EmailAddress = Faker.Internet.Email(),
+                Password = "123456",
                 ConfirmPassword = ""
             };
         }
