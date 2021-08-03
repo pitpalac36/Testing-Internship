@@ -11,12 +11,6 @@ using System.Threading;
 
 namespace Madison.Pages
 {
-    public class Product
-    {
-        public string Name { get; set; }
-        public string Color { get; set; }
-        private string Size { get; set; }
-    }
     public class ProductsPage
     {
         #region Selectors
