@@ -23,7 +23,6 @@ namespace Madison.Pages
         private readonly By _emptyShoppingCartButton = By.CssSelector("#empty_cart_button");
         private readonly By _couponCodeInputArea = By.CssSelector("#coupon_code");
         private readonly By _shoppingCartTable = By.CssSelector("#shopping-cart-table");
-        private readonly By _cartLabel = By.CssSelector(".count");
         private readonly By _errorMessage = By.CssSelector(".error-msg");
         private readonly By _continueShoppingLinkEmptyCart = By.CssSelector(".cart-empty > p > a");
         private readonly By _checkoutForm = By.CssSelector(".cart-forms");
@@ -77,11 +76,6 @@ namespace Madison.Pages
         public bool CheckoutFormVisibility()
         {
             return _checkoutForm.IsElementPresent();
-        }
-
-        public bool CartLabelVisibility()
-        {
-            return _cartLabel.IsElementPresent();
         }
 
         public bool ItemTableVisibility()

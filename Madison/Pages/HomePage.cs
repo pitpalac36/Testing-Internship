@@ -24,6 +24,7 @@ namespace Madison.Pages
         private readonly By electronicsPageTitleSelector = By.CssSelector(".page-title.category-title h1");
         private readonly By accountElement = By.CssSelector(".account-cart-wrapper > a");
         private readonly By menuElements = By.CssSelector("#header-account>.links>ul li");
+        private readonly By _cartQuantityLabel = By.CssSelector(".count");
 
         #endregion
 
@@ -36,6 +37,12 @@ namespace Madison.Pages
             homeDecorButtonSelector.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
+
+        public bool IsCartQuantityLabelPresent()
+        {
+            return _cartQuantityLabel.IsElementPresent();
+        }
+
 
         public void goFromHomePageToElectronics()
         {

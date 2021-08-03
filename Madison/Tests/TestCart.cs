@@ -82,7 +82,7 @@ namespace Madison.Tests
         public void CartLabelNotDisplayedWhenCartIsEmpty()
         {
             Browser.GoTo(WebLinks.CartLink);
-            bool visibility = Pages.MyCartPage.CartLabelVisibility();
+            bool visibility = Pages.HomePage.IsCartQuantityLabelPresent();
             visibility.Should().BeFalse();
         }
 
@@ -94,7 +94,7 @@ namespace Madison.Tests
             {
                Pages.ProductDetailPage.AddItemToCart(link);
             }
-            bool visibility = Pages.MyCartPage.CartLabelVisibility();
+            bool visibility = Pages.HomePage.IsCartQuantityLabelPresent();
             visibility.Should().BeTrue();
         }
 
