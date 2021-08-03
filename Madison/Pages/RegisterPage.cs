@@ -44,5 +44,16 @@ namespace Madison.Pages
             _passwordInputField.ActionSendKeys(account.Password);
             _passwordInputField.ActionSendKeys(account.ConfirmPassword);
         }
+
+        public void SubscribeToNewsletter()
+        {
+            _newsletterButton.ClearField();
+            _newsletterButton.ActionClick();
+        }
+
+        public void RegisterButtonClick()
+        {
+            _registerButton.ActionClick();
+        }
     }
 }
