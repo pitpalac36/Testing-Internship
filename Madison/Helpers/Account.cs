@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Madison.Helpers
 {
-    class Account
+    public class Account
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

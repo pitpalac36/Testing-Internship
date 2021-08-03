@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Madison.Helpers;
 
 namespace Madison.Pages
 {
@@ -39,10 +40,9 @@ namespace Madison.Pages
             _firstNameInputField.ActionSendKeys(account.FirstName);
             _middleNameInputField.ActionSendKeys(account.MiddleName);
             _lastNameInputField.ActionSendKeys(account.LastName);
-            _emailInputField.ActionSendKeys(account.Email);
+            _emailInputField.ActionSendKeys(account.EmailAddress);
             _passwordInputField.ActionSendKeys(account.Password);
             _passwordInputField.ActionSendKeys(account.ConfirmPassword);
         }
-
     }
 }
