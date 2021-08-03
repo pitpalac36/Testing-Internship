@@ -38,7 +38,7 @@ namespace Madison.Pages
 
         //second flow
         private readonly By viewDetailsSelector = By.CssSelector("li:nth-child(1) .actions > a");
-        private readonly By errorListSelector = By.CssSelector("#product-options-wrapper dd .input-box div");
+        private readonly By errorListSelector = By.CssSelector(".validation-advice");
         
         #endregion
         public IReadOnlyCollection<IWebElement> getFirst12ProductsFromElectronics()
@@ -47,10 +47,9 @@ namespace Madison.Pages
             return elems;
         }
 
-        public IReadOnlyCollection<IWebElement> getErrorListSelector()
+        public IReadOnlyCollection<IWebElement> GetErrorListSelector()
         {
-            var elems = errorListSelector.GetElements();
-            return elems;
+            return errorListSelector.GetElements();
         }
 
         /// <summary>
@@ -108,7 +107,7 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void addToCart() 
+        public void AddToCart() 
         {
             addToCartSelector.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();

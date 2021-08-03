@@ -104,7 +104,7 @@ namespace Madison.Tests
             Pages.ProductsPage.setAscendingDirection();
             Pages.ProductsPage.clickFirstProduct();
             Pages.ProductsPage.setProductQuantity(qty);
-            Pages.ProductsPage.addToCart();
+            Pages.ProductsPage.AddToCart();
             var visibility = Pages.ProductsPage.isAddToCartButtonVisible();
             visibility.Should().BeFalse();
         }
@@ -170,9 +170,12 @@ namespace Madison.Tests
             Pages.ProductsPage.clickOnViewDetails();
 
             //4. Check error messages from product details page when adding an item to cart
-            var errorCount = Pages.ProductsPage.getErrorListSelector();
+            Pages.ProductsPage.AddToCart();
+            var errors = Pages.ProductsPage.GetErrorListSelector();
+            errors.Should().HaveCount(2);
 
-
+            //5. Add item to cart
+            //Pages.ProductsPage.AddToCart();
         }
 
     }
