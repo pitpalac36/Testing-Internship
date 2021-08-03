@@ -135,4 +135,7 @@
   <data name="JACKIE O ROUND SUNGLASSES" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/accessories/eyewear/jackie-o-round-sunglasses.html</value>
   </data>
+  <data name="Success Login" xml:space="preserve">
+    <value>Thank you for registering with Madison Island.</value>
+  </data>
 </root>

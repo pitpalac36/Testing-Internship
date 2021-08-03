@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using NsTestFrameworkUI.Pages;
+using NsTestFrameworkUI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,22 @@ namespace Madison.Pages
         private readonly By _errorMandatoryConfirmationPassword = By.CssSelector("#advice-required-entry-confirmation");
         #endregion
 
+        public void FillRegistrationForm(Account account)
+        {
+            _firstNameInputField.ClearField();
+            _middleNameInputField.ClearField();
+            _lastNameInputField.ClearField();
+            _emailInputField.ClearField();
+            _passwordInputField.ClearField();
+            _confirmPasswordInputField.ClearField();
+
+            _firstNameInputField.ActionSendKeys(account.FirstName);
+            _middleNameInputField.ActionSendKeys(account.MiddleName);
+            _lastNameInputField.ActionSendKeys(account.LastName);
+            _emailInputField.ActionSendKeys(account.Email);
+            _passwordInputField.ActionSendKeys(account.Password);
+            _passwordInputField.ActionSendKeys(account.ConfirmPassword);
+        }
 
     }
 }
