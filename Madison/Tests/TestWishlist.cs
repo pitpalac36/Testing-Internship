@@ -14,7 +14,7 @@ namespace Madison.Tests
         [TestMethod]
         public void MyWishlistButtonIsDisplayed()
         {
-            Pages.MyWishlistPage.ClickOnAccount();
+            Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.IsWishlistButtonDisplayed().Should().BeTrue();
         }
 
@@ -23,7 +23,7 @@ namespace Madison.Tests
         {
             Pages.HomePage.SelectMyAccountMenu("Log In");
             Pages.LoginPage.Login();
-            Pages.MyWishlistPage.ClickOnAccount();
+            Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.IsRedirectedToWishlist().Should().BeTrue();
         }
@@ -33,7 +33,7 @@ namespace Madison.Tests
         {
             Pages.HomePage.SelectMyAccountMenu("Log In");
             Pages.LoginPage.Login();
-            Pages.MyWishlistPage.ClickOnAccount();
+            Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             var newQuantity = new Random().Next(100).ToString();
             Pages.MyWishlistPage.ChangeQuantity(newQuantity);
@@ -46,7 +46,7 @@ namespace Madison.Tests
         {
             Pages.HomePage.SelectMyAccountMenu("Log In");
             Pages.LoginPage.Login();
-            Pages.MyWishlistPage.ClickOnAccount();
+            Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             var comment = string.Concat("comment", new Random().Next(100));
             Pages.MyWishlistPage.InsertComment(comment);
@@ -59,7 +59,7 @@ namespace Madison.Tests
         {
             Pages.HomePage.SelectMyAccountMenu("Log In");
             Pages.LoginPage.Login();
-            Pages.MyWishlistPage.ClickOnAccount();
+            Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             var newQuantity = new Random().Next(100).ToString();
             Pages.MyWishlistPage.ChangeQuantity(newQuantity);
@@ -72,7 +72,7 @@ namespace Madison.Tests
         {
             Pages.HomePage.SelectMyAccountMenu("Log In");
             Pages.LoginPage.Login();
-            Pages.MyWishlistPage.ClickOnAccount();
+            Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ShareWishlist();
             Pages.MyWishlistPage.GetUrl().Should().Contain("http://qa2.dev.evozon.com/wishlist/index/share/wishlist_id/");
@@ -84,7 +84,7 @@ namespace Madison.Tests
         {
             Pages.HomePage.SelectMyAccountMenu("Log In");
             Pages.LoginPage.Login();
-            Pages.MyWishlistPage.ClickOnAccount();
+            Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ShareWishlist();
             Pages.MyWishlistPage.FillEmail("");
@@ -98,7 +98,7 @@ namespace Madison.Tests
         {
             Pages.HomePage.SelectMyAccountMenu("Log In");
             Pages.LoginPage.Login();
-            Pages.MyWishlistPage.ClickOnAccount();
+            Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ClickOnEdit();
             var quantity = new Random().Next(100).ToString();
