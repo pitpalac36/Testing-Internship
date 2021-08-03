@@ -12,7 +12,14 @@ namespace Madison.Tests
     [TestClass]
     class TestRegister:BaseTest 
     {
-        [DataTestMethod]
         
+
+
+        [DataTestMethod]
+        [DynamicData(nameof(), DynamicDataSourceType.Method)]
+        public void Registration(Account account)
+        {
+            Pages.HomePage.SelectMyAccountMenu("Register");
+        }
     }
 }
