@@ -35,11 +35,21 @@ namespace Madison.Pages
         private readonly By summaryFieldSelector = By.CssSelector("#summary_field");
         private readonly By nicknameFieldSelector = By.CssSelector("#nickname_field");
         private readonly By successSelector = By.CssSelector(".success-msg span");
+
+        //second flow
+        private readonly By viewDetailsSelector = By.CssSelector("li:nth-child(1) .actions > a");
+        private readonly By errorListSelector = By.CssSelector("#product-options-wrapper dd .input-box div");
         
         #endregion
         public IReadOnlyCollection<IWebElement> getFirst12ProductsFromElectronics()
         {
             var elems = electronicsProductsSelector.GetElements();
+            return elems;
+        }
+
+        public IReadOnlyCollection<IWebElement> getErrorListSelector()
+        {
+            var elems = errorListSelector.GetElements();
             return elems;
         }
 
@@ -116,6 +126,10 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
+        public void clickOnViewDetails() {
+            viewDetailsSelector.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
+        }
 
         /// <summary>
         /// getters

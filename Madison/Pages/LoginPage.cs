@@ -18,18 +18,23 @@ namespace Madison.Pages
         private readonly By _loginButton = By.Id("send2");
         private readonly By _alreadyRegisteredText = By.CssSelector("div.content.fieldset >h2");
         private readonly By _existingAccountMessage = By.CssSelector(".content.fieldset >h2+p");
+        private readonly By _welcomeMessage = By.CssSelector("p.welcome-msg");
         #endregion
 
-        public void FillCredentials()
+       /* public void FillCredentials(string username, string password)
         {
             _emailTextField.ClearField();
-            _emailTextField.ActionSendKeys(ResourceFileHelper.Usernames[0]);
+            _emailTextField.ActionSendKeys(username);
             _passwordTextField.ClearField();
-            _passwordTextField.ActionSendKeys(ResourceFileHelper.Passwords[0]);
-        }
-        public void Login()
+            _passwordTextField.ActionSendKeys(password);
+        }*/
+        public void Login(string username, string password)
         {
-            FillCredentials();
+            _emailTextField.ClearField();
+            _emailTextField.ActionSendKeys(username);
+            _passwordTextField.ClearField();
+            _passwordTextField.ActionSendKeys(password);
+            //FillCredentials(ResourceFileHelper.Usernames[0], ResourceFileHelper.Passwords[0]);
             _loginButton.ActionClick();
         }
 
@@ -43,7 +48,10 @@ namespace Madison.Pages
             return _existingAccountMessage.GetText();
         }
 
-       
+       public string GetWelcomeMessage()
+        {
+            return _welcomeMessage.GetText();
+        }
 
     }
 
