@@ -39,7 +39,8 @@ namespace Madison.Pages
         //second flow
         private readonly By viewDetailsSelector = By.CssSelector("li:nth-child(1) .actions > a");
         private readonly By errorListSelector = By.CssSelector("#product-options-wrapper dd .input-box div");
-        
+        private readonly By colorSelector = By.CssSelector(".swatch-label img");
+        private readonly By sizeListSelector = By.CssSelector("#configurable_swatch_size li");
         #endregion
         public IReadOnlyCollection<IWebElement> getFirst12ProductsFromElectronics()
         {
@@ -126,8 +127,22 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void clickOnViewDetails() {
+        public void clickOnViewDetails() 
+        {
             viewDetailsSelector.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
+        }
+
+        public void selectColor()
+        {
+            colorSelector.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
+        }
+        public void selectSize()
+        {
+            Random rnd = new Random();
+            int randomInt = rnd.Next(1, sizeListSelector.GetElements().Count + 1);
+            sizeListSelector.GetElements().ElementAt(randomInt).Click();
             WaitHelpers.WaitForDocumentReadyState();
         }
 

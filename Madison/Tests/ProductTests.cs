@@ -157,7 +157,8 @@ namespace Madison.Tests
         }
 
         [TestMethod]
-        public void SecondFlow() {
+        [DataRow("2", "0")]
+        public void SecondFlow(string errorCountBefore, string errorCountAfter) {
             //1. TODO Login
 
             //2. Access Men - New Arrivals section
@@ -168,8 +169,20 @@ namespace Madison.Tests
             Pages.ProductsPage.clickOnViewDetails();
 
             //4. Check error messages from product details page when adding an item to cart
-            var errorCount = Pages.ProductsPage.getErrorListSelector();
+            Pages.ProductsPage.addToCart();
+            var errorCount1 = Pages.ProductsPage.getErrorListSelector().Count;
+            Assert.AreEqual(errorCount1, errorCountBefore.ConvertStringToInt32());
 
+            Pages.ProductsPage.selectColor();
+            Pages.ProductsPage.selectSize();
+
+            Pages.ProductsPage.addToCart();
+            var errorCount2 = Pages.ProductsPage.getErrorListSelector().Count;
+            Assert.AreEqual(errorCount2, errorCountAfter.ConvertStringToInt32());
+
+            //5. TODO
+
+            //6. TODO
 
         }
 
