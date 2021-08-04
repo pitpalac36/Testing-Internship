@@ -1,15 +1,9 @@
-﻿using Madison.Helpers;
-using NsTestFrameworkUI.Helpers;
+﻿using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Madison.Pages
 {
