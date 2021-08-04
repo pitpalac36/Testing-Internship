@@ -124,6 +124,15 @@ namespace Madison {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://qa2.dev.evozon.com/wishlist/index/share/wishlist_id/.
+        /// </summary>
+        internal static string ShareWishlist {
+            get {
+                return ResourceManager.GetString("ShareWishlist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thank you for registering with Madison Island..
         /// </summary>
         internal static string Success_Login {
