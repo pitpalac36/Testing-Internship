@@ -126,9 +126,6 @@
   <data name="Earbuds" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/home-decor/electronics/madison-earbuds.html</value>
   </data>
-  <data name="EmptyCartMessage" xml:space="preserve">
-    <value>SHOPPING CART IS EMPTY</value>
-  </data>
   <data name="Homepage" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/</value>
   </data>
@@ -143,8 +140,5 @@
   </data>
   <data name="ShareWishlist" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/wishlist/index/share/wishlist_id/</value>
-  </data>
-  <data name="Success Login" xml:space="preserve">
-    <value>Thank you for registering with Madison Island.</value>
   </data>
 </root>

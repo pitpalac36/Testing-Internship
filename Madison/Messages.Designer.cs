@@ -70,6 +70,15 @@ namespace Madison {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SHOPPING CART IS EMPTY.
+        /// </summary>
+        internal static string Empty_Cart_Message {
+            get {
+                return ResourceManager.GetString("Empty Cart Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If you have an account with us, please log in..
         /// </summary>
         internal static string Existing_Account {

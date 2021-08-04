@@ -88,15 +88,6 @@ namespace Madison {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SHOPPING CART IS EMPTY.
-        /// </summary>
-        internal static string EmptyCartMessage {
-            get {
-                return ResourceManager.GetString("EmptyCartMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to http://qa2.dev.evozon.com/.
         /// </summary>
         internal static string Homepage {
@@ -138,15 +129,6 @@ namespace Madison {
         internal static string ShareWishlist {
             get {
                 return ResourceManager.GetString("ShareWishlist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Thank you for registering with Madison Island..
-        /// </summary>
-        internal static string Success_Login {
-            get {
-                return ResourceManager.GetString("Success Login", resourceCulture);
             }
         }
     }

@@ -90,7 +90,7 @@ namespace Madison.Tests
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.NavigationPage.GoToWishlist();
             Pages.MyWishlistPage.ShareWishlist();
-            string expectedUrl = ResourceFileHelper.GetValueAssociatedToString("ShareWishlist");
+            string expectedUrl = WebLinks.ShareWishlist;
             Pages.MyWishlistPage.GetUrl().Should().Contain(expectedUrl);
             Pages.MyWishlistPage.IsShareWishlistFormDisplayed().Should().BeTrue();
         }
