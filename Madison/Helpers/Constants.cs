@@ -8,7 +8,6 @@ namespace Madison.Helpers
 {
     class Constants
     {
-
         public static List<string> Usernames = new List<string>
         {
             "ana.ana@outlook.com",
