@@ -18,7 +18,6 @@ namespace Madison.Tests
         {
             yield return new object[] { Constants.Usernames[0], Constants.Passwords[0],"WELCOME, ANA ANA!" };
             yield return new object[] { Constants.Usernames[1], Constants.Passwords[1],"WELCOME, CLAU DIA!" };
-            //yield return new object[] { ResourceFileHelper.Usernames[2], ResourceFileHelper.Passwords[2], ""};
 
         }
 
@@ -27,13 +26,10 @@ namespace Madison.Tests
         [TestCategory ("Login")]
         public void TryToLogin(string username, string password, string expectedWelcomeMessage)
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(username, password);
             Pages.MyAccountPage.GetWelcomeMessage().Should().Be(expectedWelcomeMessage);
         }
-
-
-
 
         [TestMethod]
         public void AlreadyRegisteredTxtDisplayed()

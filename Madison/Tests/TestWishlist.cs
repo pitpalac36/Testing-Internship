@@ -21,7 +21,7 @@ namespace Madison.Tests
         [TestMethod]
         public void ClickOnMyWishlistButtonRedirects()
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
@@ -31,7 +31,7 @@ namespace Madison.Tests
         [TestMethod]
         public void WishlistItemQuantityUpdatesCorrectly()
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
@@ -44,7 +44,7 @@ namespace Madison.Tests
         [TestMethod]
         public void WishlistItemCommentUpdatesCorrectly()
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
@@ -57,7 +57,7 @@ namespace Madison.Tests
         [TestMethod]
         public void WishlistUpdatesCorrectly()
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
@@ -70,7 +70,7 @@ namespace Madison.Tests
         [TestMethod]
         public void ClickOnShareWishlistButtonRedirects()
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
@@ -82,7 +82,7 @@ namespace Madison.Tests
         [TestMethod]
         public void ShareWishlistFormValidatesEmptyEmail()
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
@@ -96,7 +96,7 @@ namespace Madison.Tests
         [TestMethod]
         public void UpdateWishlistFromShowroom()
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
