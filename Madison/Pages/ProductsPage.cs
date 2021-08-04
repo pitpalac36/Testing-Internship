@@ -1,13 +1,9 @@
-﻿using Madison.Helpers;
-using NsTestFrameworkUI.Helpers;
+﻿using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace Madison.Pages
 {
@@ -33,8 +29,6 @@ namespace Madison.Pages
         private readonly By _summaryFieldSelector = By.CssSelector("#summary_field");
         private readonly By _nicknameFieldSelector = By.CssSelector("#nickname_field");
         private readonly By _successSelector = By.CssSelector(".success-msg span");
-
-        //second flow
         private readonly By _viewDetailsSelector = By.CssSelector("li:nth-child(1) .actions > a");
         private readonly By _errorListSelector = By.CssSelector("#product-options-wrapper dd .input-box div");
         private readonly By _colorSelector = By.CssSelector(".swatch-label img");
@@ -53,9 +47,6 @@ namespace Madison.Pages
             return _errorListSelector.GetElements();
         }
 
-        /// <summary>
-        /// clickers
-        /// </summary>
         public void SelectSortByPrice() 
         {
             _sortSelector.ActionClick();
@@ -81,7 +72,6 @@ namespace Madison.Pages
                 WaitHelpers.WaitForDocumentReadyState();
             }
         }
-
         public void ChangeViewMode(string viewMode) 
         {
             if (viewMode == "List" && _gridViewSelector.IsElementSelected())
@@ -148,10 +138,6 @@ namespace Madison.Pages
             return size;
         }
 
-        /// <summary>
-        /// getters
-        /// </summary>
-        /// <returns></returns>
         public string GetFirstProductPrice() 
         {
             return _firstProductPriceSelector.GetText();
@@ -182,8 +168,6 @@ namespace Madison.Pages
         public void SetNickname(string nickname) {
             _nicknameFieldSelector.ActionSendKeys(nickname);
         }
-
-        /// bool
         public bool IsAddToCartButtonVisible()
         {
             return _addToCartSelector.IsElementPresent();
@@ -198,9 +182,5 @@ namespace Madison.Pages
         {
             return _successSelector.IsElementPresent();    
         }
-        
     }
-
-    
-
 }

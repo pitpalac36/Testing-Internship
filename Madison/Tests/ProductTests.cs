@@ -1,16 +1,10 @@
 ﻿using FluentAssertions;
 using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using NsTestFrameworkUI;
 using NsTestFrameworkUI.Helpers;
 
-[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
+//[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Tests
 {
     [TestClass]
@@ -23,13 +17,12 @@ namespace Madison.Tests
             Pages.HomePage.CheckIfProductSectionsIsVisible().Should().BeTrue();
         }
 
-        [DataRow(6)]
         [DataTestMethod]
-        [TestCategory("Product")]          
-                
+        [TestCategory("Product")]
+        [DataRow(6)]
         public void VerifyHomeDecorHeaderCount(int count)
         {
-            Pages.HomePage.GetSectionsList().Count.Should().Be(count); ;
+            Pages.HomePage.GetSectionsList().Count.Should().Be(count);
         }
 
         [DataTestMethod]
@@ -37,7 +30,7 @@ namespace Madison.Tests
         public void VerifyIfHomeDecorMainImgIsDisplayed()
         {
             Pages.HomePage.GoToHomeDecor();
-            Pages.HomePage.CheckIfHomeMainImageIsVisible().Should().BeTrue(); ;
+            Pages.HomePage.CheckIfHomeMainImageIsVisible().Should().BeTrue();
         }
 
         [DataTestMethod]
@@ -46,12 +39,12 @@ namespace Madison.Tests
         {
             Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.GoFromHomePageToElectronics();
-            Pages.HomePage.CheckIfPageTitleIsVisible().Should().BeTrue(); ;
+            Pages.HomePage.CheckIfPageTitleIsVisible().Should().BeTrue();
         }
 
-        [DataRow(12)]
         [DataTestMethod]
         [TestCategory("Product")]
+        [DataRow(12)]
         public void CheckIfShowProductsDisplaysACorrectNumberOfProducts(int count)
         {
             Pages.HomePage.GoToHomeDecor();
@@ -59,9 +52,9 @@ namespace Madison.Tests
             Pages.ProductsPage.GetFirst12ProductsFromElectronics().Count.Should().BeLessOrEqualTo(count);
         }
 
-        [DataRow("$20.00", "$400.00")]
         [TestMethod]
         [TestCategory("Product")]
+        [DataRow("$20.00", "$400.00")]
         public void VerifyCheapestProductPrice(string firstPrice, string secondPrice)
         {
             Pages.HomePage.GoToHomeDecor();
@@ -86,9 +79,9 @@ namespace Madison.Tests
             actualPrice.Should().Be(expectedPrice);
         }
 
-        [DataRow("2")]
         [DataTestMethod]
         [TestCategory("Product")]
+        [DataRow("2")]
         public void AddNegativeQuantityForProduct(string qty)
         {
             Pages.HomePage.GoToHomeDecor();
@@ -113,10 +106,14 @@ namespace Madison.Tests
             Pages.ProductsPage.ClickOnReviews();
             Pages.ProductsPage.IsReviewButtonPresent().Should().BeTrue(); ;
         }
+        public static IEnumerable<object[]> GetGeneratedReviews()
+        {
+            yield return new object[] { Faker.Lorem.Words(4).ToString(), Faker.Lorem.Sentence().ToString(), Faker.Name.FullName().ToString() };
+        }
 
-        [DataRow("nice", "good product", "georgel de pe coclauri")]
         [DataTestMethod]
         [TestCategory("Product")]
+        [DynamicData(nameof(GetGeneratedReviews), DynamicDataSourceType.Method)]
         public void CheckSubmitReviewForm(string review, string summary, string nickname)
         {
             Pages.HomePage.GoToHomeDecor();

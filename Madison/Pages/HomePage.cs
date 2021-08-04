@@ -1,12 +1,7 @@
-﻿using Madison.Helpers;
-using NsTestFrameworkUI.Helpers;
-using NsTestFrameworkUI;
+﻿using NsTestFrameworkUI.Helpers;
 using OpenQA.Selenium;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NsTestFrameworkUI.Pages;
 
 namespace Madison.Pages
@@ -26,18 +21,10 @@ namespace Madison.Pages
         private readonly By _cartQuantityLabel = By.CssSelector(".count");
         private readonly By _cartSelector = By.Id("header-cart");
         private readonly By _viewMyCartSelector = By.ClassName("top-link-cart");
-
-        
-        // second flow
         private readonly By _sectionSelector = By.CssSelector(".level0.nav-2.parent > a");
         private readonly By _subsectionSelector = By.CssSelector(".catblocks li a");
-
         #endregion
 
-
-        /// <summary>
-        /// Methods which click on elements
-        /// </summary>
         public void GoToHomeDecor()
         {
             _homeDecorButtonSelector.ActionClick();
@@ -54,7 +41,6 @@ namespace Madison.Pages
         {
             _electronicsHomePageSelector.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
-
         }
 
         public void GoToMenSection()
@@ -63,21 +49,12 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        /// <summary>
-        /// Methods which extract Lists
-        /// </summary>
-        /// <returns></returns>
-
         public IReadOnlyCollection<IWebElement> GetSectionsList()
         {
             var elems = _sectionsListSelector.GetElements();
             return elems;
         }
 
-        /// <summary>
-        /// Methods which check visibility of an element on the page
-        /// </summary>
-        /// <returns></returns>
         public bool CheckIfProductSectionsIsVisible() {
             var elems = _sectionsSelector.IsElementPresent();
             return elems;
@@ -87,16 +64,17 @@ namespace Madison.Pages
             var elems = _homeDecorListSelector.IsElementPresent();
             return elems;
         }
+
         public bool CheckIfHomeMainImageIsVisible() {
             var elem =  _mainImageHomeDecorSelector.IsElementPresent();
             return elem;
         }
+
         public bool CheckIfPageTitleIsVisible() {
             var elem = _electronicsPageTitleSelector.IsElementPresent();
             return elem;
         }
 
-        //
         public void ClickOnAccount()
         {
             _accountElement.ActionClick();
