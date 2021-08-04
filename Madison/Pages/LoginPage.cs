@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using NsTestFrameworkUI.Pages;
-using NsTestFrameworkUI.Helpers;
 
 namespace Madison.Pages
 {
