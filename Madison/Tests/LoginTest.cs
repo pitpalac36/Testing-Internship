@@ -70,5 +70,8 @@ namespace Madison.Tests
 
             Pages.LoginPage.isSearchResultsMessageDisplayed().Should().BeTrue();
         }
+
+        [TestMethod]
+        public void 
     }
 }
