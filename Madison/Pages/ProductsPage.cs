@@ -11,15 +11,15 @@ namespace Madison.Pages
     {
         #region Selectors
         //TODO refactor selectors
-        private readonly By _productsList = By.CssSelector(".products-grid.products-grid--max-4-col .item.last");
+        private readonly By _productsListGridView = By.CssSelector(".products-grid.products-grid--max-4-col .item.last");
         private readonly By _sortDropdown = By.CssSelector(".toolbar-bottom div.sorter div select");
         private readonly By _sortByPrice = By.CssSelector(".toolbar-bottom div.sorter div select option:nth-child(3)");
         private readonly By _ascendingDescending = By.CssSelector(".toolbar-bottom .sort-by a");
-        private readonly By _firstProductPrice = By.CssSelector(".products-grid--max-4-col .item.last:nth-child(1) .price");
-        private readonly By _lastProductItem = By.CssSelector(".products-grid--max-4-col .item.last:last-child .price");
+        private readonly By _firstProductPriceGridView = By.CssSelector(".products-grid--max-4-col .item.last:nth-child(1) .price");
+        private readonly By _lastProductItemGridView = By.CssSelector(".products-grid--max-4-col .item.last:last-child .price");
         private readonly By _gridView = By.CssSelector(".toolbar-bottom .grid");
         private readonly By _listView = By.CssSelector(".toolbar-bottom .list");
-        private readonly By _firstItem = By.CssSelector(".products-grid--max-4-col .item.last:first-child .product-name a");
+        private readonly By _firstItemGridView = By.CssSelector(".products-grid--max-4-col .item.last:first-child .product-name a");
         private readonly By _productPrice = By.CssSelector(".regular-price .price");
         private readonly By _productQuantity = By.CssSelector("#qty");
         private readonly By _addToCart = By.CssSelector(".add-to-cart-buttons .button");
@@ -38,7 +38,7 @@ namespace Madison.Pages
         
         public IReadOnlyCollection<IWebElement> GetFirst12ProductsFromElectronics()
         {
-            return _productsList.GetElements();
+            return _productsListGridView.GetElements();
         }
 
         public IReadOnlyCollection<IWebElement> GetErrorListSelector()
@@ -87,7 +87,7 @@ namespace Madison.Pages
 
         public void ClickFirstProduct()
         {
-            _firstItem.ActionClick();
+            _firstItemGridView.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
@@ -133,12 +133,12 @@ namespace Madison.Pages
 
         public string GetFirstProductPrice() 
         {
-            return _firstProductPrice.GetText();
+            return _firstProductPriceGridView.GetText();
         }
 
         public string GetLastProductPrice()
         {
-            return _lastProductItem.GetText();
+            return _lastProductItemGridView.GetText();
         }
         public string GetItemOpenedPrice()
         {

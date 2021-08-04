@@ -23,7 +23,7 @@ namespace Madison.Tests
             Pages.HomePage.CheckIfProductSectionsIsVisible().Should().BeTrue();
         }
 
-        //TODO
+        //TODO - assert distinct elements
         [DataTestMethod]
         [TestCategory("Product")]
         [DataRow(6)]
@@ -147,39 +147,27 @@ namespace Madison.Tests
 
         [DataTestMethod]
         [DataRow("2", "0")]
-        public void SecondFlow(string errorCountBefore, string errorCountAfter) {
-            //1. TODO Login
+        public void checkItemIsInCart(string errorCountBefore, string errorCountAfter) {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
-
-            // Empty cart - Needs refactoring
-            //Pages.HomePage.ClickOnAccount();
-            //Pages.HomePage.GoToCart();
-            //Pages.MyCartPage.ClickOnEmptyCartButton();
             
-            //2. Access Men - New Arrivals section
             Pages.HomePage.SelectCategory(Constants.NavigateBar[1]);
             Pages.HomePage.SelectMenSubcategory(Constants.AllMenSections[0]);
 
-            //3. Open product details page(of first item)
             Pages.ProductsPage.ClickOnViewDetails();
 
-            //4. Check error messages from product details page when adding an item to cart
             Pages.ProductsPage.AddToCart();
             var errorCount = Pages.ProductsPage.GetErrorListSelector().Count;
             errorCount.Should().Be(errorCountBefore.ConvertStringToInt32());
 
-            // 5. Add item to cart
             var color = Pages.ProductsPage.SelectColor();
             var size = Pages.ProductsPage.SelectSize();
             Pages.ProductsPage.AddToCart();
             var errorCountNull = Pages.ProductsPage.GetErrorListSelector().Count;
             errorCountNull.Should().Be(errorCountAfter.ConvertStringToInt32());
 
-            //6. Check item is in cart
             Pages.ShoppingCartPage.IsSuccessMessageDisplayed().Should().BeTrue();
             Pages.ShoppingCartPage.FirstItemColor().Should().Be(color);
-            //Pages.ShoppingCartPage.FirstItemSize().Should().Be(size);
         }
     }
 }
