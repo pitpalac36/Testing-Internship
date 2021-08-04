@@ -59,7 +59,7 @@ namespace Madison.Pages
             return _requiredMessage.IsElementPresent();
         }
 
-        public void CheckSearch()
+        public void Search()
         {
             _searchField.ClearField();
             _searchField.ActionClick();

@@ -25,7 +25,7 @@ namespace Madison.Tests
         {
             yield return new object[] {"", Faker.Internet.DomainName() };
         }
-
+       
         [DataTestMethod]
         [DynamicData(nameof(GetCredentialsAndWelcomeMessage), DynamicDataSourceType.Method)]
         [TestCategory ("Login")]
@@ -51,7 +51,7 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.GetExistingAccountMessage().Should().Be(Messages.Existing_Account);
         }
-
+      
         [TestMethod]
         public void CreateAnAccount()
         {
@@ -60,7 +60,7 @@ namespace Madison.Tests
 
             Pages.LoginPage.GetCreateAccountMessage().Should().Be(Messages.Create_Account);
         }
-
+        
         [TestMethod]
         public void TryToLogin()
         {
@@ -70,16 +70,16 @@ namespace Madison.Tests
             Pages.LoginPage.IsRequiredMessageDisplayed().Should().BeTrue();
             Pages.RegisterPage.GetErrorMessagesFromForm().Should().OnlyContain(x => x.Equals(Messages.Mandatory_Error));
         }
-
+        
         [TestMethod]
         public void TestSearchFromLoginPage()
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
-            Pages.LoginPage.CheckSearch();
+            Pages.LoginPage.Search();
 
             Pages.LoginPage.IsSearchResultsMessageDisplayed().Should().BeTrue();
         }
-
+       
         [DataTestMethod]
         [DynamicData(nameof(GetCredentials), DynamicDataSourceType.Method)]
         public void ForgetPassword (string username, string password)
@@ -89,7 +89,7 @@ namespace Madison.Tests
 
             Pages.LoginPage.IsInvalidLoginMessageDisplayed().Should().BeTrue();
         }
-
+        
         [DataTestMethod]
         [DynamicData(nameof(GetPassword), DynamicDataSourceType.Method)]
         public void NoEmailEntered (string username, string password )
