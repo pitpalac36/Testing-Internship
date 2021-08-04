@@ -13,7 +13,7 @@ namespace Madison.Pages
         private readonly By _navigationBar = By.CssSelector(".nav-primary");
         private readonly By _homeDecorImage = By.CssSelector(".category-image");
         private readonly By _electronicsSubcategoryList = By.CssSelector(".catblocks li");
-        private readonly By _electronicsPageTitle = By.CssSelector(".page-title.category-title h1");
+        private readonly By _categoryTitle = By.CssSelector(".page-title.category-title h1");
         private readonly By _accountElement = By.CssSelector(".account-cart-wrapper > a");
         private readonly By _menuElements = By.CssSelector("#header-account>.links>ul li");
         private readonly By _cartQuantityLabel = By.CssSelector(".count");
@@ -46,8 +46,8 @@ namespace Madison.Pages
             return elem;
         }
 
-        public bool CheckIfPageTitleIsVisible() {
-            var elem = _electronicsPageTitle.IsElementPresent();
+        public bool CheckIfCategoryTitleIsVisible() {
+            var elem = _categoryTitle.IsElementPresent();
             return elem;
         }
 
