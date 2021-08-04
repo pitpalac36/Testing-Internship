@@ -24,5 +24,13 @@ namespace Madison.Pages
             _addToCartButton.ActionClick();
         }
 
+        public void AddItemsToCart(string[] itemLinks)
+        {
+            foreach (string link in itemLinks)
+            {
+                AddItemToCart(link);
+            }
+        }
+
     }
 }
