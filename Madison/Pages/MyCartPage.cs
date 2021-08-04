@@ -27,9 +27,6 @@ namespace Madison.Pages
         private readonly By _quantityField = By.CssSelector(".product-cart-actions > .input-text.qty");
         #endregion
         
-
-
-
         public string GetHeaderMessage()
         {
             return _shoppingCartHeader.GetText();
@@ -56,13 +53,10 @@ namespace Madison.Pages
             _updateShoppingCartButton.ActionClick();
         }
 
-
         public IList<IWebElement> GetQuantityInputFields()
         {
             return _quantityField.GetElements();
         }
-
-
 
         public List<string> GetQuantity()
         {
@@ -84,8 +78,6 @@ namespace Madison.Pages
             return _shoppingCartTable.IsElementPresent();
         }
 
-
-
         public float GetSubtotalItemsPrice()
         {
             var priceList = _productPriceList.GetElements();
@@ -103,13 +95,11 @@ namespace Madison.Pages
             quantityField.Clear();
         }
 
-
         public void ClickOnEmptyCartButton()
         {
             _emptyShoppingCartButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
-
 
         public void UpdateQuantityList(List<string> updateQuantity)
         {
@@ -121,7 +111,5 @@ namespace Madison.Pages
             }
             ClickUpdateCart();
         }
-
-
     }
 }

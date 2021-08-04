@@ -1,76 +1,53 @@
 ﻿using NsTestFrameworkUI.Helpers;
+using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
-using NsTestFrameworkUI.Pages;
 
 namespace Madison.Pages
 {
     public class HomePage
     {
         #region Selectors
-        private readonly By _homeDecorListSelector = By.CssSelector(".level0.nav-4.parent li");
-        private readonly By _sectionsListSelector = By.CssSelector("#nav ol li.level0 > a");
-        private readonly By _sectionsSelector = By.CssSelector(".nav-primary");
-        private readonly By _mainImageHomeDecorSelector = By.CssSelector(".category-image");
-        private readonly By _homeDecorButtonSelector = By.CssSelector(".level0.nav-4.parent .level0.has-children");
-        private readonly By _electronicsHomePageSelector = By.CssSelector(".catblocks li:nth-child(3) a img");
-        private readonly By _electronicsPageTitleSelector = By.CssSelector(".page-title.category-title h1");
+        private readonly By _navigationBarList = By.CssSelector("#nav ol li.level0 > a");
+        private readonly By _navigationBar = By.CssSelector(".nav-primary");
+        private readonly By _homeDecorImage = By.CssSelector(".category-image");
+        private readonly By _electronicsSubcategoryList = By.CssSelector(".catblocks li");
+        private readonly By _electronicsPageTitle = By.CssSelector(".page-title.category-title h1");
         private readonly By _accountElement = By.CssSelector(".account-cart-wrapper > a");
         private readonly By _menuElements = By.CssSelector("#header-account>.links>ul li");
         private readonly By _cartQuantityLabel = By.CssSelector(".count");
-        private readonly By _cartSelector = By.Id("header-cart");
-        private readonly By _viewMyCartSelector = By.ClassName("top-link-cart");
-        private readonly By _sectionSelector = By.CssSelector(".level0.nav-2.parent > a");
-        private readonly By _subsectionSelector = By.CssSelector(".catblocks li a");
+        private readonly By _navigationBarSubsection = By.CssSelector(".catblocks li a");
         #endregion
-
-        public void GoToHomeDecor()
-        {
-            _homeDecorButtonSelector.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
 
         public bool IsCartQuantityLabelPresent()
         {
             return _cartQuantityLabel.IsElementPresent();
         }
 
-
-        public void GoFromHomePageToElectronics()
+        public void SelectHomeDecorSubcategory(string homePageSubcategory)
         {
-            _electronicsHomePageSelector.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
-
-        public void GoToMenSection()
-        {
-            _sectionSelector.ActionClick();
+            _electronicsSubcategoryList.GetElements().First(item => item.Text.ToLower() == homePageSubcategory.ToLower()).Click();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
         public IReadOnlyCollection<IWebElement> GetSectionsList()
         {
-            var elems = _sectionsListSelector.GetElements();
+            var elems = _navigationBarList.GetElements();
             return elems;
         }
         public bool CheckIfProductSectionsIsVisible() {
-            var elems = _sectionsSelector.IsElementPresent();
-            return elems;
-        }
-
-        public bool CheckIfHomeDecorDropdownIsVisible() {
-            var elems = _homeDecorListSelector.IsElementPresent();
+            var elems = _navigationBar.IsElementPresent();
             return elems;
         }
 
         public bool CheckIfHomeMainImageIsVisible() {
-            var elem =  _mainImageHomeDecorSelector.IsElementPresent();
+            var elem =  _homeDecorImage.IsElementPresent();
             return elem;
         }
 
         public bool CheckIfPageTitleIsVisible() {
-            var elem = _electronicsPageTitleSelector.IsElementPresent();
+            var elem = _electronicsPageTitle.IsElementPresent();
             return elem;
         }
 
@@ -79,31 +56,19 @@ namespace Madison.Pages
             _accountElement.ActionClick();
         }
 
-        public void ClickOnCart()
-        {
-            _cartSelector.ActionClick();
-        }
-
-        public void GoToCart()
-        {
-            _viewMyCartSelector.ActionClick();
-        }
-
         public void SelectMyAccountMenu(string accountMenu)
         {
             ClickOnAccount();
             _menuElements.GetElements().First(item => item.Text == accountMenu).Click();
         }
-
         public void SelectCategory(string category)
         {
-            _sectionsListSelector.GetElements().First(item => item.Text.ToLower() == category.ToLower()).Click();
+            _navigationBarList.GetElements().First(item => item.Text.ToLower() == category.ToLower()).Click();
             WaitHelpers.WaitForDocumentReadyState();
         }
-
         public void SelectMenSubcategory(string menSubcategory)
         {
-            _subsectionSelector.GetElements().First(item => item.Text == menSubcategory).Click();
+            _navigationBarSubsection.GetElements().First(item => item.Text.ToLower() == menSubcategory.ToLower()).Click();
             WaitHelpers.WaitForDocumentReadyState();
         }
     }

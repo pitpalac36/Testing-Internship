@@ -10,7 +10,8 @@ namespace Madison.Pages
     public class ProductsPage
     {
         #region Selectors
-        private readonly By _electronicsProductsSelector = By.CssSelector(".products-grid.products-grid--max-4-col .item.last");
+        //TODO refactor selectors
+        private readonly By _electronicsProductsList = By.CssSelector(".products-grid.products-grid--max-4-col .item.last");
         private readonly By _sortSelector = By.CssSelector(".toolbar-bottom div.sorter div select");
         private readonly By _sortPriceSelector = By.CssSelector(".toolbar-bottom div.sorter div select option:nth-child(3)");
         private readonly By _ascendingDescendingSelector = By.CssSelector(".toolbar-bottom .sort-by a");
@@ -18,7 +19,6 @@ namespace Madison.Pages
         private readonly By _lastProductPriceSelector = By.CssSelector(".products-grid--max-4-col .item.last:last-child .price");
         private readonly By _gridViewSelector = By.CssSelector(".toolbar-bottom .grid");
         private readonly By _listViewSelector = By.CssSelector(".toolbar-bottom .list");
-        private readonly By _lastItemSelector = By.CssSelector(".products-grid--max-4-col .item.last:last-child .product-name a");
         private readonly By _firstItemSelector = By.CssSelector(".products-grid--max-4-col .item.last:first-child .product-name a");
         private readonly By _itemOpenedPriceSelector = By.CssSelector(".regular-price .price");
         private readonly By _productQuantitySelector = By.CssSelector("#qty");
@@ -38,7 +38,7 @@ namespace Madison.Pages
         
         public IReadOnlyCollection<IWebElement> GetFirst12ProductsFromElectronics()
         {
-            return _electronicsProductsSelector.GetElements();
+            return _electronicsProductsList.GetElements();
         }
 
         public IReadOnlyCollection<IWebElement> GetErrorListSelector()
@@ -83,12 +83,6 @@ namespace Madison.Pages
                 _gridViewSelector.ActionClick();
                 WaitHelpers.WaitForDocumentReadyState();
             }
-        }
-
-        public void ClickLastProduct() 
-        {
-            _lastItemSelector.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
         }
 
         public void ClickFirstProduct()

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using NsTestFrameworkUI.Helpers;
 using System.Threading;
 
-//[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
+[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Tests
 {
     [TestClass]
@@ -41,7 +41,7 @@ namespace Madison.Tests
         {
             //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
-            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.HomePage.CheckIfPageTitleIsVisible().Should().BeTrue();
         }
 
@@ -52,7 +52,7 @@ namespace Madison.Tests
         {
             Pages.HomePage.SelectCategory("Home & Decor");
             //Pages.HomePage.GoToHomeDecor();
-            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.GetFirst12ProductsFromElectronics().Count.Should().BeLessOrEqualTo(count);
         }
 
@@ -63,7 +63,7 @@ namespace Madison.Tests
         {
             //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
-            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetAscendingDirection();
             Pages.ProductsPage.GetFirstProductPrice().Should().Be(firstPrice);
@@ -76,7 +76,7 @@ namespace Madison.Tests
         {
             //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
-            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetAscendingDirection();
             var expectedPrice = Pages.ProductsPage.GetFirstProductPrice();
@@ -92,7 +92,7 @@ namespace Madison.Tests
         {
             //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
-            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetAscendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
@@ -107,7 +107,7 @@ namespace Madison.Tests
         {
             //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
-            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetDescendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
@@ -126,7 +126,7 @@ namespace Madison.Tests
         {
             //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
-            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetDescendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
@@ -145,7 +145,7 @@ namespace Madison.Tests
         {
             //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
-            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetDescendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
