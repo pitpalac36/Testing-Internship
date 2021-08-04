@@ -26,9 +26,9 @@ namespace Madison.Pages
 
         public void AddItemsToCart(string[] itemLinks)
         {
-            foreach (string link in itemLinks)
+            foreach (string item in itemLinks)
             {
-                AddItemToCart(link);
+                AddItemToCart(item);
             }
         }
 
