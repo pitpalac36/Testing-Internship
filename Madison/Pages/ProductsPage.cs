@@ -14,8 +14,6 @@ namespace Madison.Pages
     public class ProductsPage
     {
         #region Selectors
-        private readonly By samsungGalaxySelector = By.CssSelector("#product-collection-image-918");
-        private readonly By productNameSelector = By.CssSelector(".product-name h1");
         private readonly By electronicsProductsSelector = By.CssSelector(".products-grid.products-grid--max-4-col .item.last");
         private readonly By sortSelector = By.CssSelector(".toolbar-bottom div.sorter div select");
         private readonly By sortPriceSelector = By.CssSelector(".toolbar-bottom div.sorter div select option:nth-child(3)");
@@ -134,17 +132,20 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void selectColor()
+        public string selectColor()
         {
             colorSelector.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
+            return colorSelector.GetAttribute("alt");
         }
-        public void selectSize()
+        public string selectSize()
         {
             Random rnd = new Random();
-            int randomInt = rnd.Next(1, sizeListSelector.GetElements().Count + 1);
+            int randomInt = rnd.Next(0, sizeListSelector.GetElements().Count);
+            var size = sizeListSelector.GetElements().ElementAt(randomInt).GetAttribute("value");
             sizeListSelector.GetElements().ElementAt(randomInt).Click();
             WaitHelpers.WaitForDocumentReadyState();
+            return size;
         }
 
         /// <summary>
