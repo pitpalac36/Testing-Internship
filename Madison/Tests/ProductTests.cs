@@ -10,7 +10,7 @@ using System.Threading;
 using NsTestFrameworkUI;
 using NsTestFrameworkUI.Helpers;
 
-//[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
+[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Tests
 {
     [TestClass]
@@ -34,7 +34,7 @@ namespace Madison.Tests
             headerCount.Count.Should().Be(count);
         }
 
-        [TestMethod]
+        [DataTestMethod]
         [TestCategory("Product")]
         public void verifyIfHomeDecorMainImgIsDisplayed()
         {
@@ -43,7 +43,7 @@ namespace Madison.Tests
             checkVisibility.Should().BeTrue();
         }
 
-        [TestMethod]
+        [DataTestMethod]
         [TestCategory("Product")]
         public void checkIfElectronicsPageTitleIsDisplayed()
         {
@@ -54,7 +54,7 @@ namespace Madison.Tests
         }
 
         [DataRow(12)]
-        [TestMethod]
+        [DataTestMethod]
         [TestCategory("Product")]
         public void checkIfShowProductsDisplaysACorrectNumberOfProducts(int count)
         {
@@ -79,7 +79,7 @@ namespace Madison.Tests
             expensiveItem.Should().Be(secondPrice);
         }
 
-        [TestMethod]
+        [DataTestMethod]
         [TestCategory("Product")]
         public void checkFirstItemPriceConsistency()
         {
@@ -94,7 +94,7 @@ namespace Madison.Tests
         }
 
         [DataRow("2")]
-        [TestMethod]
+        [DataTestMethod]
         [TestCategory("Product")]
         public void addNegativeQuantityForProduct(string qty)
         {
@@ -109,7 +109,7 @@ namespace Madison.Tests
             visibility.Should().BeFalse();
         }
 
-        [TestMethod]
+        [DataTestMethod]
         [TestCategory("Product")]
         public void checkIfReviewButtonIsVisible()
         {
@@ -125,7 +125,7 @@ namespace Madison.Tests
         }
 
         [DataRow("nice", "good product", "georgel de pe coclauri")]
-        [TestMethod]
+        [DataTestMethod]
         [TestCategory("Product")]
         public void checkSubmitReviewForm(string review, string summary, string nickname)
         {
@@ -156,7 +156,7 @@ namespace Madison.Tests
             // TODO
         }
 
-        [TestMethod]
+        [DataTestMethod]
         [DataRow("2", "0")]
         public void SecondFlow(string errorCountBefore, string errorCountAfter) {
             //1. TODO Login
@@ -185,9 +185,6 @@ namespace Madison.Tests
             //5. TODO
 
             //6. TODO
-
-            //5. Add item to cart
-            //Pages.ProductsPage.AddToCart();
         }
 
     }
