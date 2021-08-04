@@ -54,7 +54,6 @@ namespace Madison.Pages
             var elems = _sectionsListSelector.GetElements();
             return elems;
         }
-
         public bool CheckIfProductSectionsIsVisible() {
             var elems = _sectionsSelector.IsElementPresent();
             return elems;
@@ -96,9 +95,9 @@ namespace Madison.Pages
             _menuElements.GetElements().First(item => item.Text == accountMenu).Click();
         }
 
-        public void SelectMenCategory(string menCategory)
+        public void SelectCategory(string category)
         {
-            _sectionsListSelector.GetElements().First(item => item.Text == menCategory).Click();
+            _sectionsListSelector.GetElements().First(item => item.Text.ToLower() == category.ToLower()).Click();
             WaitHelpers.WaitForDocumentReadyState();
         }
 

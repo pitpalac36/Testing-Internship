@@ -38,19 +38,28 @@ namespace Madison.Helpers
         public static List<string> NavigateBar = new List<string>
         {
             "Women",
-            "MEN",
+            "Men",
             "Accesories",
             "Home & Decor",
             "Sale",
             "VIP"
         };
 
-        public static List<string> AllMenSection = new List<string>
+        public static List<string> AllMenSections = new List<string>
         {
             "NEW ARRIVALS",
             "SHIRTS",
             "TEES, KNITS AND POLOS",
             "PANTS & DENIM"
+        };
+
+        public static List<string> AllHomeDecorSections = new List<string>
+        {
+            "View All Home & Decor",
+            "Books & Music",
+            "Bed & Bath",
+            "Electronics",
+            "Decorative Accents"
         };
     }
 }

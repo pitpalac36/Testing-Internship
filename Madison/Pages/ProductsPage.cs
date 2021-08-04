@@ -34,12 +34,11 @@ namespace Madison.Pages
         private readonly By _colorSelector = By.CssSelector(".swatch-label img");
         private readonly By _sizeListSelector = By.CssSelector("#configurable_swatch_size li");
         //private readonly By errorListSelector = By.CssSelector(".validation-advice");
-        
         #endregion
+        
         public IReadOnlyCollection<IWebElement> GetFirst12ProductsFromElectronics()
         {
-            var elems = _electronicsProductsSelector.GetElements();
-            return elems;
+            return _electronicsProductsSelector.GetElements();
         }
 
         public IReadOnlyCollection<IWebElement> GetErrorListSelector()
