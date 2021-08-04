@@ -11,6 +11,11 @@ namespace Madison.Tests
     [TestClass]
     public class ProductTests : BaseTest
     {
+        public static IEnumerable<object[]> GetGeneratedReviews()
+        {
+            yield return new object[] { Faker.Lorem.Sentence().ToString(), Faker.Lorem.Sentence().ToString(), Faker.Name.FullName().ToString() };
+        }
+
         [TestMethod]
         [TestCategory("Product")]
         public void VerifyIfColumnsAreDisplayed()
@@ -30,7 +35,6 @@ namespace Madison.Tests
         [TestCategory("Product")]
         public void VerifyIfHomeDecorMainImgIsDisplayed()
         {
-            //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.CheckIfHomeMainImageIsVisible().Should().BeTrue();
         }
@@ -39,10 +43,9 @@ namespace Madison.Tests
         [TestCategory("Product")]
         public void CheckIfElectronicsPageTitleIsDisplayed()
         {
-            //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
-            Pages.HomePage.CheckIfPageTitleIsVisible().Should().BeTrue();
+            Pages.HomePage.CheckIfCategoryTitleIsVisible().Should().BeTrue();
         }
 
         [DataTestMethod]
@@ -51,7 +54,6 @@ namespace Madison.Tests
         public void CheckIfShowProductsDisplaysACorrectNumberOfProducts(int count)
         {
             Pages.HomePage.SelectCategory("Home & Decor");
-            //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.GetFirst12ProductsFromElectronics().Count.Should().BeLessOrEqualTo(count);
         }
@@ -61,7 +63,6 @@ namespace Madison.Tests
         [DataRow("$20.00", "$400.00")]
         public void VerifyCheapestProductPrice(string firstPrice, string secondPrice)
         {
-            //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
@@ -74,7 +75,6 @@ namespace Madison.Tests
         [TestCategory("Product")]
         public void CheckFirstItemPriceConsistency()
         {
-            //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
@@ -90,7 +90,6 @@ namespace Madison.Tests
         [DataRow("2")]
         public void AddNegativeQuantityForProduct(string qty)
         {
-            //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
@@ -105,7 +104,6 @@ namespace Madison.Tests
         [TestCategory("Product")]
         public void CheckIfReviewButtonIsVisible()
         {
-            //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
@@ -114,36 +112,28 @@ namespace Madison.Tests
             Pages.ProductsPage.ClickOnReviews();
             Pages.ProductsPage.IsReviewButtonPresent().Should().BeTrue(); ;
         }
-        public static IEnumerable<object[]> GetGeneratedReviews()
-        {
-            yield return new object[] { Faker.Lorem.Words(4).ToString(), Faker.Lorem.Sentence().ToString(), Faker.Name.FullName().ToString() };
-        }
 
+        // have to refactor
         [DataTestMethod]
         [TestCategory("Product")]
         [DynamicData(nameof(GetGeneratedReviews), DynamicDataSourceType.Method)]
         public void CheckSubmitReviewForm(string review, string summary, string nickname)
         {
-            //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetDescendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
             Pages.ProductsPage.ClickOnReviews();
-            Pages.ProductsPage.SetReview(review);
-            Pages.ProductsPage.SetSummary(summary);
-            Pages.ProductsPage.SetNickname(nickname);
+            Pages.ProductsPage.SetAReview(review, summary, nickname);
             Pages.ProductsPage.ClickOnSubmitReviews();
             Pages.ProductsPage.IsSuccessMessagePresent().Should().BeTrue();
-
         }
 
         [TestMethod]
         [TestCategory("Product")]
         public void VerifyRecentlyViewedProducts()
         {
-            //Pages.HomePage.GoToHomeDecor();
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
@@ -158,7 +148,7 @@ namespace Madison.Tests
         [DataRow("2", "0")]
         public void SecondFlow(string errorCountBefore, string errorCountAfter) {
             //1. TODO Login
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
 
             // Empty cart - Needs refactoring
