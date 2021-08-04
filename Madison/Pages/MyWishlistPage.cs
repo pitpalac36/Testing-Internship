@@ -1,5 +1,4 @@
-﻿using Madison.Helpers;
-using NsTestFrameworkUI.Helpers;
+﻿using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 

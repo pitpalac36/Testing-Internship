@@ -1,9 +1,6 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Madison.Helpers;
-using OpenQA.Selenium;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 //[assembly: Parallelize(Workers =4,Scope =ExecutionScope.MethodLevel)]

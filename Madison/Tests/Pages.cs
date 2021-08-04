@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Madison.Helpers;
-using Madison.Pages;
+﻿using Madison.Pages;
 using NsTestFrameworkUI.Pages;
-using SeleniumExtras.PageObjects;
 
 namespace Madison.Tests
 {
