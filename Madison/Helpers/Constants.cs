@@ -1,27 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Madison.Helpers
 {
-    class ResourceFileHelper
+    class Constants
     {
-        private static ResourceManager rm;
-
-        static ResourceFileHelper()
-        {
-            rm = new ResourceManager("Madison.WebLinks", Assembly.GetExecutingAssembly());
-        }
-        public static string GetValueAssociatedToString(string search)
-        {
-            return rm.GetString(search);
-        }
-
-
 
         public static List<string> Usernames = new List<string>
         {
@@ -40,7 +26,6 @@ namespace Madison.Helpers
             "",
         };
 
-        public static string AlreadyExistingAccountMessage = "If you have an account with us, please log in.";
         public static List<string> AccountMenu = new List<string>
         {
             "My Account",
@@ -52,4 +37,3 @@ namespace Madison.Helpers
         };
     }
 }
-

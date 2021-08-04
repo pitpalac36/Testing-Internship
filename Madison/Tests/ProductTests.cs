@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using NsTestFrameworkUI;
+using NsTestFrameworkUI.Helpers;
 
 //[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Tests
@@ -59,7 +61,7 @@ namespace Madison.Tests
             Pages.HomePage.goToHomeDecor();
             Pages.HomePage.goFromHomePageToElectronics();
             var products = Pages.ProductsPage.getFirst12ProductsFromElectronics();
-            products.Count.Should().Be(count);
+            products.Count.Should().BeLessOrEqualTo(count);
         }
 
         [DataRow("$20.00", "$400.00")]
@@ -78,6 +80,7 @@ namespace Madison.Tests
         }
 
         [TestMethod]
+        [TestCategory("Product")]
         public void checkFirstItemPriceConsistency()
         {
             Pages.HomePage.goToHomeDecor();
@@ -92,6 +95,7 @@ namespace Madison.Tests
 
         [DataRow("2")]
         [TestMethod]
+        [TestCategory("Product")]
         public void addNegativeQuantityForProduct(string qty)
         {
             Pages.HomePage.goToHomeDecor();
@@ -100,12 +104,13 @@ namespace Madison.Tests
             Pages.ProductsPage.setAscendingDirection();
             Pages.ProductsPage.clickFirstProduct();
             Pages.ProductsPage.setProductQuantity(qty);
-            Pages.ProductsPage.addToCart();
+            Pages.ProductsPage.AddToCart();
             var visibility = Pages.ProductsPage.isAddToCartButtonVisible();
             visibility.Should().BeFalse();
         }
 
         [TestMethod]
+        [TestCategory("Product")]
         public void checkIfReviewButtonIsVisible()
         {
             Pages.HomePage.goToHomeDecor();
@@ -118,8 +123,10 @@ namespace Madison.Tests
             visibility.Should().BeTrue();
 
         }
+
         [DataRow("nice", "good product", "georgel de pe coclauri")]
         [TestMethod]
+        [TestCategory("Product")]
         public void checkSubmitReviewForm(string review, string summary, string nickname)
         {
             Pages.HomePage.goToHomeDecor();
@@ -137,5 +144,53 @@ namespace Madison.Tests
 
         }
 
+        [Ignore]
+        [TestCategory("Product")]
+        public void verifyRecentlyViewedProducts() {
+            Pages.HomePage.goToHomeDecor();
+            Pages.HomePage.goFromHomePageToElectronics();
+            Pages.ProductsPage.selectSortByPrice();
+            Pages.ProductsPage.setDescendingDirection();
+            Pages.ProductsPage.clickFirstProduct();
+            Browser.SwitchToLastTab();
+            // TODO
+        }
+
+        [TestMethod]
+        [DataRow("2", "0")]
+        public void SecondFlow(string errorCountBefore, string errorCountAfter) {
+            //1. TODO Login
+            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
+
+            // Empty cart
+            Pages.HomePage.ClickOnAccount();
+            Pages.HomePage.GoToCart();
+            Pages.MyCartPage.ClickOnEmptyCartButton();
+
+            //2. Access Men - New Arrivals section
+            Pages.HomePage.goToMenSection();
+            Pages.HomePage.goToMenNewArrivals();
+
+            //3. Open product details page(of first item)
+            Pages.ProductsPage.clickOnViewDetails();
+
+            //4. Check error messages from product details page when adding an item to cart
+            Pages.ProductsPage.AddToCart();
+            var errorCount1 = Pages.ProductsPage.GetErrorListSelector().Count;
+            Assert.AreEqual(errorCount1, errorCountBefore.ConvertStringToInt32());
+
+            // 5. Add item to cart
+            var color = Pages.ProductsPage.selectColor();
+            var size = Pages.ProductsPage.selectSize();
+            Pages.ProductsPage.AddToCart();
+            var errorCount2 = Pages.ProductsPage.GetErrorListSelector().Count;
+            Assert.AreEqual(errorCount2, errorCountAfter.ConvertStringToInt32());
+
+            //6. Check item is in cart
+            Pages.ShoppingCartPage.IsSuccessMessageDisplayed().Should().BeTrue();
+            Pages.ShoppingCartPage.FirstItemColor().Should().Be(color);
+            //Pages.ShoppingCartPage.FirstItemSize().Should().Be(size);
+        }
     }
 }

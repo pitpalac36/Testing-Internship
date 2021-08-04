@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Madison.Helpers;
+using Madison.Pages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NsTestFrameworkUI.Helpers;
 using OpenQA.Selenium;
@@ -18,6 +19,7 @@ namespace Madison.Tests
         public static IEnumerable<object[]> GetData()
         {
             yield return new object[] { WebLinks.Earbuds, WebLinks.JACKIE_O_ROUND_SUNGLASSES,WebLinks.Aviator_Sunglasses };
+            yield return new object[] { WebLinks.Earbuds };
         }
 
         public static IEnumerable<object[]> GetOneLink()
@@ -81,7 +83,7 @@ namespace Madison.Tests
         public void CartLabelNotDisplayedWhenCartIsEmpty()
         {
             Browser.GoTo(WebLinks.CartLink);
-            bool visibility = Pages.MyCartPage.CartLabelVisibility();
+            bool visibility = Pages.HomePage.IsCartQuantityLabelPresent();
             visibility.Should().BeFalse();
         }
 
@@ -91,9 +93,9 @@ namespace Madison.Tests
         {
             foreach(string link in itemLink)
             {
-                Pages.MyCartPage.AddItemToCart(link);
+               Pages.ProductDetailPage.AddItemToCart(link);
             }
-            bool visibility = Pages.MyCartPage.CartLabelVisibility();
+            bool visibility = Pages.HomePage.IsCartQuantityLabelPresent();
             visibility.Should().BeTrue();
         }
 
@@ -103,7 +105,7 @@ namespace Madison.Tests
         {
             foreach (string link in itemLink)
             {
-                Pages.MyCartPage.AddItemToCart(link);
+                Pages.ProductDetailPage.AddItemToCart(link);
             }
             Pages.MyCartPage.ClickOnEmptyCartButton();
             string header = Pages.MyCartPage.GetHeaderMessage();
@@ -117,7 +119,7 @@ namespace Madison.Tests
         {
             foreach (string link in itemLink)
             {
-                Pages.MyCartPage.AddItemToCart(link);
+                Pages.ProductDetailPage.AddItemToCart(link);
             }
             Browser.GoTo(WebLinks.CartLink);
             float subtotalSum = Pages.MyCartPage.GetSubtotalItemsPrice();
@@ -126,10 +128,13 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetOneLink), DynamicDataSourceType.Method)]
-        public void UpdateQuantityButtonTest(string link)
+        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        public void UpdateQuantityButtonTest(params string[] itemLink)
         {
-            Pages.MyCartPage.AddItemToCart(link);
+            foreach (string link in itemLink)
+            {
+                Pages.ProductDetailPage.AddItemToCart(link);
+            }
             Browser.GoTo(WebLinks.CartLink);
             IList<IWebElement> inputField = Pages.MyCartPage.GetQuantityInputFields();
             for(int i=0;i<inputField.Count;i++)
