@@ -8,26 +8,12 @@ namespace Madison.Tests
     [TestClass]
     public class TestWishlist: BaseTest
     {
-        private static string RandomQuantity()
-        {
-            return Faker.RandomNumber.Next(1, 100).ToString();
-        }
-
-        private static string RandomComment()
-        {
-            return Faker.Lorem.Sentence();
-        }
-
-        private static string RandomWord()
-        {
-            return Faker.Lorem.GetFirstWord();
-        }
 
         public static IEnumerable<object[]> GetQuantity()
         {
-            for (int i= 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
-                yield return new object[] { RandomQuantity() };
+                yield return new object[] { Pages.MyWishlistPage.RandomQuantity() };
             }
         }
 
@@ -35,14 +21,14 @@ namespace Madison.Tests
         {
             for (int i = 0; i < 3; i++)
             {
-                yield return new object[] { RandomComment() };
+                yield return new object[] { Pages.MyWishlistPage.RandomComment() };
             }
         }
 
         public static IEnumerable<object[]> GetInvalidEmails()
         {
-            yield return new object[] { "", "This is a required field"};
-            yield return new object[] { RandomWord(), "Please enter a valid email addresses" };
+            yield return new object[] { " ", "This is a required field" };
+            yield return new object[] { Pages.MyWishlistPage.RandomWord(), "Please enter a valid email addresses" };
         }
 
         [TestMethod]

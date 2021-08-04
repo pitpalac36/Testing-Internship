@@ -1,15 +1,15 @@
-﻿using Madison.Helpers;
-using NsTestFrameworkUI.Helpers;
+﻿using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
+using System.Collections.Generic;
 
 namespace Madison.Pages
 {
     public class MyWishlistPage
     {
         #region Selectors
-        private readonly By _myWishlistSelector = By.CssSelector("a[title^='My Wishlist']");
-        private readonly By _myWishlistHeaderSelector = By.CssSelector(".my-wishlist h1");
+        private readonly By _myWishlistLink = By.CssSelector("a[title^='My Wishlist']");
+        private readonly By _myWishlistHeader = By.CssSelector(".my-wishlist h1");
         private readonly By _firstItemQuantityCell = By.CssSelector("#wishlist-view-form .first .qty");
         private readonly By _updateWishlistFirstButton = By.CssSelector("#wishlist-table button");
         private readonly By _updateWishlistFinalButton = By.CssSelector(".buttons-set2 .btn-update");
@@ -27,18 +27,18 @@ namespace Madison.Pages
 
         public bool IsWishlistButtonDisplayed()
         {
-            return _myWishlistSelector.IsElementPresent();
+            return _myWishlistLink.IsElementPresent();
         }
 
         public void ClickOnMyWishlist()
         {
-            _myWishlistSelector.ActionClick();
+            _myWishlistLink.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
         public bool IsRedirectedToWishlist()
         {
-            return _myWishlistHeaderSelector.IsElementPresent();
+            return _myWishlistHeader.IsElementPresent();
         }
 
         public void ChangeQuantity(string newQuantity)
@@ -135,5 +135,22 @@ namespace Madison.Pages
         {
             return _errorMessage.IsElementPresent();
         }
+
+        public string RandomQuantity()
+        {
+            return Faker.RandomNumber.Next(1, 100).ToString();
+        }
+
+        public string RandomComment()
+        {
+            return Faker.Lorem.Sentence();
+        }
+
+        public string RandomWord()
+        {
+            return Faker.Lorem.GetFirstWord();
+        }
+
+        
     }
 }
