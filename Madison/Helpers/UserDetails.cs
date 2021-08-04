@@ -8,8 +8,8 @@ namespace Madison.Helpers
         public static string MiddleName { get; set; } = Faker.Name.Middle();
         public static string LastName { get; set; } = Faker.Name.Last();
         public static string EmailAddress { get; set; } = Faker.Internet.Email();
-        public static string Password { get; set; } = password;
-        public static string ConfirmPassword { get; set; } = password;
+        public static string Password { get; set; } = _password;
+        public static string ConfirmPassword { get; set; } = _password;
 
         public  int GetNumberOfEmptyMandatoryFields()
         {

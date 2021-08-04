@@ -25,7 +25,7 @@ namespace Madison.Pages
             return _cartQuantityLabel.IsElementPresent();
         }
 
-        public void SelectHomeDecorSubcategory(string homePageSubcategory)
+        public void SelectHomeDecorSubcategory (string homePageSubcategory )
         {
             _electronicsSubcategoryList.GetElements().First(item => item.Text.ToLower() == homePageSubcategory.ToLower()).Click();
             WaitHelpers.WaitForDocumentReadyState();
@@ -56,17 +56,17 @@ namespace Madison.Pages
             _accountElement.ActionClick();
         }
 
-        public void SelectMyAccountMenu(string accountMenu)
+        public void SelectMyAccountMenu (string accountMenu )
         {
             ClickOnAccount();
             _menuElements.GetElements().First(item => item.Text == accountMenu).Click();
         }
-        public void SelectCategory(string category)
+        public void SelectCategory (string category )
         {
             _navigationBarList.GetElements().First(item => item.Text.ToLower() == category.ToLower()).Click();
             WaitHelpers.WaitForDocumentReadyState();
         }
-        public void SelectMenSubcategory(string menSubcategory)
+        public void SelectMenSubcategory (string menSubcategory )
         {
             _navigationBarSubsection.GetElements().First(item => item.Text.ToLower() == menSubcategory.ToLower()).Click();
             WaitHelpers.WaitForDocumentReadyState();

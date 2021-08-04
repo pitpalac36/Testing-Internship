@@ -12,9 +12,9 @@ namespace Madison.Helpers
         [Description("Log In")] Login,
 
     }
-     public static class ResourceFileHelper
+    public static class ResourceFileHelper
     {
-        public static string GetDescription(this Menu menu)
+        public static string GetDescription (this Menu menu )
         {
             var fieldInfo = menu.GetType().GetField(menu.ToString());
             if (fieldInfo == null) return string.Empty;
