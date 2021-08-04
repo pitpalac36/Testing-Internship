@@ -18,8 +18,8 @@ namespace Madison.Helpers
         {
             Browser.InitializeDriver(new DriverOptions
             {
-                IsHeadless = true
-            });
+                IsHeadless = false
+            }) ;
             Browser.GoTo("http://qa2.dev.evozon.com/");
         }
 
