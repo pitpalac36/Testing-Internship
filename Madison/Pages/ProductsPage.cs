@@ -11,169 +11,167 @@ namespace Madison.Pages
     {
         #region Selectors
         //TODO refactor selectors
-        private readonly By _electronicsProductsList = By.CssSelector(".products-grid.products-grid--max-4-col .item.last");
-        private readonly By _sortSelector = By.CssSelector(".toolbar-bottom div.sorter div select");
-        private readonly By _sortPriceSelector = By.CssSelector(".toolbar-bottom div.sorter div select option:nth-child(3)");
-        private readonly By _ascendingDescendingSelector = By.CssSelector(".toolbar-bottom .sort-by a");
-        private readonly By _firstProductPriceSelector = By.CssSelector(".products-grid--max-4-col .item.last:nth-child(1) .price");
-        private readonly By _lastProductPriceSelector = By.CssSelector(".products-grid--max-4-col .item.last:last-child .price");
-        private readonly By _gridViewSelector = By.CssSelector(".toolbar-bottom .grid");
-        private readonly By _listViewSelector = By.CssSelector(".toolbar-bottom .list");
-        private readonly By _firstItemSelector = By.CssSelector(".products-grid--max-4-col .item.last:first-child .product-name a");
-        private readonly By _itemOpenedPriceSelector = By.CssSelector(".regular-price .price");
-        private readonly By _productQuantitySelector = By.CssSelector("#qty");
-        private readonly By _addToCartSelector = By.CssSelector(".add-to-cart-buttons .button");
-        private readonly By _reviewSelector = By.CssSelector(".rating-links a:first-child");
-        private readonly By _submitReviewSelector = By.CssSelector(".buttons-set .button");
-        private readonly By _reviewFieldSelector = By.CssSelector("#review_field");
-        private readonly By _summaryFieldSelector = By.CssSelector("#summary_field");
-        private readonly By _nicknameFieldSelector = By.CssSelector("#nickname_field");
-        private readonly By _successSelector = By.CssSelector(".success-msg span");
-        private readonly By _viewDetailsSelector = By.CssSelector("li:nth-child(1) .actions > a");
-        private readonly By _errorListSelector = By.CssSelector("#product-options-wrapper dd .input-box div");
-        private readonly By _colorSelector = By.CssSelector(".swatch-label img");
-        private readonly By _sizeListSelector = By.CssSelector("#configurable_swatch_size li");
+        private readonly By _productsListGridView = By.CssSelector(".products-grid.products-grid--max-4-col .item.last");
+        private readonly By _sortDropdown = By.CssSelector(".toolbar-bottom div.sorter div select");
+        private readonly By _sortByPrice = By.CssSelector(".toolbar-bottom div.sorter div select option:nth-child(3)");
+        private readonly By _ascendingDescending = By.CssSelector(".toolbar-bottom .sort-by a");
+        private readonly By _firstProductPriceGridView = By.CssSelector(".products-grid--max-4-col .item.last:nth-child(1) .price");
+        private readonly By _lastProductItemGridView = By.CssSelector(".products-grid--max-4-col .item.last:last-child .price");
+        private readonly By _gridView = By.CssSelector(".toolbar-bottom .grid");
+        private readonly By _listView = By.CssSelector(".toolbar-bottom .list");
+        private readonly By _firstItemGridView = By.CssSelector(".products-grid--max-4-col .item.last:first-child .product-name a");
+        private readonly By _productPrice = By.CssSelector(".regular-price .price");
+        private readonly By _productQuantity = By.CssSelector("#qty");
+        private readonly By _addToCart = By.CssSelector(".add-to-cart-buttons .button");
+        private readonly By _reviewLink = By.CssSelector(".rating-links a:first-child");
+        private readonly By _submitReviewButton = By.CssSelector(".buttons-set .button");
+        private readonly By _reviewField = By.CssSelector("#review_field");
+        private readonly By _summaryField = By.CssSelector("#summary_field");
+        private readonly By _nicknameField = By.CssSelector("#nickname_field");
+        private readonly By _successMessage = By.CssSelector(".success-msg span");
+        private readonly By _viewDetails = By.CssSelector("li:nth-child(1) .actions > a");
+        private readonly By _errorList = By.CssSelector("#product-options-wrapper dd .input-box div");
+        private readonly By _itemColor = By.CssSelector(".swatch-label img");
+        private readonly By _sizeList = By.CssSelector("#configurable_swatch_size li");
         //private readonly By errorListSelector = By.CssSelector(".validation-advice");
         #endregion
         
         public IReadOnlyCollection<IWebElement> GetFirst12ProductsFromElectronics()
         {
-            return _electronicsProductsList.GetElements();
+            return _productsListGridView.GetElements();
         }
 
         public IReadOnlyCollection<IWebElement> GetErrorListSelector()
         {
-            return _errorListSelector.GetElements();
+            return _errorList.GetElements();
         }
 
         public void SelectSortByPrice() 
         {
-            _sortSelector.ActionClick();
+            _sortDropdown.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
-            _sortPriceSelector.ActionClick();
+            _sortByPrice.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
         public void SetAscendingDirection()
         {
-            if (_ascendingDescendingSelector.GetText() == "Set Ascending Direction")
+            if (_ascendingDescending.GetText() == "Set Ascending Direction")
             {
-                _ascendingDescendingSelector.ActionClick();
+                _ascendingDescending.ActionClick();
                 WaitHelpers.WaitForDocumentReadyState();
             }
         }
 
         public void SetDescendingDirection()
         {
-            if (_ascendingDescendingSelector.GetText() == "Set Descending Direction")
+            if (_ascendingDescending.GetText() == "Set Descending Direction")
             {
-                _ascendingDescendingSelector.ActionClick();
+                _ascendingDescending.ActionClick();
                 WaitHelpers.WaitForDocumentReadyState();
             }
         }
         public void ChangeViewMode(string viewMode) 
         {
-            if (viewMode == "List" && _gridViewSelector.IsElementSelected())
+            if (viewMode == "List" && _gridView.IsElementSelected())
             {
-                _listViewSelector.ActionClick();
+                _listView.ActionClick();
                 WaitHelpers.WaitForDocumentReadyState();
             }
-            else if (viewMode == "Grid" && _listViewSelector.IsElementSelected()) 
+            else if (viewMode == "Grid" && _listView.IsElementSelected()) 
             {
-                _gridViewSelector.ActionClick();
+                _gridView.ActionClick();
                 WaitHelpers.WaitForDocumentReadyState();
             }
         }
 
         public void ClickFirstProduct()
         {
-            _firstItemSelector.ActionClick();
+            _firstItemGridView.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
         public void AddToCart()
         {
-            _addToCartSelector.ActionClick();
+            _addToCart.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
         public void ClickOnReviews() 
         {
-            _reviewSelector.ActionClick();
+            _reviewLink.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
         public void ClickOnSubmitReviews()
         {
-            _submitReviewSelector.ActionClick();
+            _submitReviewButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
         public void ClickOnViewDetails() 
         {
-            _viewDetailsSelector.ActionClick();
+            _viewDetails.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
         public string SelectColor()
         {
-            _colorSelector.ActionClick();
+            _itemColor.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
-            return _colorSelector.GetAttribute("alt");
+            return _itemColor.GetAttribute("alt");
         }
         public string SelectSize()
         {
             Random rnd = new();
-            int randomInt = rnd.Next(0, _sizeListSelector.GetElements().Count);
-            var size = _sizeListSelector.GetElements().ElementAt(randomInt).GetAttribute("value");
-            _sizeListSelector.GetElements().ElementAt(randomInt).Click();
+            int randomInt = rnd.Next(0, _sizeList.GetElements().Count);
+            var size = _sizeList.GetElements().ElementAt(randomInt).GetAttribute("value");
+            _sizeList.GetElements().ElementAt(randomInt).Click();
             WaitHelpers.WaitForDocumentReadyState();
             return size;
         }
 
         public string GetFirstProductPrice() 
         {
-            return _firstProductPriceSelector.GetText();
+            return _firstProductPriceGridView.GetText();
         }
 
         public string GetLastProductPrice()
         {
-            return _lastProductPriceSelector.GetText();
+            return _lastProductItemGridView.GetText();
         }
         public string GetItemOpenedPrice()
         {
-            return _itemOpenedPriceSelector.GetText();
+            return _productPrice.GetText();
         }
 
         public void SetProductQuantity(string qty) 
         {
-            _productQuantitySelector.ActionSendKeys(qty);
+            _productQuantity.ActionSendKeys(qty);
         }
 
-        public void SetReview(string review) {
-            _reviewFieldSelector.ActionSendKeys(review);
+        public void SetAReview(string review, string summary, string nickname) {
+            _reviewField.ClearField();
+            _reviewField.ActionSendKeys(review);
+            _reviewField.ClearField();
+            _summaryField.ActionSendKeys(summary);
+            _reviewField.ClearField();
+            _nicknameField.ActionSendKeys(nickname);
         }
 
-        public void SetSummary(string summary) {
-            _summaryFieldSelector.ActionSendKeys(summary);
-        }
-
-        public void SetNickname(string nickname) {
-            _nicknameFieldSelector.ActionSendKeys(nickname);
-        }
         public bool IsAddToCartButtonVisible()
         {
-            return _addToCartSelector.IsElementPresent();
+            return _addToCart.IsElementPresent();
         }
 
         public bool IsReviewButtonPresent() 
         {
-            return _submitReviewSelector.IsElementPresent();
+            return _submitReviewButton.IsElementPresent();
         }
 
         public bool IsSuccessMessagePresent()
         {
-            return _successSelector.IsElementPresent();    
+            return _successMessage.IsElementPresent();    
         }
     }
 }

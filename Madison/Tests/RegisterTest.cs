@@ -13,7 +13,7 @@ namespace Madison.Tests
         public void Registration()
         {
             UserDetails userDetails = new ();
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[4]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Register.GetDescription());
             Pages.RegisterPage.ClickRegisterButton();
 
             Pages.RegisterPage.GetErrorMessagesFromForm().Should().OnlyContain(x => x.Equals(Messages.Mandatory_Error));
