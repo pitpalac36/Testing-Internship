@@ -34,9 +34,7 @@ namespace Madison.Tests
         public void EmptyCartShowsEmptyCartHeaderTest()
         {
             Browser.GoTo(WebLinks.CartLink);
-            string header = Pages.MyCartPage.GetHeaderMessage();
-            string expected_message = ResourceFileHelper.GetValueAssociatedToString("EmptyCartMessage");
-            header.Should().Be(expected_message);
+            Pages.MyCartPage.GetHeaderMessage().Should().Be(Messages.EmptyCartMessage);
         }
 
         [TestMethod]
@@ -66,13 +64,12 @@ namespace Madison.Tests
         [TestMethod]
         public void ContinueShoppingLinkRedirectsToHomePageTest()
         {
-            string homepageUrl = ResourceFileHelper.GetValueAssociatedToString("Homepage");
             Browser.GoTo(WebLinks.CartLink);
             string cart_url = Browser.WebDriver.Url;
             Pages.MyCartPage.ClickOnContinueShoppingLinkEmptyCart();
             string redirected_url = Browser.WebDriver.Url;
             redirected_url.Should().NotBe(cart_url);
-            redirected_url.Should().Be(homepageUrl);
+            redirected_url.Should().Be(WebLinks.Homepage);
         }
 
         [TestMethod]
@@ -96,9 +93,7 @@ namespace Madison.Tests
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Pages.MyCartPage.ClickOnEmptyCartButton();
-            string header = Pages.MyCartPage.GetHeaderMessage();
-            string expected_message = ResourceFileHelper.GetValueAssociatedToString("EmptyCartMessage");
-            header.Should().Be(expected_message);
+            Pages.MyCartPage.GetHeaderMessage().Should().Be(Messages.EmptyCartMessage);
         }
 
         [DataTestMethod]
@@ -107,9 +102,7 @@ namespace Madison.Tests
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Browser.GoTo(WebLinks.CartLink);
-            float subtotalSum = Pages.MyCartPage.GetSubtotalItemsPrice();
-            float subtotal = Pages.MyCartPage.GetSubtotalLabelPrice();
-            subtotal.Should().Be(subtotalSum);
+            Pages.MyCartPage.GetSubtotalItemsPrice().Should().Be(Pages.MyCartPage.GetSubtotalLabelPrice());
         }
 
         [DataTestMethod]
