@@ -34,6 +34,6 @@ namespace Madison.Tests
         public static ProductDetailPage ProductDetailPage => PageHelpers.InitPage(new ProductDetailPage());
         public static ShoppingCartPage ShoppingCartPage => PageHelpers.InitPage(new ShoppingCartPage());
 
-
+        public static NavigationPage NavigationPage => PageHelpers.InitPage(new NavigationPage());
     }
 }

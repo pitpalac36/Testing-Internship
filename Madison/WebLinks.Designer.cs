@@ -115,6 +115,15 @@ namespace Madison {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://qa2.dev.evozon.com/wishlist/.
+        /// </summary>
+        internal static string My_Wishlist_Page {
+            get {
+                return ResourceManager.GetString("My Wishlist Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://qa2.dev.evozon.com/customer/account/create/.
         /// </summary>
         internal static string Register {
