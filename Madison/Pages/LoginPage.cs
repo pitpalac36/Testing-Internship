@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using NsTestFrameworkUI.Pages;
-using System.Collections.Generic;
-using System.Linq;
+using NsTestFrameworkUI.Helpers;
 
 namespace Madison.Pages
 {
@@ -15,9 +14,11 @@ namespace Madison.Pages
         private readonly By _existingAccountMessage = By.CssSelector(".content.fieldset >h2+p");
         private readonly By _createAccountButton = By.CssSelector(".buttons-set a");
         private readonly By _messageRegisterPage = By.CssSelector(".account-create div h1");
-        private readonly By _errorListMessage = By.CssSelector(".validation-advice");
         private readonly By _requiredMessage = By.CssSelector(".content.fieldset p.required");
+        private readonly By _searchField = By.Id("search");
+        private readonly By _searchResultsMessage = By.CssSelector(".page-title h1");
         #endregion
+
         public void Login(string username, string password)
         {
             _emailField.ClearField();
@@ -57,6 +58,17 @@ namespace Madison.Pages
             return _requiredMessage.IsElementPresent();
         }
 
+        public void CheckSearch()
+        {
+            _searchField.ClearField();
+            _searchField.ActionClick();
+            _searchField.ActionSendKeys("shirt");
+            _searchField.ActionClick();
+        }
+        public bool isSearchResultsMessageDisplayed()
+        {
+            return _searchResultsMessage.IsElementPresent();
+        }
     }
 
 }

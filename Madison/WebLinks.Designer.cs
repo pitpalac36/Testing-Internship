@@ -133,6 +133,15 @@ namespace Madison {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://qa2.dev.evozon.com/catalogsearch/result/?q=shirt.
+        /// </summary>
+        internal static string SHIRT {
+            get {
+                return ResourceManager.GetString("SHIRT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thank you for registering with Madison Island..
         /// </summary>
         internal static string Success_Login {

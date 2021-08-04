@@ -141,6 +141,9 @@
   <data name="ShareWishlist" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/wishlist/index/share/wishlist_id/</value>
   </data>
+  <data name="SHIRT" xml:space="preserve">
+    <value>http://qa2.dev.evozon.com/catalogsearch/result/?q=shirt</value>
+  </data>
   <data name="Success Login" xml:space="preserve">
     <value>Thank you for registering with Madison Island.</value>
   </data>
