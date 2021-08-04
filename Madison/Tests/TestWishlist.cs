@@ -1,8 +1,7 @@
 ﻿using FluentAssertions;
 using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using System;
+using System.Collections.Generic;
 
 namespace Madison.Tests
 {
@@ -19,6 +18,33 @@ namespace Madison.Tests
             return Faker.Lorem.Sentence();
         }
 
+        private static string RandomWord()
+        {
+            return Faker.Lorem.GetFirstWord();
+        }
+
+        public static IEnumerable<object[]> GetQuantity()
+        {
+            for (int i= 0; i < 3; i++)
+            {
+                yield return new object[] { RandomQuantity() };
+            }
+        }
+
+        public static IEnumerable<object[]> GetComment()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                yield return new object[] { RandomComment() };
+            }
+        }
+
+        public static IEnumerable<object[]> GetInvalidEmails()
+        {
+            yield return new object[] { "", "This is a required field"};
+            yield return new object[] { RandomWord(), "Please enter a valid email addresses" };
+        }
+
         [TestMethod]
         public void MyWishlistButtonIsDisplayed()
         {
@@ -29,87 +55,89 @@ namespace Madison.Tests
         [TestMethod]
         public void ClickOnMyWishlistButtonRedirects()
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.IsRedirectedToWishlist().Should().BeTrue();
         }
 
-        [TestMethod]
-        public void WishlistItemQuantityUpdatesCorrectly()
+        [DataTestMethod]
+        [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
+        public void WishlistItemQuantityUpdatesCorrectly(string quantity)
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            var newQuantity = RandomQuantity();
-            Pages.MyWishlistPage.ChangeQuantity(newQuantity);
+            Pages.MyWishlistPage.ChangeQuantity(quantity);
             Pages.MyWishlistPage.UpdateItem();
-            Pages.MyWishlistPage.ItemQuantity().Should().Be(newQuantity);
+            Pages.MyWishlistPage.ItemQuantity().Should().Be(quantity);
         }
 
-        [TestMethod]
-        public void WishlistItemCommentUpdatesCorrectly()
+        [DataTestMethod]
+        [DynamicData(nameof(GetComment), DynamicDataSourceType.Method)]
+        public void WishlistItemCommentUpdatesCorrectly(string comment)
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            var comment = RandomComment();
             Pages.MyWishlistPage.InsertComment(comment);
             Pages.MyWishlistPage.UpdateItem();
             Pages.MyWishlistPage.ItemComment().Should().Be(comment);
         }
 
-        [TestMethod]
-        public void WishlistUpdatesCorrectly()
+        [DataTestMethod]
+        [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
+        public void WishlistUpdatesCorrectly(string quantity)
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
-            var newQuantity = RandomQuantity();
-            Pages.MyWishlistPage.ChangeQuantity(newQuantity);
+            Pages.MyWishlistPage.ChangeQuantity(quantity);
             Pages.MyWishlistPage.UpdateWishlist();
-            Pages.MyWishlistPage.ItemQuantity().Should().Be(newQuantity);
+            Pages.MyWishlistPage.ItemQuantity().Should().Be(quantity);
         }
 
         [TestMethod]
         public void ClickOnShareWishlistButtonRedirects()
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ShareWishlist();
-            Pages.MyWishlistPage.GetUrl().Should().Contain("http://qa2.dev.evozon.com/wishlist/index/share/wishlist_id/");
+            string expectedUrl = ResourceFileHelper.GetValueAssociatedToString("ShareWishlist");
+            Pages.MyWishlistPage.GetUrl().Should().Contain(expectedUrl);
             Pages.MyWishlistPage.IsShareWishlistFormDisplayed().Should().BeTrue();
         }
 
-        [TestMethod]
-        public void ShareWishlistFormValidatesEmptyEmail()
+        [DataTestMethod]
+        [DynamicData(nameof(GetInvalidEmails), DynamicDataSourceType.Method)]
+        public void ShareWishlistFormValidatesBadEmail(string email, string expectedMessage)
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ShareWishlist();
-            Pages.MyWishlistPage.FillEmail("");
+            Pages.MyWishlistPage.FillEmail(email);
             Pages.MyWishlistPage.ShareWishlistFinal();
             Pages.MyWishlistPage.IsRequiredValidationAdviceDisplayed().Should().BeTrue();
-            Pages.MyWishlistPage.GetRequiredValidationAdvice().Should().Contain("This is a required field");
+            Pages.MyWishlistPage.GetRequiredValidationAdvice().Should().Contain(expectedMessage);
         }
 
-        [TestMethod]
-        public void UpdateWishlistFromShowroom()
+        [DataTestMethod]
+        [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
+        public void UpdateWishlistFromShowroom(string quantity)
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ClickOnEdit();
-            var quantity = RandomQuantity();
             Pages.MyWishlistPage.EditQuantityFromShowroom(quantity);
             Pages.MyWishlistPage.UpdateWishlistFromShowroom();
             Pages.MyWishlistPage.ItemQuantity().Should().Be(quantity);
