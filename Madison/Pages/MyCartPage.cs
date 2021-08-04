@@ -63,10 +63,6 @@ namespace Madison.Pages
             return _quantityField.GetElements().Select(el => el.GetAttribute("value").ToString()).ToList();
         }
 
-        public string GetValueForInputField(IWebElement inputField)
-        {
-            return inputField.GetAttribute("value").ToString();
-        }
 
         public bool CheckoutFormVisibility()
         {
@@ -90,10 +86,6 @@ namespace Madison.Pages
             return float.Parse(_subtotalPriceLabel.GetText().Trim('$'), CultureInfo.InvariantCulture);
         }
 
-        public void EmptyQuantityField(IWebElement quantityField)
-        {
-            quantityField.Clear();
-        }
 
         public void ClickOnEmptyCartButton()
         {
