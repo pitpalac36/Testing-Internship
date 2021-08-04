@@ -31,7 +31,7 @@ namespace Madison.Tests
 
 
         [TestMethod]
-        public void EmptyCartShowsEmptyCartHeader()
+        public void EmptyCartShowsEmptyCartHeaderTest()
         {
             Browser.GoTo(WebLinks.CartLink);
             string header = Pages.MyCartPage.GetHeaderMessage();
@@ -40,14 +40,14 @@ namespace Madison.Tests
         }
 
         [TestMethod]
-        public void EmptyCartVisibleContinueShopingLink()
+        public void EmptyCartVisibleContinueShopingLinkTest()
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.MyCartPage.ContinueShoppingLinkEmptyIsVisible().Should().BeTrue();
         }
 
         [TestMethod]
-        public void CartTableNotVisibleEmpty()
+        public void CartTableNotVisibleWhenEmptyTest()
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.MyCartPage.ItemTableVisibility().Should().BeFalse();
@@ -56,7 +56,7 @@ namespace Madison.Tests
         }
 
         [TestMethod]
-        public void CartCheckoutFormNotVisibleWhenEmpty()
+        public void CartCheckoutFormNotVisibleWhenEmptyTest()
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.MyCartPage.CheckoutFormVisibility().Should().BeFalse();
@@ -64,7 +64,7 @@ namespace Madison.Tests
         }
         
         [TestMethod]
-        public void ContinueShoppingLinkRedirectsToHomePage()
+        public void ContinueShoppingLinkRedirectsToHomePageTest()
         {
             string homepageUrl = ResourceFileHelper.GetValueAssociatedToString("Homepage");
             Browser.GoTo(WebLinks.CartLink);
@@ -76,7 +76,7 @@ namespace Madison.Tests
         }
 
         [TestMethod]
-        public void CartLabelNotDisplayedWhenCartIsEmpty()
+        public void CartLabelNotDisplayedWhenCartIsEmptyTest()
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.HomePage.IsCartQuantityLabelPresent().Should().BeFalse();
@@ -84,7 +84,7 @@ namespace Madison.Tests
 
         [DataTestMethod]
         [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
-        public void CartLabelDisplayedWithItemsInCart(params string[] itemLink)
+        public void CartLabelDisplayedWithItemsInCartTest(params string[] itemLink)
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Pages.HomePage.IsCartQuantityLabelPresent().Should().BeTrue();
@@ -92,7 +92,7 @@ namespace Madison.Tests
 
         [DataTestMethod]
         [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
-        public void EmptyCartButtonDeletesCartElements(params string[] itemLink)
+        public void EmptyCartButtonDeletesCartElementsTest(params string[] itemLink)
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Pages.MyCartPage.ClickOnEmptyCartButton();
@@ -103,7 +103,7 @@ namespace Madison.Tests
 
         [DataTestMethod]
         [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
-        public void CheckMatchingSubtotals(params string[] itemLink)
+        public void CheckMatchingSubtotalsTest(params string[] itemLink)
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Browser.GoTo(WebLinks.CartLink);

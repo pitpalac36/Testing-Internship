@@ -54,7 +54,7 @@ namespace Madison.Pages
 
         public void ClickUpdateCart()
         {
-            _updateShoppingCart.ActionClick();
+            _updateShoppingCartButton.ActionClick();
         }
 
 
@@ -114,13 +114,13 @@ namespace Madison.Pages
 
         public void UpdateQuantityList(List<string> updateQuantity)
         {
-            IList<IWebElement> quantityInputFields = this.GetQuantityInputFields();
+            IList<IWebElement> quantityInputFields = GetQuantityInputFields();
             for(int i=0;i<quantityInputFields.Count;i++)
             {
                 quantityInputFields[i].Clear();
-                this.InsertQuantity(quantityInputFields[i], updateQuantity[i]);
+                InsertQuantity(quantityInputFields[i], updateQuantity[i]);
             }
-            this.ClickUpdateCart();
+            ClickUpdateCart();
         }
 
 
