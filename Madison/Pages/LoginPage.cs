@@ -16,6 +16,7 @@ namespace Madison.Pages
         private readonly By _createAccountButton = By.CssSelector(".buttons-set a");
         private readonly By _messageRegisterPage = By.CssSelector(".account-create div h1");
         private readonly By _errorListMessage = By.CssSelector(".validation-advice");
+        private readonly By _requiredMessage = By.CssSelector(".content.fieldset p.required");
         #endregion
         public void Login(string username, string password)
         {
@@ -51,9 +52,9 @@ namespace Madison.Pages
             _loginButton.ActionClick();
         }
 
-        public List<string> GetErrorMessagesFromForm()
+        public bool isRequiredMessageDisplayed()
         {
-            return _errorListMessage.GetElements().Select(el => el.Text).ToList();
+            return _requiredMessage.IsElementPresent();
         }
 
     }

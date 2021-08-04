@@ -2,6 +2,7 @@
 using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+
 //[assembly: Parallelize(Workers =4,Scope =ExecutionScope.MethodLevel)]
 namespace Madison.Tests
 {
@@ -25,15 +26,15 @@ namespace Madison.Tests
             Pages.MyAccountPage.GetWelcomeMessage().Should().Be(expectedWelcomeMessage);
         }
 
+        [Ignore]
         [TestMethod]
         public void AlreadyRegisteredMessage()
         {
-           
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.GetAlreadyRegisteredMessage().Should().Be(Messages.Registered); 
         }
 
-        [DoNotParallelize]
+        [Ignore]
         [TestMethod]
         public void ExistingAccountMessage()
         {
@@ -56,7 +57,8 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.ClickLogInBtn();
 
-            Pages.LoginPage.GetErrorMessagesFromForm().Should().OnlyContain(x => x.Equals(Messages.Mandatory_Error));
+            Pages.LoginPage.isRequiredMessageDisplayed().Should().BeTrue();
+            Pages.RegisterPage.GetErrorMessagesFromForm().Should().OnlyContain(x => x.Equals(Messages.Mandatory_Error));
         }
     }
 }
