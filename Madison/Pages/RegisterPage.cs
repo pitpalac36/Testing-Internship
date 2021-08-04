@@ -17,7 +17,7 @@ namespace Madison.Pages
         private readonly By _confirmPasswordInputField = By.CssSelector("#confirmation");
         private readonly By _newsletterButton = By.CssSelector("#is_subscribed");
         private readonly By _registerButton = By.CssSelector(".button[title=Register]");
-        private readonly By _errorList = By.CssSelector(".validation-advice");
+        private readonly By _errorListMessage = By.CssSelector(".validation-advice");
         private readonly By _succesMessage = By.CssSelector(".success-msg li span");
         #endregion
 
@@ -46,7 +46,7 @@ namespace Madison.Pages
 
         public List<string> GetErrorMessagesFromForm()
         {
-            return _errorList.GetElements().Select(el => el.Text).ToList();
+            return _errorListMessage.GetElements().Select(el => el.Text).ToList();
         }
 
         public string GetSuccessMessage()
