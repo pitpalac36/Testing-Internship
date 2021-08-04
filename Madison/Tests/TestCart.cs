@@ -123,7 +123,7 @@ namespace Madison.Tests
 
         [DataTestMethod]
         [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
-        public void UpdateQuantityButtonTest(params string[] itemLink)
+        public void UpdateFunctionalityTest(params string[] itemLink)
         {
             foreach (string link in itemLink)
             {
