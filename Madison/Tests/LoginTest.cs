@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NsTestFrameworkUI.Helpers;
 using System.Collections.Generic;
 
 //[assembly: Parallelize(Workers =4,Scope =ExecutionScope.MethodLevel)]
@@ -58,7 +57,7 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.ClickLogInBtn();
 
-            Pages.LoginPage.isRequiredMessageDisplayed().Should().BeTrue();
+            Pages.LoginPage.IsRequiredMessageDisplayed().Should().BeTrue();
             Pages.RegisterPage.GetErrorMessagesFromForm().Should().OnlyContain(x => x.Equals(Messages.Mandatory_Error));
         }
 
@@ -68,7 +67,7 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.CheckSearch();
 
-            Pages.LoginPage.isSearchResultsMessageDisplayed().Should().BeTrue();
+            Pages.LoginPage.IsSearchResultsMessageDisplayed().Should().BeTrue();
         }
     }
 }

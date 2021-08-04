@@ -52,7 +52,7 @@ namespace Madison.Pages
             _loginButton.ActionClick();
         }
 
-        public bool isRequiredMessageDisplayed()
+        public bool IsRequiredMessageDisplayed()
         {
             return _requiredMessage.IsElementPresent();
         }
@@ -64,7 +64,7 @@ namespace Madison.Pages
             _searchField.ActionSendKeys("shirt");
             _searchField.ActionClick();
         }
-        public bool isSearchResultsMessageDisplayed()
+        public bool IsSearchResultsMessageDisplayed()
         {
             return _searchResultsMessage.IsElementPresent();
         }
