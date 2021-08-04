@@ -30,7 +30,7 @@ namespace Madison.Pages
             return _myWishlistSelector.IsElementPresent();
         }
 
-        public void ClickOMyWishlist()
+        public void ClickOnMyWishlist()
         {
             _myWishlistSelector.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();

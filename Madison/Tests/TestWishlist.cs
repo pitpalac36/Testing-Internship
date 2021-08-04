@@ -58,7 +58,7 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
-            Pages.MyWishlistPage.ClickOMyWishlist();
+            Pages.MyWishlistPage.ClickOnMyWishlist();
             Pages.MyWishlistPage.IsRedirectedToWishlist().Should().BeTrue();
         }
 
@@ -69,7 +69,7 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
-            Pages.MyWishlistPage.ClickOMyWishlist();
+            Pages.MyWishlistPage.ClickOnMyWishlist();
             Pages.MyWishlistPage.ChangeQuantity(quantity);
             Pages.MyWishlistPage.UpdateItem();
             Pages.MyWishlistPage.ItemQuantity().Should().Be(quantity);
@@ -82,7 +82,7 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
-            Pages.MyWishlistPage.ClickOMyWishlist();
+            Pages.MyWishlistPage.ClickOnMyWishlist();
             Pages.MyWishlistPage.InsertComment(comment);
             Pages.MyWishlistPage.UpdateItem();
             Pages.MyWishlistPage.ItemComment().Should().Be(comment);
@@ -95,7 +95,7 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
-            Pages.MyWishlistPage.ClickOMyWishlist();
+            Pages.MyWishlistPage.ClickOnMyWishlist();
             Pages.MyWishlistPage.ChangeQuantity(quantity);
             Pages.MyWishlistPage.UpdateWishlist();
             Pages.MyWishlistPage.ItemQuantity().Should().Be(quantity);
@@ -107,7 +107,7 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
-            Pages.MyWishlistPage.ClickOMyWishlist();
+            Pages.MyWishlistPage.ClickOnMyWishlist();
             Pages.MyWishlistPage.ShareWishlist();
             string expectedUrl = ResourceFileHelper.GetValueAssociatedToString("ShareWishlist");
             Pages.MyWishlistPage.GetUrl().Should().Contain(expectedUrl);
@@ -121,7 +121,7 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
-            Pages.MyWishlistPage.ClickOMyWishlist();
+            Pages.MyWishlistPage.ClickOnMyWishlist();
             Pages.MyWishlistPage.ShareWishlist();
             Pages.MyWishlistPage.FillEmail(email);
             Pages.MyWishlistPage.ShareWishlistFinal();
@@ -136,7 +136,7 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
-            Pages.MyWishlistPage.ClickOMyWishlist();
+            Pages.MyWishlistPage.ClickOnMyWishlist();
             Pages.MyWishlistPage.ClickOnEdit();
             Pages.MyWishlistPage.EditQuantityFromShowroom(quantity);
             Pages.MyWishlistPage.UpdateWishlistFromShowroom();
