@@ -16,6 +16,8 @@ namespace Madison.Pages
         private readonly By _requiredMessage = By.CssSelector(".content.fieldset p.required");
         private readonly By _searchField = By.Id("search");
         private readonly By _searchResultsMessage = By.CssSelector(".page-title h1");
+        private readonly By _invalidMessage = By.CssSelector(".error-msg ul li span");
+        private readonly By _errorMessage = By.CssSelector("#advice-required-entry-email");
         #endregion
 
         public void Login(string username, string password)
@@ -67,6 +69,16 @@ namespace Madison.Pages
         public bool IsSearchResultsMessageDisplayed()
         {
             return _searchResultsMessage.IsElementPresent();
+        }
+        
+        public bool IsInvalidLoginMessageDisplayed()
+        {
+            return _invalidMessage.IsElementPresent();
+        }
+
+        public bool IsErrorMessageDisplayed()
+        {
+            return _errorMessage.IsElementPresent();
         }
     }
 
