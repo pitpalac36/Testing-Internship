@@ -42,6 +42,7 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
+        [DoNotParallelize]
         [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
         public void WishlistItemQuantityUpdatesCorrectly(string quantity)
         {
@@ -54,6 +55,7 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
+        [DoNotParallelize]
         [DynamicData(nameof(GetComment), DynamicDataSourceType.Method)]
         public void WishlistItemCommentUpdatesCorrectly(string comment)
         {
@@ -66,6 +68,7 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
+        [DoNotParallelize]
         [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
         public void WishlistUpdatesCorrectly(string quantity)
         {
@@ -90,6 +93,7 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
+        [DoNotParallelize]
         [DataRow("", "This is a required field")]
         public void ShareWishlistFormValidatesEmptyEmail(string email, string expectedMessage)
         {
@@ -104,6 +108,7 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
+        [DoNotParallelize]
         [DataRow("lorem", "Please enter a valid email addresses")]
         public void ShareWishlistFormValidatesBadEmail(string email, string expectedMessage)
         {
@@ -118,6 +123,7 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
+        [DoNotParallelize]
         [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
         public void UpdateWishlistFromShowroom(string quantity)
         {
