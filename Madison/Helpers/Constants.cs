@@ -25,16 +25,6 @@ namespace Madison.Helpers
             "",
         };
 
-        public static List<string> AccountMenu = new List<string>
-        {
-            "My Account",
-            "My Wishlist",
-            "My Cart",
-            "Checkout",
-            "Register",
-            "Log In",
-        };
-
         public static List<string> NavigateBar = new List<string>
         {
             "Women",
