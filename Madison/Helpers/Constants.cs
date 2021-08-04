@@ -8,7 +8,6 @@ namespace Madison.Helpers
 {
     class Constants
     {
-
         public static List<string> Usernames = new List<string>
         {
             "ana.ana@outlook.com",
@@ -34,6 +33,24 @@ namespace Madison.Helpers
             "Checkout",
             "Register",
             "Log In",
+        };
+
+        public static List<string> NavigateBar = new List<string>
+        {
+            "Women",
+            "MEN",
+            "Accesories",
+            "Home & Decor",
+            "Sale",
+            "VIP"
+        };
+
+        public static List<string> AllMenSection = new List<string>
+        {
+            "NEW ARRIVALS",
+            "SHIRTS",
+            "TEES, KNITS AND POLOS",
+            "PANTS & DENIM"
         };
     }
 }
