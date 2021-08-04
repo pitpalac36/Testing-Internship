@@ -55,7 +55,7 @@ namespace Madison.Tests
         [TestMethod]
         public void ClickOnMyWishlistButtonRedirects()
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
@@ -66,7 +66,7 @@ namespace Madison.Tests
         [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
         public void WishlistItemQuantityUpdatesCorrectly(string quantity)
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
@@ -79,7 +79,7 @@ namespace Madison.Tests
         [DynamicData(nameof(GetComment), DynamicDataSourceType.Method)]
         public void WishlistItemCommentUpdatesCorrectly(string comment)
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
@@ -92,7 +92,7 @@ namespace Madison.Tests
         [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
         public void WishlistUpdatesCorrectly(string quantity)
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
@@ -104,7 +104,7 @@ namespace Madison.Tests
         [TestMethod]
         public void ClickOnShareWishlistButtonRedirects()
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
@@ -118,7 +118,7 @@ namespace Madison.Tests
         [DynamicData(nameof(GetInvalidEmails), DynamicDataSourceType.Method)]
         public void ShareWishlistFormValidatesBadEmail(string email, string expectedMessage)
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
@@ -133,7 +133,7 @@ namespace Madison.Tests
         [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
         public void UpdateWishlistFromShowroom(string quantity)
         {
-            Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();

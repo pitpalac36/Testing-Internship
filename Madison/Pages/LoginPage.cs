@@ -18,7 +18,8 @@ namespace Madison.Pages
         private readonly By _loginButton = By.Id("send2");
         private readonly By _alreadyRegisteredText = By.CssSelector("div.content.fieldset >h2");
         private readonly By _existingAccountMessage = By.CssSelector(".content.fieldset >h2+p");
-       
+        private readonly By _createAccountButton = By.CssSelector(".buttons-set a");
+        private readonly By _messageToCheckRegisterPage = By.CssSelector(".account-create div h1");
         #endregion
 
        /* public void FillCredentials(string username, string password)
@@ -34,22 +35,28 @@ namespace Madison.Pages
             _emailTextField.ActionSendKeys(username);
             _passwordTextField.ClearField();
             _passwordTextField.ActionSendKeys(password);
-            //FillCredentials(ResourceFileHelper.Usernames[0], ResourceFileHelper.Passwords[0]);
             _loginButton.ActionClick();
         }
 
-        public string AlreadyRegisteredTextDisplayed()
+        public string GetAlreadyRegisteredMessage()
         {
             return _alreadyRegisteredText.GetText();
         }
 
-        public string CheckExistingAccountMessage()
+        public string GetExistingAccountMessage()
         {
             return _existingAccountMessage.GetText();
         }
 
-    
+        public void ClickCreateAccount()
+        {
+            _createAccountButton.ActionClick();
+        }
 
+        public string GetCreateAccountMessage()
+        {
+            return _messageToCheckRegisterPage.GetText();
+        }
     }
 
 }
