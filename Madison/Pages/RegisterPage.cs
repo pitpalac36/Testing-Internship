@@ -32,12 +32,6 @@ namespace Madison.Pages
 
         public void FillRegistrationForm()
         {
-            _firstNameInputField.ClearField();
-            _middleNameInputField.ClearField();
-            _lastNameInputField.ClearField();
-            _emailInputField.ClearField();
-            _passwordInputField.ClearField();
-            _confirmPasswordInputField.ClearField();
 
             _firstNameInputField.ActionSendKeys(UserDetails.FirstName);
             _middleNameInputField.ActionSendKeys(UserDetails.MiddleName);
