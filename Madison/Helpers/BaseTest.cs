@@ -20,7 +20,7 @@ namespace Madison.Helpers
             {
                 IsHeadless = false
             });
-            Browser.GoTo("http://qa2.dev.evozon.com/");
+            Browser.GoTo(WebLinks.Homepage);
         }
 
         [TestCleanup]

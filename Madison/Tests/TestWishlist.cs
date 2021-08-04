@@ -13,7 +13,7 @@ namespace Madison.Tests
         {
             for (int i = 0; i < 3; i++)
             {
-                yield return new object[] { Pages.MyWishlistPage.RandomQuantity() };
+                yield return new object[] { Faker.RandomNumber.Next(1, 100).ToString() };
             }
         }
 
@@ -21,14 +21,8 @@ namespace Madison.Tests
         {
             for (int i = 0; i < 3; i++)
             {
-                yield return new object[] { Pages.MyWishlistPage.RandomComment() };
+                yield return new object[] { Faker.Lorem.Sentence() };
             }
-        }
-
-        private static IEnumerable<object[]> GetInvalidEmails()
-        {
-            yield return new object[] { "", "This is a required field" };
-            yield return new object[] { Pages.MyWishlistPage.RandomWord(), "Please enter a valid email addresses" };
         }
 
         [TestMethod]
@@ -96,7 +90,21 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetInvalidEmails), DynamicDataSourceType.Method)]
+        [DataRow("", "This is a required field")]
+        public void ShareWishlistFormValidatesEmptyEmail(string email, string expectedMessage)
+        {
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
+            Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
+            Pages.NavigationPage.GoToWishlist();
+            Pages.MyWishlistPage.ShareWishlist();
+            Pages.MyWishlistPage.FillEmail(email);
+            Pages.MyWishlistPage.ShareWishlistFinal();
+            Pages.MyWishlistPage.IsRequiredValidationAdviceDisplayed().Should().BeTrue();
+            Pages.MyWishlistPage.GetRequiredValidationAdvice().Should().Contain(expectedMessage);
+        }
+
+        [DataTestMethod]
+        [DataRow("lorem", "Please enter a valid email addresses")]
         public void ShareWishlistFormValidatesBadEmail(string email, string expectedMessage)
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());

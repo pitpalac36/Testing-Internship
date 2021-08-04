@@ -133,23 +133,6 @@ namespace Madison.Pages
         public bool IsErrorMessageDisplayed()
         {
             return _errorMessage.IsElementPresent();
-        }
-
-        public string RandomQuantity()
-        {
-            return Faker.RandomNumber.Next(1, 100).ToString();
-        }
-
-        public string RandomComment()
-        {
-            return Faker.Lorem.Sentence();
-        }
-
-        public string RandomWord()
-        {
-            return Faker.Lorem.GetFirstWord();
-        }
-
-        
+        }      
     }
 }

@@ -1,5 +1,4 @@
-﻿using Madison.Helpers;
-using NsTestFrameworkUI.Helpers;
+﻿using NsTestFrameworkUI.Helpers;
 
 namespace Madison.Pages
 {
@@ -7,7 +6,7 @@ namespace Madison.Pages
     {
         public void GoToWishlist()
         {
-            Browser.GoTo(ResourceFileHelper.GetValueAssociatedToString("My Wishlist Page"));
+            Browser.GoTo(WebLinks.My_Wishlist_Page);
         }
 
     }
