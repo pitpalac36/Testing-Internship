@@ -16,17 +16,10 @@ namespace Madison.Tests
     public class TestCart : BaseTest
     {
 
-        public static IEnumerable<object[]> GetData()
+        public static IEnumerable<object[]> GetArrayOfItemsLinks()
         {
             yield return new object[] { WebLinks.Earbuds, WebLinks.JACKIE_O_ROUND_SUNGLASSES,WebLinks.Aviator_Sunglasses };
             yield return new object[] { WebLinks.Earbuds };
-        }
-
-        public static IEnumerable<object[]> GetOneLink()
-        {
-            yield return new object[] { WebLinks.Earbuds };
-            yield return new object[] { WebLinks.Aviator_Sunglasses };
-            yield return new object[] { WebLinks.JACKIE_O_ROUND_SUNGLASSES };
         }
 
 
@@ -34,9 +27,7 @@ namespace Madison.Tests
         public void EmptyCartShowsEmptyCartHeaderTest()
         {
             Browser.GoTo(WebLinks.CartLink);
-            string header = Pages.MyCartPage.GetHeaderMessage();
-            string expected_message = ResourceFileHelper.GetValueAssociatedToString("EmptyCartMessage");
-            header.Should().Be(expected_message);
+            Pages.MyCartPage.GetHeaderMessage().Should().Be(Messages.Empty_Cart_Message);
         }
 
         [TestMethod]
@@ -51,8 +42,6 @@ namespace Madison.Tests
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.MyCartPage.ItemTableVisibility().Should().BeFalse();
-
-            
         }
 
         [TestMethod]
@@ -60,19 +49,17 @@ namespace Madison.Tests
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.MyCartPage.CheckoutFormVisibility().Should().BeFalse();
-            
         }
         
         [TestMethod]
         public void ContinueShoppingLinkRedirectsToHomePageTest()
         {
-            string homepageUrl = ResourceFileHelper.GetValueAssociatedToString("Homepage");
             Browser.GoTo(WebLinks.CartLink);
             string cart_url = Browser.WebDriver.Url;
             Pages.MyCartPage.ClickOnContinueShoppingLinkEmptyCart();
             string redirected_url = Browser.WebDriver.Url;
             redirected_url.Should().NotBe(cart_url);
-            redirected_url.Should().Be(homepageUrl);
+            redirected_url.Should().Be(WebLinks.Homepage);
         }
 
         [TestMethod]
@@ -83,7 +70,7 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
         public void CartLabelDisplayedWithItemsInCartTest(params string[] itemLink)
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
@@ -91,29 +78,25 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
         public void EmptyCartButtonDeletesCartElementsTest(params string[] itemLink)
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Pages.MyCartPage.ClickOnEmptyCartButton();
-            string header = Pages.MyCartPage.GetHeaderMessage();
-            string expected_message = ResourceFileHelper.GetValueAssociatedToString("EmptyCartMessage");
-            header.Should().Be(expected_message);
+            Pages.MyCartPage.GetHeaderMessage().Should().Be(Messages.Empty_Cart_Message);
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
         public void CheckMatchingSubtotalsTest(params string[] itemLink)
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Browser.GoTo(WebLinks.CartLink);
-            float subtotalSum = Pages.MyCartPage.GetSubtotalItemsPrice();
-            float subtotal = Pages.MyCartPage.GetSubtotalLabelPrice();
-            subtotal.Should().Be(subtotalSum);
+            Pages.MyCartPage.GetSubtotalItemsPrice().Should().Be(Pages.MyCartPage.GetSubtotalLabelPrice());
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
         public void UpdateFunctionalityTest(params string[] itemLink)
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
@@ -124,8 +107,6 @@ namespace Madison.Tests
             List<string> updatedQuantity = Pages.MyCartPage.GetQuantity();
             updatedQuantity.Should().BeEquivalentTo(randomQuantity);
             updatedQuantity.Should().NotBeEquivalentTo(initialQuantity);
-
         }
-
     }
 }
