@@ -43,7 +43,6 @@ namespace Madison.Pages
             _registerButton.ActionClick();
         }
 
-
         public List<string> GetErrorMessagesFromForm()
         {
             return _errorListMessage.GetElements().Select(el => el.Text).ToList();

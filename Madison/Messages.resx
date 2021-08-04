@@ -120,6 +120,9 @@
   <data name="Create Account" xml:space="preserve">
     <value>CREATE AN ACCOUNT</value>
   </data>
+  <data name="EmptyCartMessage" xml:space="preserve">
+    <value>SHOPPING CART IS EMPTY</value>
+  </data>
   <data name="Existing Account" xml:space="preserve">
     <value>If you have an account with us, please log in.</value>
   </data>
