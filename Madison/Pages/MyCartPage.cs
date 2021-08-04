@@ -19,11 +19,8 @@ namespace Madison.Pages
         private readonly By _shoppingCartHeader = By.CssSelector("h1");
         //private readonly By _updateShoppingCart = By.CssSelector(".btn-update[title=Update Shopping Cart]:not([style=visibility: hidden;])");
         private readonly By _updateShoppingCart = By.CssSelector(".button2.btn-update:nth-child(3)");
-        private readonly By _continueShopping = By.CssSelector(".button2.btn-continue");
         private readonly By _emptyShoppingCartButton = By.CssSelector("#empty_cart_button");
-        private readonly By _couponCodeInputArea = By.CssSelector("#coupon_code");
         private readonly By _shoppingCartTable = By.CssSelector("#shopping-cart-table");
-        private readonly By _errorMessage = By.CssSelector(".error-msg");
         private readonly By _continueShoppingLinkEmptyCart = By.CssSelector(".cart-empty > p > a");
         private readonly By _checkoutForm = By.CssSelector(".cart-forms");
         private readonly By _productPriceList = By.CssSelector(".product-cart-total");

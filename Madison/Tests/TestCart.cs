@@ -86,10 +86,7 @@ namespace Madison.Tests
         [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
         public void CartLabelDisplayedWithItemsInCart(params string[] itemLink)
         {
-            foreach(string link in itemLink)
-            {
-               Pages.ProductDetailPage.AddItemToCart(link);
-            }
+            Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Pages.HomePage.IsCartQuantityLabelPresent().Should().BeTrue();
         }
 
@@ -97,10 +94,7 @@ namespace Madison.Tests
         [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
         public void EmptyCartButtonDeletesCartElements(params string[] itemLink)
         {
-            foreach (string link in itemLink)
-            {
-                Pages.ProductDetailPage.AddItemToCart(link);
-            }
+            Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Pages.MyCartPage.ClickOnEmptyCartButton();
             string header = Pages.MyCartPage.GetHeaderMessage();
             string expected_message = ResourceFileHelper.GetValueAssociatedToString("EmptyCartMessage");
@@ -111,10 +105,7 @@ namespace Madison.Tests
         [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
         public void CheckMatchingSubtotals(params string[] itemLink)
         {
-            foreach (string link in itemLink)
-            {
-                Pages.ProductDetailPage.AddItemToCart(link);
-            }
+            Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Browser.GoTo(WebLinks.CartLink);
             float subtotalSum = Pages.MyCartPage.GetSubtotalItemsPrice();
             float subtotal = Pages.MyCartPage.GetSubtotalLabelPrice();
@@ -125,10 +116,7 @@ namespace Madison.Tests
         [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
         public void UpdateFunctionalityTest(params string[] itemLink)
         {
-            foreach (string link in itemLink)
-            {
-                Pages.ProductDetailPage.AddItemToCart(link);
-            }
+            Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Browser.GoTo(WebLinks.CartLink);
             List<string> initialQuantity = Pages.MyCartPage.GetQuantity();
             List<string> randomQuantity = GenerateData.GenerateNumbersListBasedOnCount(initialQuantity.Count).Select(s => s.ToString()).ToList();
