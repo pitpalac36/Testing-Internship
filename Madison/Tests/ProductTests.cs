@@ -3,8 +3,9 @@ using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using NsTestFrameworkUI.Helpers;
+using System.Threading;
 
-//[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
+[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Tests
 {
     [TestClass]
@@ -29,7 +30,8 @@ namespace Madison.Tests
         [TestCategory("Product")]
         public void VerifyIfHomeDecorMainImgIsDisplayed()
         {
-            Pages.HomePage.GoToHomeDecor();
+            //Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.CheckIfHomeMainImageIsVisible().Should().BeTrue();
         }
 
@@ -37,8 +39,9 @@ namespace Madison.Tests
         [TestCategory("Product")]
         public void CheckIfElectronicsPageTitleIsDisplayed()
         {
-            Pages.HomePage.GoToHomeDecor();
-            Pages.HomePage.GoFromHomePageToElectronics();
+            //Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.SelectCategory("Home & Decor");
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.HomePage.CheckIfPageTitleIsVisible().Should().BeTrue();
         }
 
@@ -47,8 +50,9 @@ namespace Madison.Tests
         [DataRow(12)]
         public void CheckIfShowProductsDisplaysACorrectNumberOfProducts(int count)
         {
-            Pages.HomePage.GoToHomeDecor();
-            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.HomePage.SelectCategory("Home & Decor");
+            //Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.GetFirst12ProductsFromElectronics().Count.Should().BeLessOrEqualTo(count);
         }
 
@@ -57,8 +61,9 @@ namespace Madison.Tests
         [DataRow("$20.00", "$400.00")]
         public void VerifyCheapestProductPrice(string firstPrice, string secondPrice)
         {
-            Pages.HomePage.GoToHomeDecor();
-            Pages.HomePage.GoFromHomePageToElectronics();
+            //Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.SelectCategory("Home & Decor");
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetAscendingDirection();
             Pages.ProductsPage.GetFirstProductPrice().Should().Be(firstPrice);
@@ -69,8 +74,9 @@ namespace Madison.Tests
         [TestCategory("Product")]
         public void CheckFirstItemPriceConsistency()
         {
-            Pages.HomePage.GoToHomeDecor();
-            Pages.HomePage.GoFromHomePageToElectronics();
+            //Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.SelectCategory("Home & Decor");
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetAscendingDirection();
             var expectedPrice = Pages.ProductsPage.GetFirstProductPrice();
@@ -84,8 +90,9 @@ namespace Madison.Tests
         [DataRow("2")]
         public void AddNegativeQuantityForProduct(string qty)
         {
-            Pages.HomePage.GoToHomeDecor();
-            Pages.HomePage.GoFromHomePageToElectronics();
+            //Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.SelectCategory("Home & Decor");
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetAscendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
@@ -98,8 +105,9 @@ namespace Madison.Tests
         [TestCategory("Product")]
         public void CheckIfReviewButtonIsVisible()
         {
-            Pages.HomePage.GoToHomeDecor();
-            Pages.HomePage.GoFromHomePageToElectronics();
+            //Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.SelectCategory("Home & Decor");
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetDescendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
@@ -116,8 +124,9 @@ namespace Madison.Tests
         [DynamicData(nameof(GetGeneratedReviews), DynamicDataSourceType.Method)]
         public void CheckSubmitReviewForm(string review, string summary, string nickname)
         {
-            Pages.HomePage.GoToHomeDecor();
-            Pages.HomePage.GoFromHomePageToElectronics();
+            //Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.SelectCategory("Home & Decor");
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetDescendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
@@ -130,15 +139,18 @@ namespace Madison.Tests
 
         }
 
-        [Ignore]
+        [TestMethod]
         [TestCategory("Product")]
-        public void VerifyRecentlyViewedProducts() {
-            Pages.HomePage.GoToHomeDecor();
-            Pages.HomePage.GoFromHomePageToElectronics();
+        public void VerifyRecentlyViewedProducts()
+        {
+            //Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.SelectCategory("Home & Decor");
+            Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetDescendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
             Browser.SwitchToLastTab();
+            Thread.Sleep(5000);
             // TODO
         }
 
@@ -155,8 +167,8 @@ namespace Madison.Tests
             //Pages.MyCartPage.ClickOnEmptyCartButton();
             
             //2. Access Men - New Arrivals section
-            Pages.HomePage.SelectMenCategory(Constants.NavigateBar[1]);
-            Pages.HomePage.SelectMenSubcategory(Constants.AllMenSection[0]);
+            Pages.HomePage.SelectCategory(Constants.NavigateBar[1]);
+            Pages.HomePage.SelectMenSubcategory(Constants.AllMenSections[0]);
 
             //3. Open product details page(of first item)
             Pages.ProductsPage.ClickOnViewDetails();

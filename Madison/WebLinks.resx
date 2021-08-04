@@ -126,9 +126,6 @@
   <data name="Earbuds" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/home-decor/electronics/madison-earbuds.html</value>
   </data>
-  <data name="EmptyCartMessage" xml:space="preserve">
-    <value>SHOPPING CART IS EMPTY</value>
-  </data>
   <data name="Homepage" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/</value>
   </data>

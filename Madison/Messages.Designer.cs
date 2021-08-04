@@ -72,9 +72,9 @@ namespace Madison {
         /// <summary>
         ///   Looks up a localized string similar to SHOPPING CART IS EMPTY.
         /// </summary>
-        internal static string EmptyCartMessage {
+        internal static string Empty_Cart_Message {
             get {
-                return ResourceManager.GetString("EmptyCartMessage", resourceCulture);
+                return ResourceManager.GetString("Empty Cart Message", resourceCulture);
             }
         }
         

@@ -109,7 +109,7 @@ namespace Madison.Tests
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.ClickOMyWishlist();
             Pages.MyWishlistPage.ShareWishlist();
-            string expectedUrl = ResourceFileHelper.GetValueAssociatedToString("ShareWishlist");
+            string expectedUrl = WebLinks.ShareWishlist;
             Pages.MyWishlistPage.GetUrl().Should().Contain(expectedUrl);
             Pages.MyWishlistPage.IsShareWishlistFormDisplayed().Should().BeTrue();
         }

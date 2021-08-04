@@ -16,119 +16,90 @@ namespace Madison.Tests
     public class TestCart : BaseTest
     {
 
-        public static IEnumerable<object[]> GetData()
+        public static IEnumerable<object[]> GetArrayOfItemsLinks()
         {
             yield return new object[] { WebLinks.Earbuds, WebLinks.JACKIE_O_ROUND_SUNGLASSES,WebLinks.Aviator_Sunglasses };
             yield return new object[] { WebLinks.Earbuds };
         }
 
-        public static IEnumerable<object[]> GetOneLink()
-        {
-            yield return new object[] { WebLinks.Earbuds };
-            yield return new object[] { WebLinks.Aviator_Sunglasses };
-            yield return new object[] { WebLinks.JACKIE_O_ROUND_SUNGLASSES };
-        }
-
 
         [TestMethod]
-        public void EmptyCartShowsEmptyCartHeader()
+        public void EmptyCartShowsEmptyCartHeaderTest()
         {
             Browser.GoTo(WebLinks.CartLink);
-            string header = Pages.MyCartPage.GetHeaderMessage();
-            string expected_message = ResourceFileHelper.GetValueAssociatedToString("EmptyCartMessage");
-            header.Should().Be(expected_message);
+            Pages.MyCartPage.GetHeaderMessage().Should().Be(Messages.Empty_Cart_Message);
         }
 
         [TestMethod]
-        public void EmptyCartVisibleContinueShopingLink()
+        public void EmptyCartVisibleContinueShopingLinkTest()
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.MyCartPage.ContinueShoppingLinkEmptyIsVisible().Should().BeTrue();
         }
 
         [TestMethod]
-        public void CartTableNotVisibleEmpty()
+        public void CartTableNotVisibleWhenEmptyTest()
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.MyCartPage.ItemTableVisibility().Should().BeFalse();
-
-            
         }
 
         [TestMethod]
-        public void CartCheckoutFormNotVisibleWhenEmpty()
+        public void CartCheckoutFormNotVisibleWhenEmptyTest()
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.MyCartPage.CheckoutFormVisibility().Should().BeFalse();
-            
         }
         
         [TestMethod]
-        public void ContinueShoppingLinkRedirectsToHomePage()
+        public void ContinueShoppingLinkRedirectsToHomePageTest()
         {
-            string homepageUrl = ResourceFileHelper.GetValueAssociatedToString("Homepage");
             Browser.GoTo(WebLinks.CartLink);
             string cart_url = Browser.WebDriver.Url;
             Pages.MyCartPage.ClickOnContinueShoppingLinkEmptyCart();
             string redirected_url = Browser.WebDriver.Url;
             redirected_url.Should().NotBe(cart_url);
-            redirected_url.Should().Be(homepageUrl);
+            redirected_url.Should().Be(WebLinks.Homepage);
         }
 
         [TestMethod]
-        public void CartLabelNotDisplayedWhenCartIsEmpty()
+        public void CartLabelNotDisplayedWhenCartIsEmptyTest()
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.HomePage.IsCartQuantityLabelPresent().Should().BeFalse();
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
-        public void CartLabelDisplayedWithItemsInCart(params string[] itemLink)
+        [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
+        public void CartLabelDisplayedWithItemsInCartTest(params string[] itemLink)
         {
-            foreach(string link in itemLink)
-            {
-               Pages.ProductDetailPage.AddItemToCart(link);
-            }
+            Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Pages.HomePage.IsCartQuantityLabelPresent().Should().BeTrue();
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
-        public void EmptyCartButtonDeletesCartElements(params string[] itemLink)
+        [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
+        public void EmptyCartButtonDeletesCartElementsTest(params string[] itemLink)
         {
-            foreach (string link in itemLink)
-            {
-                Pages.ProductDetailPage.AddItemToCart(link);
-            }
+            Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Pages.MyCartPage.ClickOnEmptyCartButton();
-            string header = Pages.MyCartPage.GetHeaderMessage();
-            string expected_message = ResourceFileHelper.GetValueAssociatedToString("EmptyCartMessage");
-            header.Should().Be(expected_message);
+            Pages.MyCartPage.GetHeaderMessage().Should().Be(Messages.Empty_Cart_Message);
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
-        public void CheckMatchingSubtotals(params string[] itemLink)
+        [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
+        public void CheckMatchingSubtotalsTest(params string[] itemLink)
         {
-            foreach (string link in itemLink)
-            {
-                Pages.ProductDetailPage.AddItemToCart(link);
-            }
+            Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Browser.GoTo(WebLinks.CartLink);
-            float subtotalSum = Pages.MyCartPage.GetSubtotalItemsPrice();
-            float subtotal = Pages.MyCartPage.GetSubtotalLabelPrice();
-            subtotal.Should().Be(subtotalSum);
+            Pages.MyCartPage.GetSubtotalItemsPrice().Should().Be(Pages.MyCartPage.GetSubtotalLabelPrice());
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
         public void UpdateFunctionalityTest(params string[] itemLink)
         {
-            foreach (string link in itemLink)
-            {
-                Pages.ProductDetailPage.AddItemToCart(link);
-            }
+            Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Browser.GoTo(WebLinks.CartLink);
             List<string> initialQuantity = Pages.MyCartPage.GetQuantity();
             List<string> randomQuantity = GenerateData.GenerateNumbersListBasedOnCount(initialQuantity.Count).Select(s => s.ToString()).ToList();
@@ -136,8 +107,6 @@ namespace Madison.Tests
             List<string> updatedQuantity = Pages.MyCartPage.GetQuantity();
             updatedQuantity.Should().BeEquivalentTo(randomQuantity);
             updatedQuantity.Should().NotBeEquivalentTo(initialQuantity);
-
         }
-
     }
 }
