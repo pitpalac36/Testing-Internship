@@ -21,17 +21,6 @@ namespace Madison.Helpers
     }
      public static class ResourceFileHelper
     {
-        private static ResourceManager rm;
-
-        static ResourceFileHelper()
-        {
-            rm = new ResourceManager("Madison.WebLinks", Assembly.GetExecutingAssembly());
-        }
-        public static string GetValueAssociatedToString(string search)
-        {
-            return rm.GetString(search);
-        }
-
         public static string GetDescription(this Menu menu)
         {
             var fieldInfo = menu.GetType().GetField(menu.ToString());
