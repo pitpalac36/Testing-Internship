@@ -61,11 +61,20 @@ namespace Madison {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE AN ACCOUNT.
+        /// </summary>
+        internal static string Create_Account {
+            get {
+                return ResourceManager.GetString("Create Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If you have an account with us, please log in..
         /// </summary>
-        internal static string Already_Existing_Account {
+        internal static string Existing_Account {
             get {
-                return ResourceManager.GetString("Already Existing Account", resourceCulture);
+                return ResourceManager.GetString("Existing Account", resourceCulture);
             }
         }
         
@@ -75,6 +84,15 @@ namespace Madison {
         internal static string Mandatory_Error {
             get {
                 return ResourceManager.GetString("Mandatory Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALREADY REGISTERED?.
+        /// </summary>
+        internal static string Registered {
+            get {
+                return ResourceManager.GetString("Registered", resourceCulture);
             }
         }
         

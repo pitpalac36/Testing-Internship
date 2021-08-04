@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Already Existing Account" xml:space="preserve">
+  <data name="Create Account" xml:space="preserve">
+    <value>CREATE AN ACCOUNT</value>
+  </data>
+  <data name="Existing Account" xml:space="preserve">
     <value>If you have an account with us, please log in.</value>
   </data>
   <data name="Mandatory Error" xml:space="preserve">
     <value>This is a required field.</value>
+  </data>
+  <data name="Registered" xml:space="preserve">
+    <value>ALREADY REGISTERED?</value>
   </data>
   <data name="Success Login" xml:space="preserve">
     <value>Thank you for registering with Madison Island.</value>
