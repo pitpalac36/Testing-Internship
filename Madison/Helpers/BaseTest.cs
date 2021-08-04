@@ -1,13 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NsTestFrameworkUI.Helpers;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.Extensions;
-using OpenQA.Selenium.Support.UI;
-using System;
 using DriverOptions = NsTestFrameworkUI.Helpers.DriverOptions;
 
-//[assembly: Parallelize(Workers = 8, Scope = ExecutionScope.MethodLevel)]
+[assembly: Parallelize(Workers = 8, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Helpers
 {
     public class BaseTest
@@ -18,7 +13,7 @@ namespace Madison.Helpers
         {
             Browser.InitializeDriver(new DriverOptions
             {
-                IsHeadless = false
+                IsHeadless = true
             });
             Browser.GoTo("http://qa2.dev.evozon.com/");
         }

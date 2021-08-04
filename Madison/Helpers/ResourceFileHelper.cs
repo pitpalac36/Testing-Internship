@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Madison.Helpers
 {
@@ -19,9 +12,9 @@ namespace Madison.Helpers
         [Description("Log In")] Login,
 
     }
-     public static class ResourceFileHelper
+    public static class ResourceFileHelper
     {
-        public static string GetDescription(this Menu menu)
+        public static string GetDescription (this Menu menu )
         {
             var fieldInfo = menu.GetType().GetField(menu.ToString());
             if (fieldInfo == null) return string.Empty;

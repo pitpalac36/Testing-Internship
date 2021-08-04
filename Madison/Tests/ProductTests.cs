@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using NsTestFrameworkUI.Helpers;
 using System.Threading;
 
-[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
+//[assembly: Parallelize(Workers = 6, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Tests
 {
     [TestClass]
