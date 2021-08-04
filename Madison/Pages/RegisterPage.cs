@@ -1,11 +1,7 @@
 ﻿using OpenQA.Selenium;
 using NsTestFrameworkUI.Pages;
-using NsTestFrameworkUI.Helpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Madison.Helpers;
 
 namespace Madison.Pages
@@ -21,12 +17,7 @@ namespace Madison.Pages
         private readonly By _confirmPasswordInputField = By.CssSelector("#confirmation");
         private readonly By _newsletterButton = By.CssSelector("#is_subscribed");
         private readonly By _registerButton = By.CssSelector(".button[title=Register]");
-/*        private readonly By _errorMandatoryFirstName = By.CssSelector("#advice-required-entry-firstname");
-        private readonly By _errorMandatoryLastName = By.CssSelector("#advice-required-entry-lastname");
-        private readonly By _errorMandatoryEmail = By.CssSelector("#advice-required-entry-email_address");
-        private readonly By _errorMandatoryPassword = By.CssSelector("#advice-required-entry-password");
-        private readonly By _errorMandatoryConfirmationPassword = By.CssSelector("#advice-required-entry-confirmation");*/
-        private readonly By _errorList = By.CssSelector(".validation-advice");
+        private readonly By _errorListMessage = By.CssSelector(".validation-advice");
         private readonly By _succesMessage = By.CssSelector(".success-msg li span");
         #endregion
 
@@ -52,10 +43,9 @@ namespace Madison.Pages
             _registerButton.ActionClick();
         }
 
-
         public List<string> GetErrorMessagesFromForm()
         {
-            return _errorList.GetElements().Select(el => el.Text).ToList();
+            return _errorListMessage.GetElements().Select(el => el.Text).ToList();
         }
 
         public string GetSuccessMessage()

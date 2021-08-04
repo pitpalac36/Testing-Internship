@@ -1,23 +1,18 @@
 ﻿using Madison.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Madison.Tests
 {
     [TestClass]
-    public class TestRegister:BaseTest 
+    public class RegisterTest:BaseTest 
     {
         
         [TestMethod]
         //[DynamicData(nameof(GetAccount), DynamicDataSourceType.Method)]
         public void Registration()
         {
-            UserDetails userDetails = new UserDetails();
+            UserDetails userDetails = new ();
             Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[4]);
             Pages.RegisterPage.ClickRegisterButton();
 

@@ -131,5 +131,14 @@ namespace Madison {
                 return ResourceManager.GetString("ShareWishlist", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://qa2.dev.evozon.com/catalogsearch/result/?q=shirt.
+        /// </summary>
+        internal static string SHIRT {
+            get {
+                return ResourceManager.GetString("SHIRT", resourceCulture);
+            }
+        }
     }
 }
