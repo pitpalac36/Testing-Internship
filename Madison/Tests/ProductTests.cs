@@ -18,140 +18,129 @@ namespace Madison.Tests
     {
         [TestMethod]
         [TestCategory("Product")]
-        public void verifyIfColumnsAreDisplayed()
+        public void VerifyIfColumnsAreDisplayed()
         {
-            var checkVisibility = Pages.HomePage.checkIfProductSectionsIsVisible();
-            checkVisibility.Should().BeTrue();
+            Pages.HomePage.CheckIfProductSectionsIsVisible().Should().BeTrue();
         }
 
         [DataRow(6)]
         [DataTestMethod]
         [TestCategory("Product")]          
                 
-        public void verifyHomeDecorHeaderCount(int count)
+        public void VerifyHomeDecorHeaderCount(int count)
         {
-            var headerCount = Pages.HomePage.getSectionsList();
-            headerCount.Count.Should().Be(count);
+            Pages.HomePage.GetSectionsList().Count.Should().Be(count); ;
         }
 
         [DataTestMethod]
         [TestCategory("Product")]
-        public void verifyIfHomeDecorMainImgIsDisplayed()
+        public void VerifyIfHomeDecorMainImgIsDisplayed()
         {
-            Pages.HomePage.goToHomeDecor();
-            var checkVisibility = Pages.HomePage.checkIfHomeMainImageIsVisible();
-            checkVisibility.Should().BeTrue();
+            Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.CheckIfHomeMainImageIsVisible().Should().BeTrue(); ;
         }
 
         [DataTestMethod]
         [TestCategory("Product")]
-        public void checkIfElectronicsPageTitleIsDisplayed()
+        public void CheckIfElectronicsPageTitleIsDisplayed()
         {
-            Pages.HomePage.goToHomeDecor();
-            Pages.HomePage.goFromHomePageToElectronics();
-            var checkVisibility = Pages.HomePage.checkIfPageTitleIsVisible();
-            checkVisibility.Should().BeTrue();
+            Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.HomePage.CheckIfPageTitleIsVisible().Should().BeTrue(); ;
         }
 
         [DataRow(12)]
         [DataTestMethod]
         [TestCategory("Product")]
-        public void checkIfShowProductsDisplaysACorrectNumberOfProducts(int count)
+        public void CheckIfShowProductsDisplaysACorrectNumberOfProducts(int count)
         {
-            Pages.HomePage.goToHomeDecor();
-            Pages.HomePage.goFromHomePageToElectronics();
-            var products = Pages.ProductsPage.getFirst12ProductsFromElectronics();
-            products.Count.Should().BeLessOrEqualTo(count);
+            Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.ProductsPage.GetFirst12ProductsFromElectronics().Count.Should().BeLessOrEqualTo(count);
         }
 
         [DataRow("$20.00", "$400.00")]
         [TestMethod]
         [TestCategory("Product")]
-        public void verifyCheapestProductPrice(string firstPrice, string secondPrice)
+        public void VerifyCheapestProductPrice(string firstPrice, string secondPrice)
         {
-            Pages.HomePage.goToHomeDecor();
-            Pages.HomePage.goFromHomePageToElectronics();
-            Pages.ProductsPage.selectSortByPrice();
-            Pages.ProductsPage.setAscendingDirection();
-            var cheapItem = Pages.ProductsPage.getFirstProductPrice();
-            var expensiveItem = Pages.ProductsPage.getLastProductPrice();
-            cheapItem.Should().Be(firstPrice);
-            expensiveItem.Should().Be(secondPrice);
+            Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.ProductsPage.SelectSortByPrice();
+            Pages.ProductsPage.SetAscendingDirection();
+            Pages.ProductsPage.GetFirstProductPrice().Should().Be(firstPrice);
+            Pages.ProductsPage.GetLastProductPrice().Should().Be(secondPrice);
         }
 
         [DataTestMethod]
         [TestCategory("Product")]
-        public void checkFirstItemPriceConsistency()
+        public void CheckFirstItemPriceConsistency()
         {
-            Pages.HomePage.goToHomeDecor();
-            Pages.HomePage.goFromHomePageToElectronics();
-            Pages.ProductsPage.selectSortByPrice();
-            Pages.ProductsPage.setAscendingDirection();
-            var expectedPrice = Pages.ProductsPage.getFirstProductPrice();
-            Pages.ProductsPage.clickFirstProduct();
-            var actualPrice = Pages.ProductsPage.getItemOpenedPrice();
+            Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.ProductsPage.SelectSortByPrice();
+            Pages.ProductsPage.SetAscendingDirection();
+            var expectedPrice = Pages.ProductsPage.GetFirstProductPrice();
+            Pages.ProductsPage.ClickFirstProduct();
+            var actualPrice = Pages.ProductsPage.GetItemOpenedPrice();
             actualPrice.Should().Be(expectedPrice);
         }
 
         [DataRow("2")]
         [DataTestMethod]
         [TestCategory("Product")]
-        public void addNegativeQuantityForProduct(string qty)
+        public void AddNegativeQuantityForProduct(string qty)
         {
-            Pages.HomePage.goToHomeDecor();
-            Pages.HomePage.goFromHomePageToElectronics();
-            Pages.ProductsPage.selectSortByPrice();
-            Pages.ProductsPage.setAscendingDirection();
-            Pages.ProductsPage.clickFirstProduct();
-            Pages.ProductsPage.setProductQuantity(qty);
+            Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.ProductsPage.SelectSortByPrice();
+            Pages.ProductsPage.SetAscendingDirection();
+            Pages.ProductsPage.ClickFirstProduct();
+            Pages.ProductsPage.SetProductQuantity(qty);
             Pages.ProductsPage.AddToCart();
-            var visibility = Pages.ProductsPage.isAddToCartButtonVisible();
-            visibility.Should().BeFalse();
+            Pages.ProductsPage.IsAddToCartButtonVisible().Should().BeFalse(); ;
         }
 
         [DataTestMethod]
         [TestCategory("Product")]
-        public void checkIfReviewButtonIsVisible()
+        public void CheckIfReviewButtonIsVisible()
         {
-            Pages.HomePage.goToHomeDecor();
-            Pages.HomePage.goFromHomePageToElectronics();
-            Pages.ProductsPage.selectSortByPrice();
-            Pages.ProductsPage.setDescendingDirection();
-            Pages.ProductsPage.clickFirstProduct();
-            Pages.ProductsPage.clickOnReviews();
-            var visibility = Pages.ProductsPage.isReviewButtonPresent();
-            visibility.Should().BeTrue();
-
+            Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.ProductsPage.SelectSortByPrice();
+            Pages.ProductsPage.SetDescendingDirection();
+            Pages.ProductsPage.ClickFirstProduct();
+            Pages.ProductsPage.ClickOnReviews();
+            Pages.ProductsPage.IsReviewButtonPresent().Should().BeTrue(); ;
         }
 
         [DataRow("nice", "good product", "georgel de pe coclauri")]
         [DataTestMethod]
         [TestCategory("Product")]
-        public void checkSubmitReviewForm(string review, string summary, string nickname)
+        public void CheckSubmitReviewForm(string review, string summary, string nickname)
         {
-            Pages.HomePage.goToHomeDecor();
-            Pages.HomePage.goFromHomePageToElectronics();
-            Pages.ProductsPage.selectSortByPrice();
-            Pages.ProductsPage.setDescendingDirection();
-            Pages.ProductsPage.clickFirstProduct();
-            Pages.ProductsPage.clickOnReviews();
-            Pages.ProductsPage.setReview(review);
-            Pages.ProductsPage.setSummary(summary);
-            Pages.ProductsPage.setNickname(nickname);
-            Pages.ProductsPage.clickOnSubmitReviews();
-            var visibility = Pages.ProductsPage.isSuccessMessagePresent();
-            visibility.Should().BeTrue();
+            Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.ProductsPage.SelectSortByPrice();
+            Pages.ProductsPage.SetDescendingDirection();
+            Pages.ProductsPage.ClickFirstProduct();
+            Pages.ProductsPage.ClickOnReviews();
+            Pages.ProductsPage.SetReview(review);
+            Pages.ProductsPage.SetSummary(summary);
+            Pages.ProductsPage.SetNickname(nickname);
+            Pages.ProductsPage.ClickOnSubmitReviews();
+            Pages.ProductsPage.IsSuccessMessagePresent().Should().BeTrue();
 
         }
 
         [Ignore]
         [TestCategory("Product")]
-        public void verifyRecentlyViewedProducts() {
-            Pages.HomePage.goToHomeDecor();
-            Pages.HomePage.goFromHomePageToElectronics();
-            Pages.ProductsPage.selectSortByPrice();
-            Pages.ProductsPage.setDescendingDirection();
-            Pages.ProductsPage.clickFirstProduct();
+        public void VerifyRecentlyViewedProducts() {
+            Pages.HomePage.GoToHomeDecor();
+            Pages.HomePage.GoFromHomePageToElectronics();
+            Pages.ProductsPage.SelectSortByPrice();
+            Pages.ProductsPage.SetDescendingDirection();
+            Pages.ProductsPage.ClickFirstProduct();
             Browser.SwitchToLastTab();
             // TODO
         }
@@ -163,29 +152,29 @@ namespace Madison.Tests
             Pages.HomePage.SelectMyAccountMenu(Constants.AccountMenu[5]);
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
 
-            // Empty cart
-            Pages.HomePage.ClickOnAccount();
-            Pages.HomePage.GoToCart();
-            Pages.MyCartPage.ClickOnEmptyCartButton();
-
+            // Empty cart - Needs refactoring
+            //Pages.HomePage.ClickOnAccount();
+            //Pages.HomePage.GoToCart();
+            //Pages.MyCartPage.ClickOnEmptyCartButton();
+            
             //2. Access Men - New Arrivals section
-            Pages.HomePage.goToMenSection();
-            Pages.HomePage.goToMenNewArrivals();
+            Pages.HomePage.SelectMenCategory(Constants.NavigateBar[1]);
+            Pages.HomePage.SelectMenSubcategory(Constants.AllMenSection[0]);
 
             //3. Open product details page(of first item)
-            Pages.ProductsPage.clickOnViewDetails();
+            Pages.ProductsPage.ClickOnViewDetails();
 
             //4. Check error messages from product details page when adding an item to cart
             Pages.ProductsPage.AddToCart();
-            var errorCount1 = Pages.ProductsPage.GetErrorListSelector().Count;
-            Assert.AreEqual(errorCount1, errorCountBefore.ConvertStringToInt32());
+            var errorCount = Pages.ProductsPage.GetErrorListSelector().Count;
+            errorCount.Should().Be(errorCountBefore.ConvertStringToInt32());
 
             // 5. Add item to cart
-            var color = Pages.ProductsPage.selectColor();
-            var size = Pages.ProductsPage.selectSize();
+            var color = Pages.ProductsPage.SelectColor();
+            var size = Pages.ProductsPage.SelectSize();
             Pages.ProductsPage.AddToCart();
-            var errorCount2 = Pages.ProductsPage.GetErrorListSelector().Count;
-            Assert.AreEqual(errorCount2, errorCountAfter.ConvertStringToInt32());
+            var errorCountNull = Pages.ProductsPage.GetErrorListSelector().Count;
+            errorCountNull.Should().Be(errorCountAfter.ConvertStringToInt32());
 
             //6. Check item is in cart
             Pages.ShoppingCartPage.IsSuccessMessageDisplayed().Should().BeTrue();

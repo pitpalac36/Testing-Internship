@@ -35,5 +35,23 @@ namespace Madison.Helpers
             "Register",
             "Log In",
         };
+
+        public static List<string> NavigateBar = new List<string>
+        {
+            "Women",
+            "MEN",
+            "Accesories",
+            "Home & Decor",
+            "Sale",
+            "VIP"
+        };
+
+        public static List<string> AllMenSection = new List<string>
+        {
+            "NEW ARRIVALS",
+            "SHIRTS",
+            "TEES, KNITS AND POLOS",
+            "PANTS & DENIM"
+        };
     }
 }
