@@ -43,16 +43,14 @@ namespace Madison.Tests
         public void EmptyCartVisibleContinueShopingLink()
         {
             Browser.GoTo(WebLinks.CartLink);
-            bool displayed = Pages.MyCartPage.ContinueShoppingLinkEmptyIsVisible();
-            displayed.Should().BeTrue();
+            Pages.MyCartPage.ContinueShoppingLinkEmptyIsVisible().Should().BeTrue();
         }
 
         [TestMethod]
         public void CartTableNotVisibleEmpty()
         {
             Browser.GoTo(WebLinks.CartLink);
-            bool displayed = Pages.MyCartPage.ItemTableVisibility();
-            displayed.Should().BeFalse();
+            Pages.MyCartPage.ItemTableVisibility().Should().BeFalse();
 
             
         }
@@ -60,10 +58,8 @@ namespace Madison.Tests
         [TestMethod]
         public void CartCheckoutFormNotVisibleWhenEmpty()
         {
-            //Pages.MyCartPage.GoToCart();
             Browser.GoTo(WebLinks.CartLink);
-            bool displayed = Pages.MyCartPage.CheckoutFormVisibility();
-            displayed.Should().BeFalse();
+            Pages.MyCartPage.CheckoutFormVisibility().Should().BeFalse();
             
         }
         
@@ -83,8 +79,7 @@ namespace Madison.Tests
         public void CartLabelNotDisplayedWhenCartIsEmpty()
         {
             Browser.GoTo(WebLinks.CartLink);
-            bool visibility = Pages.HomePage.IsCartQuantityLabelPresent();
-            visibility.Should().BeFalse();
+            Pages.HomePage.IsCartQuantityLabelPresent().Should().BeFalse();
         }
 
         [DataTestMethod]
@@ -95,8 +90,7 @@ namespace Madison.Tests
             {
                Pages.ProductDetailPage.AddItemToCart(link);
             }
-            bool visibility = Pages.HomePage.IsCartQuantityLabelPresent();
-            visibility.Should().BeTrue();
+            Pages.HomePage.IsCartQuantityLabelPresent().Should().BeTrue();
         }
 
         [DataTestMethod]
