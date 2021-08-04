@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
@@ -8,7 +9,17 @@ using System.Threading.Tasks;
 
 namespace Madison.Helpers
 {
-    class ResourceFileHelper
+    public enum Menu
+    {
+        [Description("My Account")] MyAccount,
+        [Description("My Wishlist")] MyWishlits,
+        [Description("My Cart")] MyCart,
+        [Description("Checkout")] Checkout,
+        [Description("Register")] Register,
+        [Description("Log In")] Login,
+
+    }
+     public static class ResourceFileHelper
     {
         private static ResourceManager rm;
 
@@ -21,33 +32,14 @@ namespace Madison.Helpers
             return rm.GetString(search);
         }
 
-        public static List<string> Usernames = new List<string>
+        public static string GetDescription(this Menu menu)
         {
-            "ana.ana@outlook.com",
-            "clau.dia@outlook.com",
-            "",
-            ""
+            var fieldInfo = menu.GetType().GetField(menu.ToString());
+            if (fieldInfo == null) return string.Empty;
 
-        };
-
-        public static List<string> Passwords = new List<string>
-        {
-            "1234567",
-            "ContNou",
-            "",
-            "",
-        };
-
-        public static string AlreadyExistingAccountMessage = "If you have an account with us, please log in.";
-        public static List<string> AccountMenu = new List<string>
-        {
-            "My Account",
-            "My Wishlist",
-            "My Cart",
-            "Checkout",
-            "Register",
-            "Log In",
-        };
+            var attributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+            return attributes[0].Description;
+        }
     }
 }
 
