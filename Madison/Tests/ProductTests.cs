@@ -23,6 +23,7 @@ namespace Madison.Tests
             Pages.HomePage.CheckIfProductSectionsIsVisible().Should().BeTrue();
         }
 
+        //TODO
         [DataTestMethod]
         [TestCategory("Product")]
         [DataRow(6)]
