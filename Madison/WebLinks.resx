@@ -132,6 +132,9 @@
   <data name="JACKIE O ROUND SUNGLASSES" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/accessories/eyewear/jackie-o-round-sunglasses.html</value>
   </data>
+  <data name="My Wishlist Page" xml:space="preserve">
+    <value>http://qa2.dev.evozon.com/wishlist/</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>http://qa2.dev.evozon.com/customer/account/create/</value>
   </data>
