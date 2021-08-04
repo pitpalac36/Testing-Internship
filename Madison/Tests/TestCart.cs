@@ -43,16 +43,14 @@ namespace Madison.Tests
         public void EmptyCartVisibleContinueShopingLink()
         {
             Browser.GoTo(WebLinks.CartLink);
-            bool displayed = Pages.MyCartPage.ContinueShoppingLinkEmptyIsVisible();
-            displayed.Should().BeTrue();
+            Pages.MyCartPage.ContinueShoppingLinkEmptyIsVisible().Should().BeTrue();
         }
 
         [TestMethod]
         public void CartTableNotVisibleEmpty()
         {
             Browser.GoTo(WebLinks.CartLink);
-            bool displayed = Pages.MyCartPage.ItemTableVisibility();
-            displayed.Should().BeFalse();
+            Pages.MyCartPage.ItemTableVisibility().Should().BeFalse();
 
             
         }
@@ -60,10 +58,8 @@ namespace Madison.Tests
         [TestMethod]
         public void CartCheckoutFormNotVisibleWhenEmpty()
         {
-            //Pages.MyCartPage.GoToCart();
             Browser.GoTo(WebLinks.CartLink);
-            bool displayed = Pages.MyCartPage.CheckoutFormVisibility();
-            displayed.Should().BeFalse();
+            Pages.MyCartPage.CheckoutFormVisibility().Should().BeFalse();
             
         }
         
@@ -83,8 +79,7 @@ namespace Madison.Tests
         public void CartLabelNotDisplayedWhenCartIsEmpty()
         {
             Browser.GoTo(WebLinks.CartLink);
-            bool visibility = Pages.HomePage.IsCartQuantityLabelPresent();
-            visibility.Should().BeFalse();
+            Pages.HomePage.IsCartQuantityLabelPresent().Should().BeFalse();
         }
 
         [DataTestMethod]
@@ -95,8 +90,7 @@ namespace Madison.Tests
             {
                Pages.ProductDetailPage.AddItemToCart(link);
             }
-            bool visibility = Pages.HomePage.IsCartQuantityLabelPresent();
-            visibility.Should().BeTrue();
+            Pages.HomePage.IsCartQuantityLabelPresent().Should().BeTrue();
         }
 
         [DataTestMethod]
@@ -129,24 +123,20 @@ namespace Madison.Tests
 
         [DataTestMethod]
         [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
-        public void UpdateQuantityButtonTest(params string[] itemLink)
+        public void UpdateFunctionalityTest(params string[] itemLink)
         {
             foreach (string link in itemLink)
             {
                 Pages.ProductDetailPage.AddItemToCart(link);
             }
             Browser.GoTo(WebLinks.CartLink);
-            IList<IWebElement> inputField = Pages.MyCartPage.GetQuantityInputFields();
-            for(int i=0;i<inputField.Count;i++)
-            {
-                IWebElement input = Pages.MyCartPage.GetQuantityInputFields()[i];
-                int quantity_int = int.Parse(Pages.MyCartPage.GetValueForInputField(input));
-                Pages.MyCartPage.EmptyQuantityField(input);
-                Pages.MyCartPage.InsertQuantity(input, (quantity_int * 2).ToString());
-                input = Pages.MyCartPage.GetQuantityInputFields()[i];
-                string new_quantity = Pages.MyCartPage.GetValueForInputField(input);
-                new_quantity.Should().Be((quantity_int * 2).ToString());
-            }
+            List<string> initialQuantity = Pages.MyCartPage.GetQuantity();
+            List<string> randomQuantity = GenerateData.GenerateNumbersListBasedOnCount(initialQuantity.Count).Select(s => s.ToString()).ToList();
+            Pages.MyCartPage.UpdateQuantityList(randomQuantity);
+            List<string> updatedQuantity = Pages.MyCartPage.GetQuantity();
+            updatedQuantity.Should().BeEquivalentTo(randomQuantity);
+            updatedQuantity.Should().NotBeEquivalentTo(initialQuantity);
+
         }
 
     }
