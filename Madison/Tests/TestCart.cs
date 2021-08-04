@@ -27,7 +27,7 @@ namespace Madison.Tests
         public void EmptyCartShowsEmptyCartHeaderTest()
         {
             Browser.GoTo(WebLinks.CartLink);
-            Pages.MyCartPage.GetHeaderMessage().Should().Be(Messages.EmptyCartMessage);
+            Pages.MyCartPage.GetHeaderMessage().Should().Be(Messages.Empty_Cart_Message);
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace Madison.Tests
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Pages.MyCartPage.ClickOnEmptyCartButton();
-            Pages.MyCartPage.GetHeaderMessage().Should().Be(Messages.EmptyCartMessage);
+            Pages.MyCartPage.GetHeaderMessage().Should().Be(Messages.Empty_Cart_Message);
         }
 
         [DataTestMethod]
