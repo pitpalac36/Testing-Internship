@@ -3,7 +3,7 @@ namespace Madison.Helpers
 {
     public class UserDetails
     {
-        private static readonly string password = Faker.Internet.DomainName();
+        private static readonly string _password = Faker.Internet.DomainName();
         public static string FirstName { get; set; } = Faker.Name.First();
         public static string MiddleName { get; set; } = Faker.Name.Middle();
         public static string LastName { get; set; } = Faker.Name.Last();
