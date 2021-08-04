@@ -16,17 +16,10 @@ namespace Madison.Tests
     public class TestCart : BaseTest
     {
 
-        public static IEnumerable<object[]> GetData()
+        public static IEnumerable<object[]> GetArrayOfItemsLinks()
         {
             yield return new object[] { WebLinks.Earbuds, WebLinks.JACKIE_O_ROUND_SUNGLASSES,WebLinks.Aviator_Sunglasses };
             yield return new object[] { WebLinks.Earbuds };
-        }
-
-        public static IEnumerable<object[]> GetOneLink()
-        {
-            yield return new object[] { WebLinks.Earbuds };
-            yield return new object[] { WebLinks.Aviator_Sunglasses };
-            yield return new object[] { WebLinks.JACKIE_O_ROUND_SUNGLASSES };
         }
 
 
@@ -49,8 +42,6 @@ namespace Madison.Tests
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.MyCartPage.ItemTableVisibility().Should().BeFalse();
-
-            
         }
 
         [TestMethod]
@@ -58,7 +49,6 @@ namespace Madison.Tests
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.MyCartPage.CheckoutFormVisibility().Should().BeFalse();
-            
         }
         
         [TestMethod]
@@ -80,7 +70,7 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
         public void CartLabelDisplayedWithItemsInCartTest(params string[] itemLink)
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
@@ -88,7 +78,7 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
         public void EmptyCartButtonDeletesCartElementsTest(params string[] itemLink)
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
@@ -97,7 +87,7 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
         public void CheckMatchingSubtotalsTest(params string[] itemLink)
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
@@ -106,7 +96,7 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
-        [DynamicData(nameof(GetData), DynamicDataSourceType.Method)]
+        [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
         public void UpdateFunctionalityTest(params string[] itemLink)
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
@@ -117,8 +107,6 @@ namespace Madison.Tests
             List<string> updatedQuantity = Pages.MyCartPage.GetQuantity();
             updatedQuantity.Should().BeEquivalentTo(randomQuantity);
             updatedQuantity.Should().NotBeEquivalentTo(initialQuantity);
-
         }
-
     }
 }
