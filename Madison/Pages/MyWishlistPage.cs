@@ -29,12 +29,6 @@ namespace Madison.Pages
             return _myWishlistLink.IsElementPresent();
         }
 
-        public void ClickOnMyWishlist()
-        {
-            _myWishlistLink.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
-
         public bool IsRedirectedToWishlist()
         {
             return _myWishlistHeader.IsElementPresent();
