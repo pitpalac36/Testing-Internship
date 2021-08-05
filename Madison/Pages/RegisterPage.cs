@@ -57,5 +57,6 @@ namespace Madison.Pages
         {
             return "WELCOME, " + UserDetails.FirstName.ToUpper() + " " + UserDetails.MiddleName.ToUpper() + " " + UserDetails.LastName.ToUpper() + "!";
         }
+
     }
 }

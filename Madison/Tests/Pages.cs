@@ -5,6 +5,8 @@ namespace Madison.Tests
 {
     public static class Pages
     {
+        public static NavigationPage NavigationPage => PageHelpers.InitPage(new NavigationPage());
+
         public static HomePage HomePage => PageHelpers.InitPage(new HomePage());
         public static LoginPage LoginPage => PageHelpers.InitPage(new LoginPage());
         public static MyAccountPage MyAccountPage => PageHelpers.InitPage(new MyAccountPage());
