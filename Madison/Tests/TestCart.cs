@@ -123,8 +123,8 @@ namespace Madison.Tests
             Pages.ProductsPage.AddToCart();
             Pages.ProductDetailPage.GetErrorListSelector().Count.Should().Be(errorCountAfter);
 
-            Pages.ShoppingCartPage.IsSuccessMessageDisplayed().Should().BeTrue();
-            Pages.ShoppingCartPage.FirstItemColor().Should().Be(Pages.ProductDetailPage.SelectColor());
+            Pages.MyCartPage.IsSuccessMessageDisplayed().Should().BeTrue();
+            Pages.MyCartPage.FirstItemColor().Should().Be(Pages.ProductDetailPage.SelectColor());
         }
     }
 }

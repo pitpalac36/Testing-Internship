@@ -53,6 +53,7 @@ namespace Madison.Tests
         }
       
         [TestMethod]
+        [TestCategory("Login")]
         public void CreateAnAccount()
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
@@ -62,6 +63,7 @@ namespace Madison.Tests
         }
         
         [TestMethod]
+        [TestCategory("Login")]
         public void TryToLogin()
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
@@ -72,6 +74,7 @@ namespace Madison.Tests
         }
         
         [TestMethod]
+        [TestCategory("Login")]
         public void TestSearchFromLoginPage()
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
@@ -81,8 +84,9 @@ namespace Madison.Tests
         }
        
         [DataTestMethod]
+        [TestCategory("Login")]
         [DynamicData(nameof(GetCredentials), DynamicDataSourceType.Method)]
-        public void ForgetPassword (string username, string password)
+        public void CheckIfIvalidMessageIsDisplayed (string username, string password)
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login (username, password );
@@ -91,8 +95,9 @@ namespace Madison.Tests
         }
         
         [DataTestMethod]
+        [TestCategory("Login")]
         [DynamicData(nameof(GetPassword), DynamicDataSourceType.Method)]
-        public void NoEmailEntered (string username, string password )
+        public void LoginWithEmptyEmail (string username, string password )
         {
 
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
