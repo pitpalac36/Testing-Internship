@@ -29,7 +29,7 @@ namespace Madison.Tests
         [DataTestMethod]
         [DynamicData(nameof(GetCredentialsAndWelcomeMessage), DynamicDataSourceType.Method)]
         [TestCategory ("Login")]
-        public void LoginAction (string username, string password, string expectedWelcomeMessage )
+        public void LoginActionTest (string username, string password, string expectedWelcomeMessage )
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login (username, password );
@@ -38,7 +38,7 @@ namespace Madison.Tests
 
         [Ignore]
         [TestMethod]
-        public void AlreadyRegisteredMessage()
+        public void AlreadyRegisteredMessageTest()
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.GetAlreadyRegisteredMessage().Should().Be(Messages.Registered); 
@@ -46,7 +46,7 @@ namespace Madison.Tests
 
         [Ignore]
         [TestMethod]
-        public void ExistingAccountMessage()
+        public void ExistingAccountMessageTest()
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.GetExistingAccountMessage().Should().Be(Messages.Existing_Account);
@@ -54,7 +54,7 @@ namespace Madison.Tests
       
         [TestMethod]
         [TestCategory("Login")]
-        public void CreateAnAccount()
+        public void CreateAnAccountTest()
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.ClickCreateAccount();
@@ -64,7 +64,7 @@ namespace Madison.Tests
         
         [TestMethod]
         [TestCategory("Login")]
-        public void TryToLogin()
+        public void TryToLoginTest()
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.ClickLogInBtn();
@@ -75,7 +75,7 @@ namespace Madison.Tests
         
         [TestMethod]
         [TestCategory("Login")]
-        public void TestSearchFromLoginPage()
+        public void TestSearchFromLoginPageTest()
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Search();
@@ -86,7 +86,7 @@ namespace Madison.Tests
         [DataTestMethod]
         [TestCategory("Login")]
         [DynamicData(nameof(GetCredentials), DynamicDataSourceType.Method)]
-        public void CheckIfIvalidMessageIsDisplayed (string username, string password)
+        public void CheckIfIvalidMessageIsDisplayedTest (string username, string password)
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login (username, password );
@@ -97,7 +97,7 @@ namespace Madison.Tests
         [DataTestMethod]
         [TestCategory("Login")]
         [DynamicData(nameof(GetPassword), DynamicDataSourceType.Method)]
-        public void LoginWithEmptyEmail (string username, string password )
+        public void LoginWithEmptyEmailTest (string username, string password )
         {
 
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
