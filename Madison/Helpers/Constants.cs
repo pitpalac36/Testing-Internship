@@ -3,7 +3,7 @@ namespace Madison.Helpers
 {
     class Constants
     {
-        public static List<string> Usernames = new List<string>
+        public static List<string> Usernames = new()
         {
             "ana.ana@outlook.com",
             "clau.dia@outlook.com",
@@ -12,7 +12,7 @@ namespace Madison.Helpers
 
         };
 
-        public static List<string> Passwords = new List<string>
+        public static List<string> Passwords = new()
         {
             "1234567",
             "ContNou",
@@ -20,7 +20,7 @@ namespace Madison.Helpers
             "",
         };
 
-        public static List<string> NavigateBar = new List<string>
+        public static List<string> NavigateBar = new()
         {
             "Women",
             "Men",
@@ -30,7 +30,7 @@ namespace Madison.Helpers
             "VIP"
         };
 
-        public static List<string> AllMenSections = new List<string>
+        public static List<string> AllMenSections = new()
         {
             "NEW ARRIVALS",
             "SHIRTS",
@@ -38,7 +38,7 @@ namespace Madison.Helpers
             "PANTS & DENIM"
         };
 
-        public static List<string> AllHomeDecorSections = new List<string>
+        public static List<string> AllHomeDecorSections = new()
         {
             "View All Home & Decor",
             "Books & Music",
