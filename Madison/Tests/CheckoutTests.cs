@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Madison.Tests
 {
     [TestClass]
-    public class CheckoutTests
+    public class CheckoutTests : BaseTest
     {
         [TestMethod]
         public void CheckoutAsGuestTest()
