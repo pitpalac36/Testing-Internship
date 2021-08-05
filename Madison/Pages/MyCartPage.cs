@@ -21,12 +21,18 @@ namespace Madison.Pages
         private readonly By _quantityField = By.CssSelector(".product-cart-actions > .input-text.qty");
         private readonly By _confirmationMessageSelector = By.ClassName("success-msg");
         private readonly By _firstItemColorSelector = By.CssSelector("td.product-cart-info dd:nth-child(2)");
-        private readonly By _firstItemSizeSelector = By.CssSelector("td.product-cart-info dd:nth-child(4)");
+        private readonly By _checkoutButton = By.CssSelector(".button.btn-proceed-checkout.btn-checkout");
+        
         #endregion
 
         public string GetHeaderMessage()
         {
             return _shoppingCartHeader.GetText();
+        }
+
+        public void ClickProceedToCheckout()
+        {
+            _checkoutButton.ActionClick();
         }
 
         public bool ContinueShoppingLinkEmptyIsVisible()
