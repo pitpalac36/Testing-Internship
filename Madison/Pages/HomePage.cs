@@ -31,24 +31,20 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public IReadOnlyCollection<IWebElement> GetSectionsList()
+        public IReadOnlyCollection<IWebElement> GetNavigationBarList()
         {
-            var elems = _navigationBarList.GetElements();
-            return elems;
+            return _navigationBarList.GetElements();
         }
-        public bool CheckIfProductSectionsIsVisible() {
-            var elems = _navigationBar.IsElementPresent();
-            return elems;
+        public bool IsNavigationBarDisplayed() {
+            return _navigationBar.IsElementPresent();
         }
 
-        public bool CheckIfHomeMainImageIsVisible() {
-            var elem =  _homeDecorImage.IsElementPresent();
-            return elem;
+        public bool CategoryImageIsDisplayed() {
+            return _homeDecorImage.IsElementPresent();
         }
 
         public bool CheckIfCategoryTitleIsVisible() {
-            var elem = _categoryTitle.IsElementPresent();
-            return elem;
+            return _categoryTitle.IsElementPresent();
         }
 
         public void ClickOnAccount()

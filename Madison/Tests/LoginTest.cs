@@ -100,6 +100,5 @@ namespace Madison.Tests
 
             Pages.LoginPage.IsErrorMessageDisplayed().Should().BeTrue();
         }
-
     }
 }
