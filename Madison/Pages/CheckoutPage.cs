@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NsTestFrameworkUI.Pages;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Madison.Pages
     public class CheckoutPage
     {
         #region Selectors
-        private readonly By _guestOption = By.CssSelector(".radio[value='guest']");
+        private readonly By _guestOptionRadioButton = By.CssSelector(".radio[value='guest']");
         private readonly By _continueButtonCheckoutMethod = By.CssSelector(".button#onepage-guest-register-button");
         private readonly By _continueButtonBillingInformation = By.CssSelector("#billing-buttons-container > button");
         private readonly By _shipToThisAdressRadioButton = By.CssSelector("#billing\\:use_for_shipping_yes");
@@ -35,5 +36,10 @@ namespace Madison.Pages
         private readonly By _registerAndCheckoutRadioButton = By.CssSelector("#login\\:register");
         private readonly By _editShippingMethod = By.CssSelector("#opc-shipping > div.step-title > a");
         #endregion
+
+        public void ClickCheckoutAsGuest()
+        {
+            _guestOptionRadioButton.ActionClick();
+        }
     }
 }
