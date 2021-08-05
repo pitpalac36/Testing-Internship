@@ -2,7 +2,7 @@
 using NsTestFrameworkUI.Helpers;
 using DriverOptions = NsTestFrameworkUI.Helpers.DriverOptions;
 
-//[assembly: Parallelize(Workers = 8, Scope = ExecutionScope.MethodLevel)]
+[assembly: Parallelize(Workers = 8, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Helpers
 {
     public class BaseTest
