@@ -3,7 +3,7 @@ namespace Madison.Helpers
 {
     class Constants
     {
-        public static List<string> Usernames = new()
+        public static List<string> Usernames = new ()
         {
             "ana.ana@outlook.com",
             "clau.dia@outlook.com",
