@@ -104,5 +104,27 @@ namespace Madison.Tests
             updatedQuantity.Should().BeEquivalentTo(randomQuantity);
             updatedQuantity.Should().NotBeEquivalentTo(initialQuantity);
         }
+
+        [DataTestMethod]
+        [DataRow(2, 0)]
+        public void CheckItemIsInCartTest(int errorCountBefore, int errorCountAfter)
+        {
+            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
+            Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
+
+            Pages.HomePage.SelectCategory(Constants.NavigateBar[1]);
+            Pages.HomePage.SelectMenSubcategory(Constants.AllMenSections[0]);
+
+            Pages.ProductsPage.ClickOnViewDetails();
+
+            Pages.ProductsPage.AddToCart();
+            Pages.ProductDetailPage.GetErrorListSelector().Count.Should().Be(errorCountBefore);
+
+            Pages.ProductsPage.AddToCart();
+            Pages.ProductDetailPage.GetErrorListSelector().Count.Should().Be(errorCountAfter);
+
+            Pages.ShoppingCartPage.IsSuccessMessageDisplayed().Should().BeTrue();
+            Pages.ShoppingCartPage.FirstItemColor().Should().Be(Pages.ProductDetailPage.SelectColor());
+        }
     }
 }

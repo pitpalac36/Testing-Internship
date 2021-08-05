@@ -14,12 +14,12 @@ namespace Madison.Pages
         private readonly By _productsListGridView = By.CssSelector(".products-grid.products-grid--max-4-col .item.last");
         private readonly By _sortDropdown = By.CssSelector(".toolbar-bottom div.sorter div select");
         private readonly By _sortByPrice = By.CssSelector(".toolbar-bottom div.sorter div select option:nth-child(3)");
-        private readonly By _ascendingDescending = By.CssSelector(".toolbar-bottom .sort-by a");
+        private readonly By _sortButton = By.CssSelector(".toolbar-bottom .sort-by a");
         private readonly By _firstProductPriceGridView = By.CssSelector(".products-grid--max-4-col .item.last:nth-child(1) .price");
-        private readonly By _lastProductItemGridView = By.CssSelector(".products-grid--max-4-col .item.last:last-child .price");
+        private readonly By _lastProductPriceGridView = By.CssSelector(".products-grid--max-4-col .item.last:last-child .price");
         private readonly By _gridView = By.CssSelector(".toolbar-bottom .grid");
         private readonly By _listView = By.CssSelector(".toolbar-bottom .list");
-        private readonly By _firstItemGridView = By.CssSelector(".products-grid--max-4-col .item.last:first-child .product-name a");
+        private readonly By _firstItemImageGridView = By.CssSelector(".products-grid--max-4-col .item.last:first-child img");
         private readonly By _productPrice = By.CssSelector(".regular-price .price");
         private readonly By _productQuantity = By.CssSelector("#qty");
         private readonly By _addToCart = By.CssSelector(".add-to-cart-buttons .button");
@@ -30,20 +30,11 @@ namespace Madison.Pages
         private readonly By _nicknameField = By.CssSelector("#nickname_field");
         private readonly By _successMessage = By.CssSelector(".success-msg span");
         private readonly By _viewDetails = By.CssSelector("li:nth-child(1) .actions > a");
-        private readonly By _errorList = By.CssSelector("#product-options-wrapper dd .input-box div");
-        private readonly By _itemColor = By.CssSelector(".swatch-label img");
-        private readonly By _sizeList = By.CssSelector("#configurable_swatch_size li");
-        //private readonly By errorListSelector = By.CssSelector(".validation-advice");
         #endregion
         
-        public IReadOnlyCollection<IWebElement> GetFirst12ProductsFromElectronics()
+        public IReadOnlyCollection<IWebElement> GetFirstProductPage()
         {
             return _productsListGridView.GetElements();
-        }
-
-        public IReadOnlyCollection<IWebElement> GetErrorListSelector()
-        {
-            return _errorList.GetElements();
         }
 
         public void SelectSortByPrice() 
@@ -56,18 +47,18 @@ namespace Madison.Pages
 
         public void SetAscendingDirection()
         {
-            if (_ascendingDescending.GetText() == "Set Ascending Direction")
+            if (_sortButton.GetText() == "Set Ascending Direction")
             {
-                _ascendingDescending.ActionClick();
+                _sortButton.ActionClick();
                 WaitHelpers.WaitForDocumentReadyState();
             }
         }
 
         public void SetDescendingDirection()
         {
-            if (_ascendingDescending.GetText() == "Set Descending Direction")
+            if (_sortButton.GetText() == "Set Descending Direction")
             {
-                _ascendingDescending.ActionClick();
+                _sortButton.ActionClick();
                 WaitHelpers.WaitForDocumentReadyState();
             }
         }
@@ -87,7 +78,7 @@ namespace Madison.Pages
 
         public void ClickFirstProduct()
         {
-            _firstItemGridView.ActionClick();
+            _firstItemImageGridView.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
 
@@ -115,22 +106,6 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public string SelectColor()
-        {
-            _itemColor.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
-            return _itemColor.GetAttribute("alt");
-        }
-        public string SelectSize()
-        {
-            Random rnd = new();
-            int randomInt = rnd.Next(0, _sizeList.GetElements().Count);
-            var size = _sizeList.GetElements().ElementAt(randomInt).GetAttribute("value");
-            _sizeList.GetElements().ElementAt(randomInt).Click();
-            WaitHelpers.WaitForDocumentReadyState();
-            return size;
-        }
-
         public string GetFirstProductPrice() 
         {
             return _firstProductPriceGridView.GetText();
@@ -138,7 +113,7 @@ namespace Madison.Pages
 
         public string GetLastProductPrice()
         {
-            return _lastProductItemGridView.GetText();
+            return _lastProductPriceGridView.GetText();
         }
         public string GetItemOpenedPrice()
         {
@@ -150,7 +125,7 @@ namespace Madison.Pages
             _productQuantity.ActionSendKeys(qty);
         }
 
-        public void SetAReview(string review, string summary, string nickname) {
+        public void SetReviewFields(string review, string summary, string nickname) {
             _reviewField.ClearField();
             _reviewField.ActionSendKeys(review);
             _reviewField.ClearField();

@@ -18,31 +18,31 @@ namespace Madison.Tests
 
         [TestMethod]
         [TestCategory("Product")]
-        public void VerifyIfColumnsAreDisplayed()
+        public void VerifyIfNavigationbarIsDisplayedTest()
         {
-            Pages.HomePage.CheckIfProductSectionsIsVisible().Should().BeTrue();
+            Pages.HomePage.IsNavigationBarDisplayed().Should().BeTrue();
         }
 
         //TODO - assert distinct elements
         [DataTestMethod]
         [TestCategory("Product")]
         [DataRow(6)]
-        public void VerifyHomeDecorHeaderCount(int count)
+        public void VerifyNavigationBarElementCountTest(int count)
         {
-            Pages.HomePage.GetSectionsList().Count.Should().Be(count);
+            Pages.HomePage.GetNavigationBarList().Count.Should().Be(count);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [TestCategory("Product")]
-        public void VerifyIfHomeDecorMainImgIsDisplayed()
+        public void VerifyIfHomeDecorMainImgIsDisplayedTest()
         {
             Pages.HomePage.SelectCategory("Home & Decor");
-            Pages.HomePage.CheckIfHomeMainImageIsVisible().Should().BeTrue();
+            Pages.HomePage.CategoryImageIsDisplayed().Should().BeTrue();
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [TestCategory("Product")]
-        public void CheckIfElectronicsPageTitleIsDisplayed()
+        public void CheckIfElectronicsPageTitleIsDisplayedTest()
         {
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
@@ -52,17 +52,17 @@ namespace Madison.Tests
         [DataTestMethod]
         [TestCategory("Product")]
         [DataRow(12)]
-        public void CheckIfShowProductsDisplaysACorrectNumberOfProducts(int count)
+        public void CheckIfShowProductsDisplaysACorrectNumberOfProductsTest(int count)
         {
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
-            Pages.ProductsPage.GetFirst12ProductsFromElectronics().Count.Should().BeLessOrEqualTo(count);
+            Pages.ProductsPage.GetFirstProductPage().Count.Should().BeLessOrEqualTo(count);
         }
 
-        [TestMethod]
+        [DataTestMethod]
         [TestCategory("Product")]
         [DataRow("$20.00", "$400.00")]
-        public void VerifyCheapestProductPrice(string firstPrice, string secondPrice)
+        public void VerifyProductsPriceConsistency(string firstPrice, string secondPrice)
         {
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
@@ -72,24 +72,22 @@ namespace Madison.Tests
             Pages.ProductsPage.GetLastProductPrice().Should().Be(secondPrice);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [TestCategory("Product")]
-        public void CheckFirstItemPriceConsistency()
+        public void CheckFirstItemPriceConsistencyTest()
         {
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
             Pages.ProductsPage.SelectSortByPrice();
             Pages.ProductsPage.SetAscendingDirection();
-            var expectedPrice = Pages.ProductsPage.GetFirstProductPrice();
             Pages.ProductsPage.ClickFirstProduct();
-            var actualPrice = Pages.ProductsPage.GetItemOpenedPrice();
-            actualPrice.Should().Be(expectedPrice);
+            Pages.ProductsPage.GetItemOpenedPrice().Should().Be(Pages.ProductsPage.GetFirstProductPrice());
         }
 
         [DataTestMethod]
         [TestCategory("Product")]
         [DataRow("2")]
-        public void AddNegativeQuantityForProduct(string qty)
+        public void AddProductToCartWithNegativeQuantityTest(string qty)
         {
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
@@ -101,9 +99,9 @@ namespace Madison.Tests
             Pages.ProductsPage.IsAddToCartButtonVisible().Should().BeFalse(); ;
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [TestCategory("Product")]
-        public void CheckIfReviewButtonIsVisible()
+        public void CheckIfReviewButtonIsVisibleTest()
         {
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
@@ -118,7 +116,7 @@ namespace Madison.Tests
         [DataTestMethod]
         [TestCategory("Product")]
         [DynamicData(nameof(GetGeneratedReviews), DynamicDataSourceType.Method)]
-        public void CheckSubmitReviewForm(string review, string summary, string nickname)
+        public void CheckSubmitReviewFormTest(string review, string summary, string nickname)
         {
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
@@ -126,16 +124,14 @@ namespace Madison.Tests
             Pages.ProductsPage.SetDescendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
             Pages.ProductsPage.ClickOnReviews();
-            Pages.ProductsPage.SetAReview(review, summary, nickname);
+            Pages.ProductsPage.SetReviewFields(review, summary, nickname);
             Pages.ProductsPage.ClickOnSubmitReviews();
             Pages.ProductsPage.IsSuccessMessagePresent().Should().BeTrue();
         }
 
-
-
-        [TestMethod]
+        [Ignore]
         [TestCategory("Product")]
-        public void VerifyRecentlyViewedProducts()
+        public void VerifyRecentlyViewedProductsTest()
         {
             Pages.HomePage.SelectCategory("Home & Decor");
             Pages.HomePage.SelectHomeDecorSubcategory("Electronics");
@@ -143,33 +139,8 @@ namespace Madison.Tests
             Pages.ProductsPage.SetDescendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
             Browser.SwitchToLastTab();
-            Thread.Sleep(5000);
             // TODO
         }
 
-        [DataTestMethod]
-        [DataRow("2", "0")]
-        public void checkItemIsInCart(string errorCountBefore, string errorCountAfter) {
-            Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
-            Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
-            
-            Pages.HomePage.SelectCategory(Constants.NavigateBar[1]);
-            Pages.HomePage.SelectMenSubcategory(Constants.AllMenSections[0]);
-
-            Pages.ProductsPage.ClickOnViewDetails();
-
-            Pages.ProductsPage.AddToCart();
-            var errorCount = Pages.ProductsPage.GetErrorListSelector().Count;
-            errorCount.Should().Be(errorCountBefore.ConvertStringToInt32());
-
-            var color = Pages.ProductsPage.SelectColor();
-            var size = Pages.ProductsPage.SelectSize();
-            Pages.ProductsPage.AddToCart();
-            var errorCountNull = Pages.ProductsPage.GetErrorListSelector().Count;
-            errorCountNull.Should().Be(errorCountAfter.ConvertStringToInt32());
-
-            Pages.MyCartPage.IsSuccessMessageDisplayed().Should().BeTrue();
-            Pages.MyCartPage.FirstItemColor().Should().Be(color);
-        }
     }
 }
