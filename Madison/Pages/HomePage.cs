@@ -59,7 +59,7 @@ namespace Madison.Pages
         public void SelectMyAccountMenu (string accountMenu )
         {
             ClickOnAccount();
-            _menuElements.GetElements().First(item => item.Text == accountMenu).Click();
+            _menuElements.GetElements().First(item => item.Text.Contains(accountMenu)).Click();
         }
         public void SelectCategory (string category )
         {

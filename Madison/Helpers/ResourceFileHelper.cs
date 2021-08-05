@@ -5,7 +5,7 @@ namespace Madison.Helpers
     public enum Menu
     {
         [Description("My Account")] MyAccount,
-        [Description("My Wishlist")] MyWishlits,
+        [Description("My Wishlist")] MyWishlist,
         [Description("My Cart")] MyCart,
         [Description("Checkout")] Checkout,
         [Description("Register")] Register,
