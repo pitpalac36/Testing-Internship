@@ -71,7 +71,6 @@ namespace Madison.Pages
         public float GetSubtotalItemsPrice()
         {
             var priceList = _productPriceList.GetElements();
-            var new_list = priceList.Select(pr => pr.Text.Trim('$')).ToList(); 
             return priceList.Select(pr => float.Parse(pr.Text.Trim('$'), CultureInfo.InvariantCulture)).Sum();
         }
 

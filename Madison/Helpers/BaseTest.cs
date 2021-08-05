@@ -15,7 +15,7 @@ namespace Madison.Helpers
             {
                 IsHeadless = true
             });
-            Browser.GoTo("http://qa2.dev.evozon.com/");
+            Browser.GoTo(WebLinks.Homepage);
         }
 
         [TestCleanup]

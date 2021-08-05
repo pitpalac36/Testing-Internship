@@ -93,14 +93,14 @@ namespace Madison.Tests
 
         [DataTestMethod]
         [DynamicData(nameof(GetArrayOfItemsLinks), DynamicDataSourceType.Method)]
-        public void UpdateFunctionalityTest(params string[] itemLink)
+        public void UpdateQuantityTest(params string[] itemLink)
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Browser.GoTo(WebLinks.CartLink);
-            List<string> initialQuantity = Pages.MyCartPage.GetQuantity();
-            List<string> randomQuantity = GenerateData.GenerateNumbersListBasedOnCount(initialQuantity.Count).Select(s => s.ToString()).ToList();
+            var initialQuantity = Pages.MyCartPage.GetQuantity();
+            var randomQuantity = GenerateData.GenerateNumbersListBasedOnCount(initialQuantity.Count).Select(s => s.ToString()).ToList();
             Pages.MyCartPage.UpdateQuantityList(randomQuantity);
-            List<string> updatedQuantity = Pages.MyCartPage.GetQuantity();
+            var updatedQuantity = Pages.MyCartPage.GetQuantity();
             updatedQuantity.Should().BeEquivalentTo(randomQuantity);
             updatedQuantity.Should().NotBeEquivalentTo(initialQuantity);
         }
