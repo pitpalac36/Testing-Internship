@@ -141,6 +141,5 @@ namespace Madison.Tests
             Browser.SwitchToLastTab();
             // TODO
         }
-
     }
 }
