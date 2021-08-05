@@ -51,9 +51,9 @@ namespace Madison.Tests
         public void ContinueShoppingLinkRedirectsToHomePageTest()
         {
             Browser.GoTo(WebLinks.CartLink);
-            string cart_url = Browser.WebDriver.Url;
+            string cart_url = Pages.GetUrl();
             Pages.MyCartPage.ClickOnContinueShoppingLinkEmptyCart();
-            string redirected_url = Browser.WebDriver.Url;
+            string redirected_url = Pages.GetUrl();
             redirected_url.Should().NotBe(cart_url);
             redirected_url.Should().Be(WebLinks.Homepage);
         }
@@ -97,10 +97,10 @@ namespace Madison.Tests
         {
             Pages.ProductDetailPage.AddItemsToCart(itemLink);
             Browser.GoTo(WebLinks.CartLink);
-            var initialQuantity = Pages.MyCartPage.GetQuantity();
+            var initialQuantity = Pages.MyCartPage.GetQuantities();
             var randomQuantity = GenerateData.GenerateNumbersListBasedOnCount(initialQuantity.Count).Select(s => s.ToString()).ToList();
             Pages.MyCartPage.UpdateQuantityList(randomQuantity);
-            var updatedQuantity = Pages.MyCartPage.GetQuantity();
+            var updatedQuantity = Pages.MyCartPage.GetQuantities();
             updatedQuantity.Should().BeEquivalentTo(randomQuantity);
             updatedQuantity.Should().NotBeEquivalentTo(initialQuantity);
         }
