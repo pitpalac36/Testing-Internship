@@ -161,7 +161,6 @@ namespace Madison.Tests
             errorCount.Should().Be(errorCountBefore.ConvertStringToInt32());
 
             var color = Pages.ProductsPage.SelectColor();
-            var size = Pages.ProductsPage.SelectSize();
             Pages.ProductsPage.AddToCart();
             var errorCountNull = Pages.ProductsPage.GetErrorListSelector().Count;
             errorCountNull.Should().Be(errorCountAfter.ConvertStringToInt32());
