@@ -51,7 +51,7 @@ namespace Madison.Tests
             Pages.NavigationPage.GoToWishlist();
             Pages.MyWishlistPage.ChangeQuantity(quantity);
             Pages.MyWishlistPage.UpdateItem();
-            Pages.MyWishlistPage.ItemQuantity().Should().Be(quantity);
+            Pages.MyWishlistPage.GetItemQuantity().Should().Be(quantity);
         }
 
         [DataTestMethod]
@@ -64,7 +64,7 @@ namespace Madison.Tests
             Pages.NavigationPage.GoToWishlist();
             Pages.MyWishlistPage.InsertComment(comment);
             Pages.MyWishlistPage.UpdateItem();
-            Pages.MyWishlistPage.ItemComment().Should().Be(comment);
+            Pages.MyWishlistPage.GetItemComment().Should().Be(comment);
         }
 
         [DataTestMethod]
@@ -77,7 +77,7 @@ namespace Madison.Tests
             Pages.NavigationPage.GoToWishlist();
             Pages.MyWishlistPage.ChangeQuantity(quantity);
             Pages.MyWishlistPage.UpdateWishlist();
-            Pages.MyWishlistPage.ItemQuantity().Should().Be(quantity);
+            Pages.MyWishlistPage.GetItemQuantity().Should().Be(quantity);
         }
 
         [TestMethod]
@@ -133,7 +133,7 @@ namespace Madison.Tests
             Pages.MyWishlistPage.ClickOnEdit();
             Pages.MyWishlistPage.EditQuantityFromShowroom(quantity);
             Pages.MyWishlistPage.UpdateWishlistFromShowroom();
-            Pages.MyWishlistPage.ItemQuantity().Should().Be(quantity);
+            Pages.MyWishlistPage.GetItemQuantity().Should().Be(quantity);
             Pages.MyWishlistPage.IsErrorMessageDisplayed().Should().BeFalse();
         }
 
