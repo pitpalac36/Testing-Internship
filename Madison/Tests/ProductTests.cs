@@ -168,8 +168,8 @@ namespace Madison.Tests
             var errorCountNull = Pages.ProductsPage.GetErrorListSelector().Count;
             errorCountNull.Should().Be(errorCountAfter.ConvertStringToInt32());
 
-            Pages.ShoppingCartPage.IsSuccessMessageDisplayed().Should().BeTrue();
-            Pages.ShoppingCartPage.FirstItemColor().Should().Be(color);
+            Pages.MyCartPage.IsSuccessMessageDisplayed().Should().BeTrue();
+            Pages.MyCartPage.FirstItemColor().Should().Be(color);
         }
     }
 }
