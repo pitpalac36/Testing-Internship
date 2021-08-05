@@ -7,9 +7,11 @@ namespace Madison.Pages
     {
         #region selectors
              private readonly By _addToCartButton = By.CssSelector(".button.btn-cart:nth-child(1)");
+             private readonly By _quantityInput = By.Id("qty");
+             private readonly By _updateButton = By.CssSelector("a.link-compare");
         #endregion
 
-        
+
 
         public void AddItemToCart(string itemLink)
         {
@@ -24,6 +26,18 @@ namespace Madison.Pages
             {
                 AddItemToCart(item);
             }
+        }
+
+        public void EditWishlistItemQuantity(string quantity)
+        {
+            _quantityInput.ClearField();
+            _quantityInput.ActionSendKeys(quantity);
+        }
+
+        public void UpdateWishlist()
+        {
+            _updateButton.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
         }
 
     }

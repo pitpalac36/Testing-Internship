@@ -19,8 +19,6 @@ namespace Madison.Pages
         private readonly By _validationAdviceLabel = By.ClassName("validation-advice");
         private readonly By _commentTextArea = By.CssSelector("textarea[name^='description']");
         private readonly By _editItemButton = By.CssSelector(".link-edit");
-        private readonly By _quantityInputFromShowroom = By.Id("qty");
-        private readonly By _updateFromShowroomButton = By.CssSelector("a.link-compare");
         private readonly By _errorMessage = By.ClassName("error-msg");
         #endregion
 
@@ -107,17 +105,7 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void EditQuantityFromShowroom(string quantity)
-        {
-            _quantityInputFromShowroom.ClearField();
-            _quantityInputFromShowroom.ActionSendKeys(quantity);
-        }
-
-        public void UpdateWishlistFromShowroom()
-        {
-            _updateFromShowroomButton.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
+        
 
         public bool IsErrorMessageDisplayed()
         {

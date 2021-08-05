@@ -124,16 +124,15 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
-        [Ignore]
         [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
-        public void UpdateWishlistFromShowroomTest(string quantity)
+        public void UpdateWishlistFromProductsDetailsPageTest(string quantity)
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
             Pages.HomePage.SelectMyAccountMenu(Menu.MyWishlist.GetDescription());
             Pages.MyWishlistPage.ClickOnEdit();
-            Pages.MyWishlistPage.EditQuantityFromShowroom(quantity);
-            Pages.MyWishlistPage.UpdateWishlistFromShowroom();
+            Pages.ProductDetailPage.EditWishlistItemQuantity(quantity);
+            Pages.ProductDetailPage.UpdateWishlist();
             Pages.MyWishlistPage.GetItemQuantity().Should().Be(quantity);
             Pages.MyWishlistPage.IsErrorMessageDisplayed().Should().BeFalse();
         }
