@@ -19,8 +19,11 @@ namespace Madison.Pages
         private readonly By _productPriceList = By.CssSelector(".product-cart-total");
         private readonly By _subtotalPriceLabel = By.CssSelector("td.a-right>span.price ");
         private readonly By _quantityField = By.CssSelector(".product-cart-actions > .input-text.qty");
+        private readonly By _confirmationMessageSelector = By.ClassName("success-msg");
+        private readonly By _firstItemColorSelector = By.CssSelector("td.product-cart-info dd:nth-child(2)");
+        private readonly By _firstItemSizeSelector = By.CssSelector("td.product-cart-info dd:nth-child(4)");
         #endregion
-        
+
         public string GetHeaderMessage()
         {
             return _shoppingCartHeader.GetText();
@@ -52,7 +55,7 @@ namespace Madison.Pages
             return _quantityField.GetElements();
         }
 
-        public List<string> GetQuantity()
+        public List<string> GetQuantities()
         {
             return _quantityField.GetElements().Select(el => el.GetAttribute("value").ToString()).ToList();
         }
@@ -96,5 +99,16 @@ namespace Madison.Pages
             }
             ClickUpdateCart();
         }
+
+        public bool IsSuccessMessageDisplayed()
+        {
+            return _confirmationMessageSelector.IsElementPresent();
+        }
+
+        public string FirstItemColor()
+        {
+            return _firstItemColorSelector.GetText();
+        }
+
     }
 }

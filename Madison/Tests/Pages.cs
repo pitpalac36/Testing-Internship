@@ -1,4 +1,5 @@
 ﻿using Madison.Pages;
+using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 
 namespace Madison.Tests
@@ -16,5 +17,10 @@ namespace Madison.Tests
         public static RegisterPage RegisterPage => PageHelpers.InitPage(new RegisterPage());
         public static ProductDetailPage ProductDetailPage => PageHelpers.InitPage(new ProductDetailPage());
         public static ShoppingCartPage ShoppingCartPage => PageHelpers.InitPage(new ShoppingCartPage());
+
+        public static string GetUrl()
+        {
+            return Browser.WebDriver.Url;
+        }
     }
 }
