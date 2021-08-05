@@ -15,6 +15,8 @@ namespace Madison.Tests
         public static ProductsPage ProductsPage => PageHelpers.InitPage(new ProductsPage());
         public static RegisterPage RegisterPage => PageHelpers.InitPage(new RegisterPage());
         public static ProductDetailPage ProductDetailPage => PageHelpers.InitPage(new ProductDetailPage());
+
+        public static CheckoutPage CheckoutPage => PageHelpers.InitPage(new CheckoutPage());
         public static string GetUrl()
         {
             return Browser.WebDriver.Url;

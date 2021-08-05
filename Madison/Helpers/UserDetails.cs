@@ -10,7 +10,7 @@ namespace Madison.Helpers
         public static string EmailAddress { get; set; } = Faker.Internet.Email();
         public static string Password { get; set; } = _password;
         public static string ConfirmPassword { get; set; } = _password;
-        public  int GetNumberOfEmptyMandatoryFields()
+        public virtual int GetNumberOfEmptyMandatoryFields()
         {
             int count = 0;
             if (FirstName == "")
