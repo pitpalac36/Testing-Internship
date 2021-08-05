@@ -95,8 +95,8 @@ namespace Madison.Tests
             Pages.ProductsPage.SetAscendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
             Pages.ProductsPage.SetProductQuantity(qty);
-            Pages.ProductsPage.AddToCart();
-            Pages.ProductsPage.IsAddToCartButtonVisible().Should().BeFalse(); ;
+            Pages.ProductDetailPage.AddToCart();
+            Pages.ProductDetailPage.IsAddToCartButtonVisible().Should().BeFalse(); ;
         }
 
         [TestMethod]

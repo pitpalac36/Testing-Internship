@@ -14,6 +14,7 @@ namespace Madison.Pages
             private readonly By _errorList = By.CssSelector("#product-options-wrapper dd .input-box div");
             private readonly By _itemColor = By.CssSelector(".swatch-label img");
             private readonly By _sizeList = By.CssSelector("#configurable_swatch_size li");
+            private readonly By _addToCart = By.CssSelector(".add-to-cart-buttons .button");
         #endregion
 
         public void AddItemToCart(string itemLink)
@@ -48,6 +49,15 @@ namespace Madison.Pages
             _sizeList.GetElements().ElementAt(randomInt).Click();
             WaitHelpers.WaitForDocumentReadyState();
             return size;
+        }
+        public void AddToCart()
+        {
+            _addToCart.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
+        }
+        public bool IsAddToCartButtonVisible()
+        {
+            return _addToCart.IsElementPresent();
         }
     }
 }
