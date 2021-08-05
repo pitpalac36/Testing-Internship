@@ -8,10 +8,10 @@ namespace Madison.Helpers
 {
     public class BillingInformation : UserDetails
     {
-        public string Address { get; set; } = Faker.Address.StreetAddress();
-        public string City { get; set; } = Faker.Address.City();
-        public string ZIP { get; set; } = Faker.Address.ZipCode();
-        public string Telephone { get; set; } = Faker.Phone.Number();
+        public static string Address { get; set; } = Faker.Address.StreetAddress();
+        public static string City { get; set; } = Faker.Address.City();
+        public static string ZIP { get; set; } = Faker.Address.ZipCode();
+        public static string Telephone { get; set; } = Faker.Phone.Number();
 
         public override int GetNumberOfEmptyMandatoryFields()
         {
