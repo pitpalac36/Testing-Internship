@@ -131,6 +131,8 @@ namespace Madison.Tests
             Pages.ProductsPage.IsSuccessMessagePresent().Should().BeTrue();
         }
 
+
+
         [TestMethod]
         [TestCategory("Product")]
         public void VerifyRecentlyViewedProducts()

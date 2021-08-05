@@ -27,7 +27,7 @@ namespace Madison.Tests
         }
 
         [TestMethod]
-        public void EmptyCartVisibleContinueShopingLinkTest()
+        public void ContinueShoppingVisibleWhenCartEmptyTest()
         {
             Browser.GoTo(WebLinks.CartLink);
             Pages.MyCartPage.ContinueShoppingLinkEmptyIsVisible().Should().BeTrue();
