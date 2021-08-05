@@ -150,7 +150,7 @@ namespace Madison.Pages
             _productQuantity.ActionSendKeys(qty);
         }
 
-        public void SetAReview(string review, string summary, string nickname) {
+        public void SetReviewFields(string review, string summary, string nickname) {
             _reviewField.ClearField();
             _reviewField.ActionSendKeys(review);
             _reviewField.ClearField();

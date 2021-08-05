@@ -126,7 +126,7 @@ namespace Madison.Tests
             Pages.ProductsPage.SetDescendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
             Pages.ProductsPage.ClickOnReviews();
-            Pages.ProductsPage.SetAReview(review, summary, nickname);
+            Pages.ProductsPage.SetReviewFields(review, summary, nickname);
             Pages.ProductsPage.ClickOnSubmitReviews();
             Pages.ProductsPage.IsSuccessMessagePresent().Should().BeTrue();
         }
