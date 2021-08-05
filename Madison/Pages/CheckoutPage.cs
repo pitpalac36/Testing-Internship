@@ -11,7 +11,7 @@ namespace Madison.Pages
     {
         #region Selectors
         private readonly By _guestOption = By.CssSelector(".radio[value='guest']");
-        private readonly By _continueButton = By.CssSelector(".button#onepage-guest-register-button");
+        private readonly By _continueButtonCheckoutMethod = By.CssSelector(".button#onepage-guest-register-button");
         private readonly By _continueButtonBillingInformation = By.CssSelector("#billing-buttons-container > button");
         private readonly By _shipToThisAdressRadioButton = By.CssSelector("#billing\\:use_for_shipping_yes");
         private readonly By _shipToDifferentAdressRadionButton = By.CssSelector("#billing\\:use_for_shipping_no");
@@ -29,6 +29,11 @@ namespace Madison.Pages
         private readonly By _ZipCodeInput = By.CssSelector("#billing\\:postcode");
         private readonly By _countryDropdownSelect = By.CssSelector("#billing\\:country_id");
         private readonly By _billingTelephoneInput = By.CssSelector("#billing\\:telephone");
+        private readonly By _continueButtonShippingInformation = By.CssSelector("#shipping-buttons-container > button");
+        private readonly By _continueButtonShippingMethod = By.CssSelector("#shipping-method-buttons-container > button");
+        private readonly By _editCheckoutMethod = By.CssSelector("#opc-login > div.step-title > a");
+        private readonly By _registerAndCheckoutRadioButton = By.CssSelector("#login\\:register");
+        private readonly By _editShippingMethod = By.CssSelector("#opc-shipping > div.step-title > a");
         #endregion
     }
 }
