@@ -88,7 +88,7 @@ namespace Madison.Tests
             Pages.NavigationPage.GoToWishlist();
             Pages.MyWishlistPage.ShareWishlist();
             string expectedUrl = WebLinks.ShareWishlist;
-            Pages.MyWishlistPage.GetUrl().Should().Contain(expectedUrl);
+            Pages.GetCurrentUrl().Should().Contain(expectedUrl);
             Pages.MyWishlistPage.IsShareWishlistFormDisplayed().Should().BeTrue();
         }
 

@@ -69,11 +69,6 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public string GetUrl()
-        {
-            return Browser.WebDriver.Url;
-        }
-
         public bool IsShareWishlistFormDisplayed()
         {
             return _shareWishlistForm.IsElementPresent();
