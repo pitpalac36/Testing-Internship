@@ -117,10 +117,10 @@ namespace Madison.Tests
 
             Pages.ProductsPage.ClickOnViewDetails();
 
-            Pages.ProductsPage.AddToCart();
+            Pages.ProductDetailPage.AddToCart();
             Pages.ProductDetailPage.GetErrorListSelector().Count.Should().Be(errorCountBefore);
 
-            Pages.ProductsPage.AddToCart();
+            Pages.ProductDetailPage.AddToCart();
             Pages.ProductDetailPage.GetErrorListSelector().Count.Should().Be(errorCountAfter);
 
             Pages.MyCartPage.IsSuccessMessageDisplayed().Should().BeTrue();

@@ -22,7 +22,6 @@ namespace Madison.Pages
         private readonly By _firstItemImageGridView = By.CssSelector(".products-grid--max-4-col .item.last:first-child img");
         private readonly By _productPrice = By.CssSelector(".regular-price .price");
         private readonly By _productQuantity = By.CssSelector("#qty");
-        private readonly By _addToCart = By.CssSelector(".add-to-cart-buttons .button");
         private readonly By _reviewLink = By.CssSelector(".rating-links a:first-child");
         private readonly By _submitReviewButton = By.CssSelector(".buttons-set .button");
         private readonly By _reviewField = By.CssSelector("#review_field");
@@ -82,12 +81,6 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public void AddToCart()
-        {
-            _addToCart.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
-
         public void ClickOnReviews() 
         {
             _reviewLink.ActionClick();
@@ -132,11 +125,6 @@ namespace Madison.Pages
             _summaryField.ActionSendKeys(summary);
             _reviewField.ClearField();
             _nicknameField.ActionSendKeys(nickname);
-        }
-
-        public bool IsAddToCartButtonVisible()
-        {
-            return _addToCart.IsElementPresent();
         }
 
         public bool IsReviewButtonPresent() 
