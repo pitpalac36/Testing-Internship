@@ -29,12 +29,6 @@ namespace Madison.Pages
             return _myWishlistLink.IsElementPresent();
         }
 
-        public void ClickOnMyWishlist()
-        {
-            _myWishlistLink.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
-
         public bool IsRedirectedToWishlist()
         {
             return _myWishlistHeader.IsElementPresent();
@@ -58,7 +52,7 @@ namespace Madison.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        public string ItemQuantity()
+        public string GetItemQuantity()
         {
             return _firstItemQuantityCell.GetAttribute("value");
         }
@@ -107,7 +101,7 @@ namespace Madison.Pages
             _commentTextArea.ActionSendKeys(comment);
         }
 
-        public string ItemComment()
+        public string GetItemComment()
         {
             return _commentTextArea.GetAttribute("value");
         }
