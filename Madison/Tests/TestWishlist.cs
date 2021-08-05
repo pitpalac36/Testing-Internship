@@ -26,14 +26,14 @@ namespace Madison.Tests
         }
 
         [TestMethod]
-        public void MyWishlistButtonIsDisplayed()
+        public void MyWishlistButtonIsDisplayedTest()
         {
             Pages.HomePage.ClickOnAccount();
             Pages.MyWishlistPage.IsWishlistButtonDisplayed().Should().BeTrue();
         }
 
         [TestMethod]
-        public void ClickOnMyWishlistButtonRedirects()
+        public void ClickOnMyWishlistButtonRedirectsTest()
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
@@ -44,7 +44,7 @@ namespace Madison.Tests
         [DataTestMethod]
         [DoNotParallelize]
         [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
-        public void WishlistItemQuantityUpdatesCorrectly(string quantity)
+        public void WishlistItemQuantityUpdatesCorrectlyTest(string quantity)
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
@@ -57,7 +57,7 @@ namespace Madison.Tests
         [DataTestMethod]
         [DoNotParallelize]
         [DynamicData(nameof(GetComment), DynamicDataSourceType.Method)]
-        public void WishlistItemCommentUpdatesCorrectly(string comment)
+        public void WishlistItemCommentUpdatesCorrectlyTest(string comment)
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
@@ -70,7 +70,7 @@ namespace Madison.Tests
         [DataTestMethod]
         [DoNotParallelize]
         [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
-        public void WishlistUpdatesCorrectly(string quantity)
+        public void WishlistUpdatesCorrectlyTest(string quantity)
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
@@ -81,7 +81,7 @@ namespace Madison.Tests
         }
 
         [TestMethod]
-        public void ClickOnShareWishlistButtonRedirects()
+        public void ClickOnShareWishlistButtonRedirectsTest()
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
@@ -95,7 +95,7 @@ namespace Madison.Tests
         [DataTestMethod]
         [DoNotParallelize]
         [DataRow("", "This is a required field")]
-        public void ShareWishlistFormValidatesEmptyEmail(string email, string expectedMessage)
+        public void ShareWishlistFormValidatesEmptyEmailTest(string email, string expectedMessage)
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
@@ -110,7 +110,7 @@ namespace Madison.Tests
         [DataTestMethod]
         [DoNotParallelize]
         [DataRow("lorem", "Please enter a valid email addresses")]
-        public void ShareWishlistFormValidatesBadEmail(string email, string expectedMessage)
+        public void ShareWishlistFormValidatesBadEmailTest(string email, string expectedMessage)
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
@@ -123,9 +123,9 @@ namespace Madison.Tests
         }
 
         [DataTestMethod]
-        [DoNotParallelize]
+        [Ignore]
         [DynamicData(nameof(GetQuantity), DynamicDataSourceType.Method)]
-        public void UpdateWishlistFromShowroom(string quantity)
+        public void UpdateWishlistFromShowroomTest(string quantity)
         {
             Pages.HomePage.SelectMyAccountMenu(Menu.Login.GetDescription());
             Pages.LoginPage.Login(Constants.Usernames[0], Constants.Passwords[0]);
