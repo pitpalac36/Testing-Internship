@@ -15,7 +15,6 @@ namespace Madison.Pages
         private readonly By _usernameInputSelector = By.CssSelector("input#username");
         private readonly By _passwordInputSelector = By.CssSelector("input#login");
         private readonly By _loginSubmitSelector = By.CssSelector(".form-button");
-        private readonly By _popupCloseSelector = By.CssSelector(".message-popup-head a");
         #endregion
 
         private void FillUsername(string username)
@@ -40,11 +39,5 @@ namespace Madison.Pages
             FillPassword(password);
             ClickLogin();
         }
-
-        public void ClickOnClosePopup()
-        {
-            _popupCloseSelector.ActionClick();
-        }
-
     }
 }
