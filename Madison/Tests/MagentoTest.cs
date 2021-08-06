@@ -28,6 +28,7 @@ namespace Madison.Tests
             Pages.ProductsPage.SetDescendingDirection();
             Pages.ProductsPage.ClickFirstProduct();
             Pages.ProductsPage.ClickOnReviews();
+            
         }
 
     }
