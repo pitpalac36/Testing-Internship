@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\NewFile1.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\NewFile1.txt" />
+    <None Remove="Tests\NewFile1.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0" />
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
     <PackageReference Include="Faker.Net" Version="1.5.138" />
