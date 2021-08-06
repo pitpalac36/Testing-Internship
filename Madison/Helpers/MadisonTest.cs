@@ -5,7 +5,7 @@ using DriverOptions = NsTestFrameworkUI.Helpers.DriverOptions;
 [assembly: Parallelize(Workers = 8, Scope = ExecutionScope.MethodLevel)]
 namespace Madison.Helpers
 {
-    public class BaseTest
+    public class MadisonTest
     {
  
         [TestInitialize]

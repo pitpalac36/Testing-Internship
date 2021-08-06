@@ -8,7 +8,7 @@ namespace Madison.Tests
 {
 
     [TestClass]
-    public class LoginTest : BaseTest
+    public class LoginTest : MadisonTest
     {
         public static IEnumerable<object[]> GetCredentialsAndWelcomeMessage()
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Madison.Tests
 {
     [TestClass]
-    public class TestWishlist: BaseTest
+    public class TestWishlist: MadisonTest
     {
 
         private static IEnumerable<object[]> GetQuantity()

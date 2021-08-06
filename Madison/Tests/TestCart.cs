@@ -9,7 +9,7 @@ using System.Linq;
 namespace Madison.Tests
 {
     [TestClass]
-    public class TestCart : BaseTest
+    public class TestCart : MadisonTest
     {
 
         public static IEnumerable<object[]> GetArrayOfItemsLinks()

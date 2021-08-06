@@ -5,7 +5,7 @@ using FluentAssertions;
 namespace Madison.Tests
 {
     [TestClass]
-    public class RegisterTest:BaseTest 
+    public class RegisterTest:MadisonTest 
     {
         
         [TestMethod]

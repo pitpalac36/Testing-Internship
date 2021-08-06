@@ -9,7 +9,7 @@ using System.Threading;
 namespace Madison.Tests
 {
     [TestClass]
-    public class ProductTests : BaseTest
+    public class ProductTests : MadisonTest
     {
         public static IEnumerable<object[]> GetGeneratedReviews()
         {

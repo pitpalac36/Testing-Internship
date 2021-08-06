@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Madison.Tests
 {
     [TestClass]
-    public class CheckoutTests : BaseTest
+    public class CheckoutTests : MadisonTest
     {
         [TestMethod]
         public void CheckoutAsGuestTest()

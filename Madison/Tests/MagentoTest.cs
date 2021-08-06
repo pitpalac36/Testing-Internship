@@ -7,7 +7,7 @@ namespace Madison.Tests
 {
 
     [TestClass]
-    public class MagentoTest : BaseTest
+    public class MagentoTest : MadisonTest
     {
 
         public static IEnumerable<object[]> GetCredentials()
